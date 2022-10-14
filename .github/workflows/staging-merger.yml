@@ -47,7 +47,8 @@ jobs:
       run: |
         find ./content -mindepth 1 ! -regex '^./content/merger\(/.*\)?' -delete
         ls content/ -all;
-    - name: Build Viewer pages
+        
+    - name: Build Merger pages
       run: hugo --config "./staging-config.toml" -b "https://products-qa.groupdocs.com/" --disableKinds=taxonomy,category --cleanDestinationDir --minify
       
     - name: Prepare public folder
