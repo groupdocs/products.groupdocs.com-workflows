@@ -358,6 +358,28 @@ jobs:
         file_mime_type: 'application/xml'
         dest_dir: 'tr/merger'
 
+    - name: Upload vi folder
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+        AWS_REGION: 'us-west-2'
+        SOURCE_DIR: 'public/vi/merger'
+        DEST_DIR: 'vi/merger' 
+
+    - name: Upload vi sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public/vi/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'vi/merger'
+
     - name: Upload zh folder
       uses: jakejarvis/s3-sync-action@master
       with:
