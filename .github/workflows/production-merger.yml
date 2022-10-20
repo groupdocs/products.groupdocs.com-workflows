@@ -94,6 +94,50 @@ jobs:
         file_mime_type: 'application/xml'
         dest_dir: 'en/merger'
 
+    - name: Upload ar folder
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: 'products.groupdocs.com'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+        AWS_REGION: 'us-west-2'
+        SOURCE_DIR: 'public/ar/merger'
+        DEST_DIR: 'ar/merger'  
+
+    - name: Upload ar sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products.groupdocs.com'
+        file_path: 'public/ar/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'ar/merger'
+    
+    - name: Upload bg folder
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: 'products.groupdocs.com'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+        AWS_REGION: 'us-west-2'
+        SOURCE_DIR: 'public/bg/merger'
+        DEST_DIR: 'bg/merger'  
+
+    - name: Upload bg sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products.groupdocs.com'
+        file_path: 'public/bg/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'bg/merger'
+
     - name: Upload de folder
       uses: jakejarvis/s3-sync-action@master
       with:
