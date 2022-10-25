@@ -270,6 +270,28 @@ jobs:
         file_mime_type: 'application/xml'
         dest_dir: 'de/merger'
 
+    - name: Upload el folder
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+        AWS_REGION: 'us-west-2' 
+        SOURCE_DIR: 'public/el/merger'
+        DEST_DIR: 'el/merger' 
+
+    - name: Upload el sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public/el/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'el/merger'
+
     - name: Upload es folder
       uses: jakejarvis/s3-sync-action@master
       with:
