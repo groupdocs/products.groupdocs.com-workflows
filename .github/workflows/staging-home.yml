@@ -50,6 +50,7 @@ jobs:
         mkdir content;
         
         cp content_new/_index.md content;
+        cp content_new/_index.af.md content;
         cp content_new/_index.am.md content;
         cp content_new/_index.ar.md content;
         cp content_new/_index.bg.md content;
