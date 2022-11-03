@@ -532,4 +532,32 @@ jobs:
         aws_bucket: 'products-qa.groupdocs.com'
         file_path: 'public/sk/sitemap.xml'
         file_mime_type: 'application/xml'
-        dest_dir: 'sk/conversion'                                              
+        dest_dir: 'sk/conversion'
+
+    - name: Upload ka folder
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/ka/conversion --acl public-read --no-progress --region us-west-2
+      working-directory: public/ka/conversion  
+
+    - name: Upload ka sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public/ka/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'ka/conversion'  
+
+    - name: Upload sl folder
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/sl/conversion --acl public-read --no-progress --region us-west-2
+      working-directory: public/sl/conversion  
+
+    - name: Upload sl sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public/sl/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'sl/conversion'                                                            
