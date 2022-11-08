@@ -658,4 +658,46 @@ jobs:
         aws_bucket: 'products-qa.groupdocs.com'
         file_path: 'public/ms/sitemap.xml'
         file_mime_type: 'application/xml'
-        dest_dir: 'ms/conversion'             
+        dest_dir: 'ms/conversion'
+
+    - name: Upload ro folder
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/ro/conversion --acl public-read --no-progress --region us-west-2
+      working-directory: public/ro/conversion  
+
+    - name: Upload ro sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public/ro/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'ro/conversion'      
+
+    - name: Upload sv folder
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/sv/conversion --acl public-read --no-progress --region us-west-2
+      working-directory: public/sv/conversion  
+
+    - name: Upload sv sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public/sv/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'sv/conversion'                       
+
+    - name: Upload ur folder
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/ur/conversion --acl public-read --no-progress --region us-west-2
+      working-directory: public/ur/conversion  
+
+    - name: Upload ur sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public/ur/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'ur/conversion'        
