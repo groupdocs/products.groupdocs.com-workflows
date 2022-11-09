@@ -107,153 +107,153 @@ jobs:
         SOURCE_DIR: 'public/af/signature'
         DEST_DIR: 'af/signature'         
         
-    - name: Upload af sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/af/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'af/signature' 
+    #- name: Upload af sitemap
+    #  uses: swimlane/s3-upload-file-action@main
+    #  with:
+    #    aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #    aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #    aws_bucket: 'products-qa.groupdocs.com'
+    #    file_path: 'public/af/sitemap.xml'
+    #    file_mime_type: 'application/xml'
+    #    dest_dir: 'af/signature' 
  
  
-    - name: Upload am folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/am/signature'
-        DEST_DIR: 'am/signature'         
+    #- name: Upload am folder
+    #  uses: jakejarvis/s3-sync-action@master
+    #  with:
+    #    args: --acl public-read --follow-symlinks --delete
+    #  env:
+    #    AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+    #    AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+    #    AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+    #    AWS_REGION: 'us-west-2'
+    #    SOURCE_DIR: 'public/am/signature'
+    #    DEST_DIR: 'am/signature'         
         
-    - name: Upload am sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/am/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'am/signature'
+    #- name: Upload am sitemap
+    #  uses: swimlane/s3-upload-file-action@main
+    #  with:
+    #    aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #    aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #    aws_bucket: 'products-qa.groupdocs.com'
+    #    file_path: 'public/am/sitemap.xml'
+    #    file_mime_type: 'application/xml'
+    #    dest_dir: 'am/signature'
      
         
-    - name: Upload ar folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/ar/signature'
-        DEST_DIR: 'ar/signature'         
+    #- name: Upload ar folder
+    #  uses: jakejarvis/s3-sync-action@master
+    #  with:
+    #    args: --acl public-read --follow-symlinks --delete
+    #  env:
+    #    AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+    #    AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+    #    AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+    #    AWS_REGION: 'us-west-2'
+    #    SOURCE_DIR: 'public/ar/signature'
+    #    DEST_DIR: 'ar/signature'         
         
-    - name: Upload ar sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/ar/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'ar/signature'  
+    #- name: Upload ar sitemap
+    #  uses: swimlane/s3-upload-file-action@main
+    #  with:
+    #    aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #    aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #    aws_bucket: 'products-qa.groupdocs.com'
+    #    file_path: 'public/ar/sitemap.xml'
+    #    file_mime_type: 'application/xml'
+    #    dest_dir: 'ar/signature'  
 
         
-    - name: Upload bg folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/bg/signature'
-        DEST_DIR: 'bg/signature'         
+    #- name: Upload bg folder
+    #  uses: jakejarvis/s3-sync-action@master
+    #  with:
+    #    args: --acl public-read --follow-symlinks --delete
+    #  env:
+    #    AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+    #    AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+    #    AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+    #    AWS_REGION: 'us-west-2'
+    #    SOURCE_DIR: 'public/bg/signature'
+    #    DEST_DIR: 'bg/signature'         
         
-    - name: Upload bg sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/bg/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'bg/signature'   
-        
-        
-    - name: Upload ca folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/ca/signature'
-        DEST_DIR: 'ca/signature'         
-        
-    - name: Upload ca sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/ca/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'ca/signature' 
+    #- name: Upload bg sitemap
+    #  uses: swimlane/s3-upload-file-action@main
+    #  with:
+    #    aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #    aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #    aws_bucket: 'products-qa.groupdocs.com'
+    #    file_path: 'public/bg/sitemap.xml'
+    #    file_mime_type: 'application/xml'
+    #    dest_dir: 'bg/signature'   
         
         
-    - name: Upload cs folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/cs/signature'
-        DEST_DIR: 'cs/signature'         
+    #- name: Upload ca folder
+    #  uses: jakejarvis/s3-sync-action@master
+    #  with:
+    #    args: --acl public-read --follow-symlinks --delete
+    #  env:
+    #    AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+    #    AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+    #    AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+    #    AWS_REGION: 'us-west-2'
+    #    SOURCE_DIR: 'public/ca/signature'
+    #    DEST_DIR: 'ca/signature'         
         
-    - name: Upload cs sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/cs/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'cs/signature'  
+    #- name: Upload ca sitemap
+    #  uses: swimlane/s3-upload-file-action@main
+    #  with:
+    #    aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #    aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #    aws_bucket: 'products-qa.groupdocs.com'
+    #    file_path: 'public/ca/sitemap.xml'
+    #    file_mime_type: 'application/xml'
+    #    dest_dir: 'ca/signature' 
         
         
-    - name: Upload da folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/da/signature'
-        DEST_DIR: 'da/signature'         
+    #- name: Upload cs folder
+    #  uses: jakejarvis/s3-sync-action@master
+    #  with:
+    #    args: --acl public-read --follow-symlinks --delete
+    #  env:
+    #    AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+    #    AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+    #    AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+    #    AWS_REGION: 'us-west-2'
+    #    SOURCE_DIR: 'public/cs/signature'
+    #    DEST_DIR: 'cs/signature'         
         
-    - name: Upload da sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/da/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'da/signature' 
+    #- name: Upload cs sitemap
+    #  uses: swimlane/s3-upload-file-action@main
+    #  with:
+    #    aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #    aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #    aws_bucket: 'products-qa.groupdocs.com'
+    #    file_path: 'public/cs/sitemap.xml'
+    #    file_mime_type: 'application/xml'
+    #    dest_dir: 'cs/signature'  
+        
+        
+    #- name: Upload da folder
+    #  uses: jakejarvis/s3-sync-action@master
+    #  with:
+    #    args: --acl public-read --follow-symlinks --delete
+    #  env:
+    #    AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+    #    AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+    #    AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+    #    AWS_REGION: 'us-west-2'
+    #    SOURCE_DIR: 'public/da/signature'
+    #    DEST_DIR: 'da/signature'         
+        
+    #- name: Upload da sitemap
+    #  uses: swimlane/s3-upload-file-action@main
+    #  with:
+    #    aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #    aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #    aws_bucket: 'products-qa.groupdocs.com'
+    #    file_path: 'public/da/sitemap.xml'
+    #    file_mime_type: 'application/xml'
+    #    dest_dir: 'da/signature' 
         
         
     - name: Upload de folder
@@ -279,27 +279,27 @@ jobs:
         dest_dir: 'de/signature' 
         
         
-    - name: Upload el folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/el/signature'
-        DEST_DIR: 'el/signature'         
+    #- name: Upload el folder
+    #  uses: jakejarvis/s3-sync-action@master
+    #  with:
+    #    args: --acl public-read --follow-symlinks --delete
+    #  env:
+    #    AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+    #    AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+    #    AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+    #    AWS_REGION: 'us-west-2'
+    #    SOURCE_DIR: 'public/el/signature'
+    #    DEST_DIR: 'el/signature'         
         
-    - name: Upload el sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/el/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'el/signature' 
+    #- name: Upload el sitemap
+    #  uses: swimlane/s3-upload-file-action@main
+    #  with:
+    #    aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #    aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #    aws_bucket: 'products-qa.groupdocs.com'
+    #    file_path: 'public/el/sitemap.xml'
+    #    file_mime_type: 'application/xml'
+    #    dest_dir: 'el/signature' 
         
         
     - name: Upload es folder
@@ -325,73 +325,73 @@ jobs:
         dest_dir: 'es/signature'
         
         
-    - name: Upload et folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/et/signature'
-        DEST_DIR: 'et/signature'         
+    #- name: Upload et folder
+    #  uses: jakejarvis/s3-sync-action@master
+    #  with:
+    #    args: --acl public-read --follow-symlinks --delete
+    #  env:
+    #    AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+    #    AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+    #    AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+    #    AWS_REGION: 'us-west-2'
+    #    SOURCE_DIR: 'public/et/signature'
+    #    DEST_DIR: 'et/signature'         
         
-    - name: Upload et sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/et/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'et/signature'
+    #- name: Upload et sitemap
+    #  uses: swimlane/s3-upload-file-action@main
+    #  with:
+    #    aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #    aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #    aws_bucket: 'products-qa.groupdocs.com'
+    #    file_path: 'public/et/sitemap.xml'
+    #    file_mime_type: 'application/xml'
+    #    dest_dir: 'et/signature'
         
         
-    - name: Upload fa folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/fa/signature'
-        DEST_DIR: 'fa/signature'         
+    #- name: Upload fa folder
+    #  uses: jakejarvis/s3-sync-action@master
+    #  with:
+    #    args: --acl public-read --follow-symlinks --delete
+    #  env:
+    #    AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+    #    AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+    #    AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+    #    AWS_REGION: 'us-west-2'
+    #    SOURCE_DIR: 'public/fa/signature'
+    #    DEST_DIR: 'fa/signature'         
         
-    - name: Upload fa sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/fa/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'fa/signature'        
+    #- name: Upload fa sitemap
+    #  uses: swimlane/s3-upload-file-action@main
+    #  with:
+    #    aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #    aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #    aws_bucket: 'products-qa.groupdocs.com'
+    #    file_path: 'public/fa/sitemap.xml'
+    #    file_mime_type: 'application/xml'
+    #    dest_dir: 'fa/signature'        
         
 
-    - name: Upload fi folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/fi/signature'
-        DEST_DIR: 'fi/signature'         
+    #- name: Upload fi folder
+    #  uses: jakejarvis/s3-sync-action@master
+    #  with:
+    #    args: --acl public-read --follow-symlinks --delete
+    #  env:
+    #    AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+    #    AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+    #    AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+    #    AWS_REGION: 'us-west-2'
+    #    SOURCE_DIR: 'public/fi/signature'
+    #    DEST_DIR: 'fi/signature'         
         
-    - name: Upload fi sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/fi/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'fi/signature'
+    #- name: Upload fi sitemap
+    #  uses: swimlane/s3-upload-file-action@main
+    #  with:
+    #    aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #    aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #    aws_bucket: 'products-qa.groupdocs.com'
+    #    file_path: 'public/fi/sitemap.xml'
+    #    file_mime_type: 'application/xml'
+    #    dest_dir: 'fi/signature'
         
         
     - name: Upload fr folder
@@ -417,188 +417,188 @@ jobs:
         dest_dir: 'fr/signature'
         
         
-    - name: Upload ga folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/ga/signature'
-        DEST_DIR: 'ga/signature'         
+    #- name: Upload ga folder
+    #  uses: jakejarvis/s3-sync-action@master
+    #  with:
+    #    args: --acl public-read --follow-symlinks --delete
+    #  env:
+    #    AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+    #    AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+    #    AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+    #    AWS_REGION: 'us-west-2'
+    #    SOURCE_DIR: 'public/ga/signature'
+    #    DEST_DIR: 'ga/signature'         
         
-    - name: Upload ga sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/ga/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'ga/signature'
-        
-        
-    - name: Upload hi folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/hi/signature'
-        DEST_DIR: 'hi/signature'         
-        
-    - name: Upload hi sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/hi/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'hi/signature'
+    #- name: Upload ga sitemap
+    #  uses: swimlane/s3-upload-file-action@main
+    #  with:
+    #    aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #    aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #    aws_bucket: 'products-qa.groupdocs.com'
+    #    file_path: 'public/ga/sitemap.xml'
+    #    file_mime_type: 'application/xml'
+    #    dest_dir: 'ga/signature'
         
         
-    - name: Upload hr folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/hr/signature'
-        DEST_DIR: 'hr/signature'         
+    #- name: Upload hi folder
+    #  uses: jakejarvis/s3-sync-action@master
+    #  with:
+    #    args: --acl public-read --follow-symlinks --delete
+    #  env:
+    #    AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+    #    AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+    #    AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+    #    AWS_REGION: 'us-west-2'
+    #    SOURCE_DIR: 'public/hi/signature'
+    #    DEST_DIR: 'hi/signature'         
         
-    - name: Upload hr sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/hr/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'hr/signature'
-        
-        
-    - name: Upload hu folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/hu/signature'
-        DEST_DIR: 'hu/signature'         
-        
-    - name: Upload hu sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/hu/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'hu/signature'
+    #- name: Upload hi sitemap
+    #  uses: swimlane/s3-upload-file-action@main
+    #  with:
+    #    aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #    aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #    aws_bucket: 'products-qa.groupdocs.com'
+    #    file_path: 'public/hi/sitemap.xml'
+    #    file_mime_type: 'application/xml'
+    #    dest_dir: 'hi/signature'
         
         
-    - name: Upload hy folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/hy/signature'
-        DEST_DIR: 'hy/signature'         
+    #- name: Upload hr folder
+    #  uses: jakejarvis/s3-sync-action@master
+    #  with:
+    #    args: --acl public-read --follow-symlinks --delete
+    #  env:
+    #    AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+    #    AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+    #    AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+    #    AWS_REGION: 'us-west-2'
+    #    SOURCE_DIR: 'public/hr/signature'
+    #    DEST_DIR: 'hr/signature'         
         
-    - name: Upload hy sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/hy/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'hy/signature'
-        
-        
-    - name: Upload id folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/id/signature'
-        DEST_DIR: 'id/signature'         
-        
-    - name: Upload id sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/id/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'id/signature'
+    #- name: Upload hr sitemap
+    #  uses: swimlane/s3-upload-file-action@main
+    #  with:
+    #    aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #    aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #    aws_bucket: 'products-qa.groupdocs.com'
+    #    file_path: 'public/hr/sitemap.xml'
+    #    file_mime_type: 'application/xml'
+    #    dest_dir: 'hr/signature'
         
         
-    - name: Upload is folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/is/signature'
-        DEST_DIR: 'is/signature'         
+    #- name: Upload hu folder
+    #  uses: jakejarvis/s3-sync-action@master
+    #  with:
+    #    args: --acl public-read --follow-symlinks --delete
+    #  env:
+    #    AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+    #    AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+    #    AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+    #    AWS_REGION: 'us-west-2'
+    #    SOURCE_DIR: 'public/hu/signature'
+    #    DEST_DIR: 'hu/signature'         
         
-    - name: Upload is sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/is/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'is/signature'
+    #- name: Upload hu sitemap
+    #  uses: swimlane/s3-upload-file-action@main
+    #  with:
+    #    aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #    aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #    aws_bucket: 'products-qa.groupdocs.com'
+    #    file_path: 'public/hu/sitemap.xml'
+    #    file_mime_type: 'application/xml'
+    #    dest_dir: 'hu/signature'
         
         
-    - name: Upload it folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/it/signature'
-        DEST_DIR: 'it/signature'         
+    #- name: Upload hy folder
+    #  uses: jakejarvis/s3-sync-action@master
+    #  with:
+    #    args: --acl public-read --follow-symlinks --delete
+    #  env:
+    #    AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+    #    AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+    #    AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+    #    AWS_REGION: 'us-west-2'
+    #    SOURCE_DIR: 'public/hy/signature'
+    #    DEST_DIR: 'hy/signature'         
         
-    - name: Upload it sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/it/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'it/signature'
+    #- name: Upload hy sitemap
+    #  uses: swimlane/s3-upload-file-action@main
+    #  with:
+    #    aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #    aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #    aws_bucket: 'products-qa.groupdocs.com'
+    #    file_path: 'public/hy/sitemap.xml'
+    #    file_mime_type: 'application/xml'
+    #    dest_dir: 'hy/signature'
+        
+        
+    #- name: Upload id folder
+    #  uses: jakejarvis/s3-sync-action@master
+    #  with:
+    #    args: --acl public-read --follow-symlinks --delete
+    #  env:
+    #    AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+    #    AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+    #    AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+    #    AWS_REGION: 'us-west-2'
+    #    SOURCE_DIR: 'public/id/signature'
+    #    DEST_DIR: 'id/signature'         
+        
+    #- name: Upload id sitemap
+    #  uses: swimlane/s3-upload-file-action@main
+    #  with:
+    #    aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #    aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #    aws_bucket: 'products-qa.groupdocs.com'
+    #    file_path: 'public/id/sitemap.xml'
+    #    file_mime_type: 'application/xml'
+    #    dest_dir: 'id/signature'
+        
+        
+    #- name: Upload is folder
+    #  uses: jakejarvis/s3-sync-action@master
+    #  with:
+    #    args: --acl public-read --follow-symlinks --delete
+    #  env:
+    #    AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+    #    AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+    #    AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+    #    AWS_REGION: 'us-west-2'
+    #    SOURCE_DIR: 'public/is/signature'
+    #    DEST_DIR: 'is/signature'         
+        
+    #- name: Upload is sitemap
+    #  uses: swimlane/s3-upload-file-action@main
+    #  with:
+    #    aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #    aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #    aws_bucket: 'products-qa.groupdocs.com'
+    #    file_path: 'public/is/sitemap.xml'
+    #    file_mime_type: 'application/xml'
+    #    dest_dir: 'is/signature'
+        
+        
+    #- name: Upload it folder
+    #  uses: jakejarvis/s3-sync-action@master
+    #  with:
+    #    args: --acl public-read --follow-symlinks --delete
+    #  env:
+    #    AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+    #    AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+    #    AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+    #    AWS_REGION: 'us-west-2'
+    #    SOURCE_DIR: 'public/it/signature'
+    #    DEST_DIR: 'it/signature'         
+        
+    #- name: Upload it sitemap
+    #  uses: swimlane/s3-upload-file-action@main
+    #  with:
+    #    aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #    aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #    aws_bucket: 'products-qa.groupdocs.com'
+    #    file_path: 'public/it/sitemap.xml'
+    #    file_mime_type: 'application/xml'
+    #    dest_dir: 'it/signature'
         
         
     - name: Upload ja folder
@@ -624,50 +624,50 @@ jobs:
         dest_dir: 'ja/signature'
         
         
-    - name: Upload ka folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/ka/signature'
-        DEST_DIR: 'ka/signature'         
+    #- name: Upload ka folder
+    #  uses: jakejarvis/s3-sync-action@master
+    #  with:
+    #    args: --acl public-read --follow-symlinks --delete
+    #  env:
+    #    AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+    #    AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+    #    AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+    #    AWS_REGION: 'us-west-2'
+    #    SOURCE_DIR: 'public/ka/signature'
+    #    DEST_DIR: 'ka/signature'         
         
-    - name: Upload ka sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/ka/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'ka/signature'
+    #- name: Upload ka sitemap
+    #  uses: swimlane/s3-upload-file-action@main
+    #  with:
+    #    aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #    aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #    aws_bucket: 'products-qa.groupdocs.com'
+    #    file_path: 'public/ka/sitemap.xml'
+    #    file_mime_type: 'application/xml'
+    #    dest_dir: 'ka/signature'
         
         
-    - name: Upload kk folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/kk/signature'
-        DEST_DIR: 'kk/signature'         
+    #- name: Upload kk folder
+    #  uses: jakejarvis/s3-sync-action@master
+    #  with:
+    #    args: --acl public-read --follow-symlinks --delete
+    #  env:
+    #    AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+    #    AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+    #    AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+    #    AWS_REGION: 'us-west-2'
+    #    SOURCE_DIR: 'public/kk/signature'
+    #    DEST_DIR: 'kk/signature'         
         
-    - name: Upload kk sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/kk/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'kk/signature'
+    #- name: Upload kk sitemap
+    #  uses: swimlane/s3-upload-file-action@main
+    #  with:
+    #    aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #    aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #    aws_bucket: 'products-qa.groupdocs.com'
+    #    file_path: 'public/kk/sitemap.xml'
+    #    file_mime_type: 'application/xml'
+    #    dest_dir: 'kk/signature'
         
         
     - name: Upload ko folder
@@ -693,188 +693,188 @@ jobs:
         dest_dir: 'ko/signature'
         
         
-    - name: Upload ku folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/ku/signature'
-        DEST_DIR: 'ku/signature'         
+    #- name: Upload ku folder
+    #  uses: jakejarvis/s3-sync-action@master
+    #  with:
+    #    args: --acl public-read --follow-symlinks --delete
+    #  env:
+    #    AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+    #    AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+    #    AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+    #    AWS_REGION: 'us-west-2'
+    #    SOURCE_DIR: 'public/ku/signature'
+    #    DEST_DIR: 'ku/signature'         
         
-    - name: Upload ku sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/ku/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'ku/signature'
-        
-        
-    - name: Upload lt folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/lt/signature'
-        DEST_DIR: 'lt/signature'         
-        
-    - name: Upload lt sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/lt/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'lt/signature'
+    #- name: Upload ku sitemap
+    #  uses: swimlane/s3-upload-file-action@main
+    #  with:
+    #    aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #    aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #    aws_bucket: 'products-qa.groupdocs.com'
+    #    file_path: 'public/ku/sitemap.xml'
+    #    file_mime_type: 'application/xml'
+    #    dest_dir: 'ku/signature'
         
         
-    - name: Upload lv folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/lv/signature'
-        DEST_DIR: 'lv/signature'         
+    #- name: Upload lt folder
+    #  uses: jakejarvis/s3-sync-action@master
+    #  with:
+    #    args: --acl public-read --follow-symlinks --delete
+    #  env:
+    #    AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+    #    AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+    #    AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+    #    AWS_REGION: 'us-west-2'
+    #    SOURCE_DIR: 'public/lt/signature'
+    #    DEST_DIR: 'lt/signature'         
         
-    - name: Upload lv sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/lv/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'lv/signature'
-        
-        
-    - name: Upload ms folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/ms/signature'
-        DEST_DIR: 'ms/signature'         
-        
-    - name: Upload ms sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/ms/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'ms/signature'
+    #- name: Upload lt sitemap
+    #  uses: swimlane/s3-upload-file-action@main
+    #  with:
+    #    aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #    aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #    aws_bucket: 'products-qa.groupdocs.com'
+    #    file_path: 'public/lt/sitemap.xml'
+    #    file_mime_type: 'application/xml'
+    #    dest_dir: 'lt/signature'
         
         
-    - name: Upload nl folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/nl/signature'
-        DEST_DIR: 'nl/signature'         
+    #- name: Upload lv folder
+    #  uses: jakejarvis/s3-sync-action@master
+    #  with:
+    #    args: --acl public-read --follow-symlinks --delete
+    #  env:
+    #    AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+    #    AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+    #    AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+    #    AWS_REGION: 'us-west-2'
+    #    SOURCE_DIR: 'public/lv/signature'
+    #    DEST_DIR: 'lv/signature'         
         
-    - name: Upload nl sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/nl/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'nl/signature'
-        
-        
-    - name: Upload pl folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/pl/signature'
-        DEST_DIR: 'pl/signature'         
-        
-    - name: Upload pl sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/pl/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'pl/signature'
+    #- name: Upload lv sitemap
+    #  uses: swimlane/s3-upload-file-action@main
+    #  with:
+    #    aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #    aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #    aws_bucket: 'products-qa.groupdocs.com'
+    #    file_path: 'public/lv/sitemap.xml'
+    #    file_mime_type: 'application/xml'
+    #    dest_dir: 'lv/signature'
         
         
-    - name: Upload pt folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/pt/signature'
-        DEST_DIR: 'pt/signature'         
+    #- name: Upload ms folder
+    #  uses: jakejarvis/s3-sync-action@master
+    #  with:
+    #    args: --acl public-read --follow-symlinks --delete
+    #  env:
+    #    AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+    #    AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+    #    AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+    #    AWS_REGION: 'us-west-2'
+    #    SOURCE_DIR: 'public/ms/signature'
+    #    DEST_DIR: 'ms/signature'         
         
-    - name: Upload pt sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/pt/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'pt/signature'
+    #- name: Upload ms sitemap
+    #  uses: swimlane/s3-upload-file-action@main
+    #  with:
+    #    aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #    aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #    aws_bucket: 'products-qa.groupdocs.com'
+    #    file_path: 'public/ms/sitemap.xml'
+    #    file_mime_type: 'application/xml'
+    #    dest_dir: 'ms/signature'
         
         
-    - name: Upload ro folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/ro/signature'
-        DEST_DIR: 'ro/signature'         
+    #- name: Upload nl folder
+    #  uses: jakejarvis/s3-sync-action@master
+    #  with:
+    #    args: --acl public-read --follow-symlinks --delete
+    #  env:
+    #    AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+    #    AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+    #    AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+    #    AWS_REGION: 'us-west-2'
+    #    SOURCE_DIR: 'public/nl/signature'
+    #    DEST_DIR: 'nl/signature'         
         
-    - name: Upload ro sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/ro/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'ro/signature'
+    #- name: Upload nl sitemap
+    #  uses: swimlane/s3-upload-file-action@main
+    #  with:
+    #    aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #    aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #    aws_bucket: 'products-qa.groupdocs.com'
+    #    file_path: 'public/nl/sitemap.xml'
+    #    file_mime_type: 'application/xml'
+    #    dest_dir: 'nl/signature'
+        
+        
+    #- name: Upload pl folder
+    #  uses: jakejarvis/s3-sync-action@master
+    #  with:
+    #    args: --acl public-read --follow-symlinks --delete
+    #  env:
+    #    AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+    #    AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+    #    AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+    #    AWS_REGION: 'us-west-2'
+    #    SOURCE_DIR: 'public/pl/signature'
+    #    DEST_DIR: 'pl/signature'         
+        
+    #- name: Upload pl sitemap
+    #  uses: swimlane/s3-upload-file-action@main
+    #  with:
+    #    aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #    aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #    aws_bucket: 'products-qa.groupdocs.com'
+    #    file_path: 'public/pl/sitemap.xml'
+    #    file_mime_type: 'application/xml'
+    #    dest_dir: 'pl/signature'
+        
+        
+    #- name: Upload pt folder
+    #  uses: jakejarvis/s3-sync-action@master
+    #  with:
+    #    args: --acl public-read --follow-symlinks --delete
+    #  env:
+    #    AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+    #    AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+    #    AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+    #    AWS_REGION: 'us-west-2'
+    #    SOURCE_DIR: 'public/pt/signature'
+    #    DEST_DIR: 'pt/signature'         
+        
+    #- name: Upload pt sitemap
+    #  uses: swimlane/s3-upload-file-action@main
+    #  with:
+    #    aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #    aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #    aws_bucket: 'products-qa.groupdocs.com'
+    #    file_path: 'public/pt/sitemap.xml'
+    #    file_mime_type: 'application/xml'
+    #    dest_dir: 'pt/signature'
+        
+        
+    #- name: Upload ro folder
+    #  uses: jakejarvis/s3-sync-action@master
+    #  with:
+    #    args: --acl public-read --follow-symlinks --delete
+    #  env:
+    #    AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+    #    AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+    #    AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+    #    AWS_REGION: 'us-west-2'
+    #    SOURCE_DIR: 'public/ro/signature'
+    #    DEST_DIR: 'ro/signature'         
+        
+    #- name: Upload ro sitemap
+    #  uses: swimlane/s3-upload-file-action@main
+    #  with:
+    #    aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #    aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #    aws_bucket: 'products-qa.groupdocs.com'
+    #    file_path: 'public/ro/sitemap.xml'
+    #    file_mime_type: 'application/xml'
+    #    dest_dir: 'ro/signature'
         
         
     - name: Upload ru folder
@@ -900,188 +900,188 @@ jobs:
         dest_dir: 'ru/signature'
         
         
-    - name: Upload sk folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/sk/signature'
-        DEST_DIR: 'sk/signature'         
+    #- name: Upload sk folder
+    #  uses: jakejarvis/s3-sync-action@master
+    #  with:
+    #    args: --acl public-read --follow-symlinks --delete
+    #  env:
+    #    AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+    #    AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+    #    AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+    #    AWS_REGION: 'us-west-2'
+    #    SOURCE_DIR: 'public/sk/signature'
+    #    DEST_DIR: 'sk/signature'         
         
-    - name: Upload sk sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/sk/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'sk/signature'
-        
-        
-    - name: Upload sl folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/sl/signature'
-        DEST_DIR: 'sl/signature'         
-        
-    - name: Upload sl sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/sl/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'sl/signature'
+    #- name: Upload sk sitemap
+    #  uses: swimlane/s3-upload-file-action@main
+    #  with:
+    #    aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #    aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #    aws_bucket: 'products-qa.groupdocs.com'
+    #    file_path: 'public/sk/sitemap.xml'
+    #    file_mime_type: 'application/xml'
+    #    dest_dir: 'sk/signature'
         
         
-    - name: Upload sv folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/sv/signature'
-        DEST_DIR: 'sv/signature'         
+    #- name: Upload sl folder
+    #  uses: jakejarvis/s3-sync-action@master
+    #  with:
+    #    args: --acl public-read --follow-symlinks --delete
+    #  env:
+    #    AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+    #    AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+    #    AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+    #    AWS_REGION: 'us-west-2'
+    #    SOURCE_DIR: 'public/sl/signature'
+    #    DEST_DIR: 'sl/signature'         
         
-    - name: Upload sv sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/sv/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'sv/signature'
-        
-        
-    - name: Upload th folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/th/signature'
-        DEST_DIR: 'th/signature'         
-        
-    - name: Upload th sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/th/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'th/signature'
+    #- name: Upload sl sitemap
+    #  uses: swimlane/s3-upload-file-action@main
+    #  with:
+    #    aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #    aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #    aws_bucket: 'products-qa.groupdocs.com'
+    #    file_path: 'public/sl/sitemap.xml'
+    #    file_mime_type: 'application/xml'
+    #    dest_dir: 'sl/signature'
         
         
-    - name: Upload tr folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/tr/signature'
-        DEST_DIR: 'tr/signature'         
+    #- name: Upload sv folder
+    #  uses: jakejarvis/s3-sync-action@master
+    #  with:
+    #    args: --acl public-read --follow-symlinks --delete
+    #  env:
+    #    AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+    #    AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+    #    AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+    #    AWS_REGION: 'us-west-2'
+    #    SOURCE_DIR: 'public/sv/signature'
+    #    DEST_DIR: 'sv/signature'         
         
-    - name: Upload tr sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/tr/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'tr/signature'  
-        
-        
-    - name: Upload uk folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/uk/signature'
-        DEST_DIR: 'uk/signature'         
-        
-    - name: Upload uk sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/uk/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'uk/signature'  
+    #- name: Upload sv sitemap
+    #  uses: swimlane/s3-upload-file-action@main
+    #  with:
+    #    aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #    aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #    aws_bucket: 'products-qa.groupdocs.com'
+    #    file_path: 'public/sv/sitemap.xml'
+    #    file_mime_type: 'application/xml'
+    #    dest_dir: 'sv/signature'
         
         
-    - name: Upload ur folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/ur/signature'
-        DEST_DIR: 'ur/signature'         
+    #- name: Upload th folder
+    #  uses: jakejarvis/s3-sync-action@master
+    #  with:
+    #    args: --acl public-read --follow-symlinks --delete
+    #  env:
+    #    AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+    #    AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+    #    AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+    #    AWS_REGION: 'us-west-2'
+    #    SOURCE_DIR: 'public/th/signature'
+    #    DEST_DIR: 'th/signature'         
         
-    - name: Upload ur sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/ur/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'ur/signature'  
+    #- name: Upload th sitemap
+    #  uses: swimlane/s3-upload-file-action@main
+    #  with:
+    #    aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #    aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #    aws_bucket: 'products-qa.groupdocs.com'
+    #    file_path: 'public/th/sitemap.xml'
+    #    file_mime_type: 'application/xml'
+    #    dest_dir: 'th/signature'
         
         
-    - name: Upload vi folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/vi/signature'
-        DEST_DIR: 'vi/signature'         
+    #- name: Upload tr folder
+    #  uses: jakejarvis/s3-sync-action@master
+    #  with:
+    #    args: --acl public-read --follow-symlinks --delete
+    #  env:
+    #    AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+    #    AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+    #    AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+    #    AWS_REGION: 'us-west-2'
+    #    SOURCE_DIR: 'public/tr/signature'
+    #    DEST_DIR: 'tr/signature'         
         
-    - name: Upload vi sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/vi/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'vi/signature'  
+    #- name: Upload tr sitemap
+    #  uses: swimlane/s3-upload-file-action@main
+    #  with:
+    #    aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #    aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #    aws_bucket: 'products-qa.groupdocs.com'
+    #    file_path: 'public/tr/sitemap.xml'
+    #    file_mime_type: 'application/xml'
+    #    dest_dir: 'tr/signature'  
+        
+        
+    #- name: Upload uk folder
+    #  uses: jakejarvis/s3-sync-action@master
+    #  with:
+    #    args: --acl public-read --follow-symlinks --delete
+    #  env:
+    #    AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+    #    AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+    #    AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+    #    AWS_REGION: 'us-west-2'
+    #    SOURCE_DIR: 'public/uk/signature'
+    #    DEST_DIR: 'uk/signature'         
+        
+    #- name: Upload uk sitemap
+    #  uses: swimlane/s3-upload-file-action@main
+    #  with:
+    #    aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #    aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #    aws_bucket: 'products-qa.groupdocs.com'
+    #    file_path: 'public/uk/sitemap.xml'
+    #    file_mime_type: 'application/xml'
+    #    dest_dir: 'uk/signature'  
+        
+        
+    #- name: Upload ur folder
+    #  uses: jakejarvis/s3-sync-action@master
+    #  with:
+    #    args: --acl public-read --follow-symlinks --delete
+    #  env:
+    #    AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+    #    AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+    #    AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+    #    AWS_REGION: 'us-west-2'
+    #    SOURCE_DIR: 'public/ur/signature'
+    #    DEST_DIR: 'ur/signature'         
+        
+    #- name: Upload ur sitemap
+    #  uses: swimlane/s3-upload-file-action@main
+    #  with:
+    #    aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #    aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #    aws_bucket: 'products-qa.groupdocs.com'
+    #    file_path: 'public/ur/sitemap.xml'
+    #    file_mime_type: 'application/xml'
+    #    dest_dir: 'ur/signature'  
+        
+        
+    #- name: Upload vi folder
+    #  uses: jakejarvis/s3-sync-action@master
+    #  with:
+    #    args: --acl public-read --follow-symlinks --delete
+    #  env:
+    #    AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+    #    AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+    #    AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+    #    AWS_REGION: 'us-west-2'
+    #    SOURCE_DIR: 'public/vi/signature'
+    #    DEST_DIR: 'vi/signature'         
+        
+    #- name: Upload vi sitemap
+    #  uses: swimlane/s3-upload-file-action@main
+    #  with:
+    #    aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #    aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #    aws_bucket: 'products-qa.groupdocs.com'
+    #    file_path: 'public/vi/sitemap.xml'
+    #    file_mime_type: 'application/xml'
+    #    dest_dir: 'vi/signature'  
         
         
     - name: Upload zh folder
