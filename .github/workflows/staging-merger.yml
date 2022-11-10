@@ -666,7 +666,7 @@ jobs:
         file_mime_type: 'application/xml'
         dest_dir: 'ko/merger'
 
-      - name: Upload ku folder
+    - name: Upload ku folder
       uses: jakejarvis/s3-sync-action@master
       with:
         args: --acl public-read --follow-symlinks --delete
