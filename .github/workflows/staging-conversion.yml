@@ -700,4 +700,18 @@ jobs:
         aws_bucket: 'products-qa.groupdocs.com'
         file_path: 'public/ur/sitemap.xml'
         file_mime_type: 'application/xml'
-        dest_dir: 'ur/conversion'        
+        dest_dir: 'ur/conversion'
+
+    - name: Upload no folder
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/no/conversion --acl public-read --no-progress --region us-west-2
+      working-directory: public/no/conversion  
+
+    - name: Upload no sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public/no/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'no/conversion'                
