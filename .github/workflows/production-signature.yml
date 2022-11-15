@@ -551,6 +551,21 @@ jobs:
         file_mime_type: 'application/xml'
         dest_dir: 'nl/signature'
         
+     
+    - name: Upload no folder
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/no/signature --acl public-read --no-progress --region us-west-2
+      working-directory: public/no/signature
+        
+    - name: Upload no sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products.groupdocs.com'
+        file_path: 'public/no/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'no/signature'
+        
         
     - name: Upload pl folder
       run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/pl/signature --acl public-read --no-progress --region us-west-2
