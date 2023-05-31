@@ -45,10 +45,8 @@ jobs:
 
     - name: Remove unwanted folders
       run: |
-        ls content/comparison -all;
         find ./content -mindepth 1 ! -regex '^./content/comparison\(/.*\)?' -delete
         ls content/ -all;
-        ls content/comparison -all;
 
     - name: Build Comparison pages
       run: hugo --config "./production-config.toml" -b "https://products.groupdocs.com/" --disableKinds=taxonomy,category --cleanDestinationDir --minify
@@ -83,7 +81,7 @@ jobs:
         AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
         AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/comparison/images'
+        SOURCE_DIR: 'content/comparison/images'
         DEST_DIR: 'comparison/images' 
 
     - name: Upload default language
