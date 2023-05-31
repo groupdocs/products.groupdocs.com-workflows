@@ -45,8 +45,10 @@ jobs:
 
     - name: Remove unwanted folders
       run: |
+        ls content/comparison -all;
         find ./content -mindepth 1 ! -regex '^./content/comparison\(/.*\)?' -delete
         ls content/ -all;
+        ls content/comparison -all;
 
     - name: Build Comparison pages
       run: hugo --config "./production-config.toml" -b "https://products.groupdocs.com/" --disableKinds=taxonomy,category --cleanDestinationDir --minify
