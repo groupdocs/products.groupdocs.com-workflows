@@ -22,7 +22,7 @@ jobs:
     - name: Setup Hugo
       uses: peaceiris/actions-hugo@v2
       with:
-          hugo-version: 'latest'
+          hugo-version: '0.101.0'
           extended: true
 
     - name: Remove unwanted folders
@@ -38,7 +38,7 @@ jobs:
         rm public/index.html;
         ls public -all;
     - name: Deploy
-      run: hugo deploy --config "./classification-staging-config.toml" --maxDeletes=-1 --target "classification" --force
+      run: hugo deploy --config "./classification-staging-config.toml" --maxDeletes=0 --target "classification"
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS }}
