@@ -48,7 +48,7 @@ jobs:
         find ./content -mindepth 1 ! -regex '^./content/classification\(/.*\)?' -delete
         ls content/ -all;
     - name: Build Classification pages
-      run: hugo --config "./production-config.toml" -b "https://products.groupdocs.com/" --disableKinds=taxonomy,category --cleanDestinationDir --minify
+      run: hugo --config "./classification-production-config.toml" -b "https://products.groupdocs.com/" --disableKinds=taxonomy,category --cleanDestinationDir --minify
       
     - name: Prepare public folder
       run: |
