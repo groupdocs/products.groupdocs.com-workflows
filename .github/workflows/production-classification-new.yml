@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: StagingClassification
+name: ProductionClassification
 env:
     product_family: "classification"
     
@@ -8,14 +8,14 @@ env:
 on:
   # Triggers the workflow on push or pull request events but only for the mentioned branches
   push:
-    branches: [ main ]
+    branches: [ production ]
     paths:
        - 'content/classification/**'
   pull_request:
-    branches: [ main ]
+    branches: [ production ]
 
   repository_dispatch:
-    types: [staging-complete]
+    types: [production-complete]
     
   # Allows the workflow run manually from the Actions tab
   workflow_dispatch:
@@ -47,8 +47,8 @@ jobs:
       run: |
         find ./content -mindepth 1 ! -regex '^./content/classification\(/.*\)?' -delete
         ls content/ -all;
-    - name: Build Viewer pages
-      run: hugo --config "./staging-config.toml" -b "https://products-qa.groupdocs.com/" --disableKinds=taxonomy,category --cleanDestinationDir --minify
+    - name: Build Classification pages
+      run: hugo --config "./classification-production-config.toml" -b "https://products.groupdocs.com/" --disableKinds=taxonomy,category --cleanDestinationDir --minify
       
     - name: Prepare public folder
       run: |
@@ -66,7 +66,7 @@ jobs:
       with:
         aws_access_key_id: ${{ secrets.ACCESS_KEY }}
         aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
+        aws_bucket: 'products.groupdocs.com'
         file_path: 'public_home/sitemaps/classification.xml'
         file_mime_type: 'application/xml'
         dest_dir: 'sitemaps'
@@ -76,7 +76,7 @@ jobs:
       with:
         args: --acl public-read --follow-symlinks --delete
       env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+        AWS_S3_BUCKET: 'products.groupdocs.com'
         AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
         AWS_REGION: 'us-west-2'
@@ -88,7 +88,7 @@ jobs:
       with:
         aws_access_key_id: ${{ secrets.ACCESS_KEY }}
         aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
+        aws_bucket: 'products.groupdocs.com'
         file_path: 'public/en/sitemap.xml'
         file_mime_type: 'application/xml'
         dest_dir: 'en/classification'
@@ -98,7 +98,7 @@ jobs:
       with:
         args: --acl public-read --follow-symlinks --delete
       env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+        AWS_S3_BUCKET: 'products.groupdocs.com'
         AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
         AWS_REGION: 'us-west-2'
@@ -110,7 +110,7 @@ jobs:
       with:
         aws_access_key_id: ${{ secrets.ACCESS_KEY }}
         aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
+        aws_bucket: 'products.groupdocs.com'
         file_path: 'public/zh/sitemap.xml'
         file_mime_type: 'application/xml'
         dest_dir: 'zh/classification'
@@ -120,7 +120,7 @@ jobs:
       with:
         args: --acl public-read --follow-symlinks --delete
       env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+        AWS_S3_BUCKET: 'products.groupdocs.com'
         AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
         AWS_REGION: 'us-west-2'
@@ -132,7 +132,7 @@ jobs:
       with:
         aws_access_key_id: ${{ secrets.ACCESS_KEY }}
         aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
+        aws_bucket: 'products.groupdocs.com'
         file_path: 'public/ru/sitemap.xml'
         file_mime_type: 'application/xml'
         dest_dir: 'ru/classification'
@@ -142,7 +142,7 @@ jobs:
       with:
         args: --acl public-read --follow-symlinks --delete
       env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+        AWS_S3_BUCKET: 'products.groupdocs.com'
         AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
         AWS_REGION: 'us-west-2'
@@ -154,7 +154,7 @@ jobs:
       with:
         aws_access_key_id: ${{ secrets.ACCESS_KEY }}
         aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
+        aws_bucket: 'products.groupdocs.com'
         file_path: 'public/fr/sitemap.xml'
         file_mime_type: 'application/xml'
         dest_dir: 'fr/classification'
@@ -164,7 +164,7 @@ jobs:
       with:
         args: --acl public-read --follow-symlinks --delete
       env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+        AWS_S3_BUCKET: 'products.groupdocs.com'
         AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
         AWS_REGION: 'us-west-2' 
@@ -176,7 +176,7 @@ jobs:
       with:
         aws_access_key_id: ${{ secrets.ACCESS_KEY }}
         aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
+        aws_bucket: 'products.groupdocs.com'
         file_path: 'public/es/sitemap.xml'
         file_mime_type: 'application/xml'
         dest_dir: 'es/classification'
@@ -186,7 +186,7 @@ jobs:
       with:
         args: --acl public-read --follow-symlinks --delete
       env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+        AWS_S3_BUCKET: 'products.groupdocs.com'
         AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
         AWS_REGION: 'us-west-2'
@@ -198,7 +198,7 @@ jobs:
       with:
         aws_access_key_id: ${{ secrets.ACCESS_KEY }}
         aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
+        aws_bucket: 'products.groupdocs.com'
         file_path: 'public/de/sitemap.xml'
         file_mime_type: 'application/xml'
         dest_dir: 'de/classification'
@@ -208,7 +208,7 @@ jobs:
       with:
         args: --acl public-read --follow-symlinks --delete
       env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+        AWS_S3_BUCKET: 'products.groupdocs.com'
         AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
         AWS_REGION: 'us-west-2'
@@ -220,7 +220,7 @@ jobs:
       with:
         aws_access_key_id: ${{ secrets.ACCESS_KEY }}
         aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
+        aws_bucket: 'products.groupdocs.com'
         file_path: 'public/ja/sitemap.xml'
         file_mime_type: 'application/xml'
         dest_dir: 'ja/classification'
@@ -230,7 +230,7 @@ jobs:
       with:
         args: --acl public-read --follow-symlinks --delete
       env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+        AWS_S3_BUCKET: 'products.groupdocs.com'
         AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
         AWS_REGION: 'us-west-2'
@@ -242,7 +242,7 @@ jobs:
       with:
         aws_access_key_id: ${{ secrets.ACCESS_KEY }}
         aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
+        aws_bucket: 'products.groupdocs.com'
         file_path: 'public/ko/sitemap.xml'
         file_mime_type: 'application/xml'
         dest_dir: 'ko/classification'
