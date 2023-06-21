@@ -38,7 +38,7 @@ jobs:
         rm public/index.html;
         ls public -all;
     - name: Deploy
-      run: hugo deploy --config "config.toml" --maxDeletes=-1 --target "staging" --force
+      run: hugo deploy --config "./classification-staging-config.toml" --maxDeletes=-1 --target "staging" --force
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS }}
