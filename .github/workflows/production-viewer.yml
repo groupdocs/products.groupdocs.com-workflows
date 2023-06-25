@@ -42,11 +42,11 @@ jobs:
       with:
           hugo-version: 'latest'
           extended: true
-
+ 
     - name: Remove unwanted folders
       run: |
-        find ./content -mindepth 1 -not -regex './content/viewer/.*' -delete
-        ls -a content/
+        find ./content -mindepth 1 ! -regex '^./content/viewer\(/.*\)?' -delete
+        ls content/ -all;
 
     - name: Build viewer pages
       run: hugo --config "./production-config.toml" -b "https://products.groupdocs.com/" --disableKinds=taxonomy,category --cleanDestinationDir --minify
