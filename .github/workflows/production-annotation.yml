@@ -291,3 +291,25 @@ jobs:
         file_path: 'public/it/sitemap.xml'
         file_mime_type: 'application/xml'
         dest_dir: 'it/annotation'
+
+    - name: Upload id folder
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: 'products.groupdocs.com'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+        AWS_REGION: 'us-west-2'
+        SOURCE_DIR: 'public/id/annotation'
+        DEST_DIR: 'id/annotation'  
+
+    - name: Upload id sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products.groupdocs.com'
+        file_path: 'public/id/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'id/annotation'
