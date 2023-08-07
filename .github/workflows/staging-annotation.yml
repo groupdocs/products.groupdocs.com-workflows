@@ -49,7 +49,7 @@ jobs:
         ls content/ -all;
 
     - name: Build annotation pages
-      run: hugo --config "./annotation-staging-config.toml" -b "https://products-qa.groupdocs.com/" --disableKinds=taxonomy,category --cleanDestinationDir --minify
+      run: hugo --config "./staging-config.toml" -b "https://products-qa.groupdocs.com/" --disableKinds=taxonomy,category --cleanDestinationDir --minify
       
     - name: Prepare public folder
       run: |
