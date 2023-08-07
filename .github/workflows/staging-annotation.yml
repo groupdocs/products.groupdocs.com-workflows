@@ -62,704 +62,704 @@ jobs:
         #ls -a public/zh;
         #ls public_home -all;
         
-    - name: Upload family sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public_home/sitemaps/annotation.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'sitemaps'
+    # - name: Upload family sitemap
+    #   uses: swimlane/s3-upload-file-action@main
+    #   with:
+    #     aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #     aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #     aws_bucket: 'products-qa.groupdocs.com'
+    #     file_path: 'public_home/sitemaps/annotation.xml'
+    #     file_mime_type: 'application/xml'
+    #     dest_dir: 'sitemaps'
 
-    - name: Upload default language
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/annotation --acl public-read --no-progress --region us-west-2
-      working-directory: public/annotation        
+    # - name: Upload default language
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/annotation --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/annotation        
         
-    - name: Upload en sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/en/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'en/annotation'
+    # - name: Upload en sitemap
+    #   uses: swimlane/s3-upload-file-action@main
+    #   with:
+    #     aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #     aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #     aws_bucket: 'products-qa.groupdocs.com'
+    #     file_path: 'public/en/sitemap.xml'
+    #     file_mime_type: 'application/xml'
+    #     dest_dir: 'en/annotation'
 
-    - name: Upload af folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/af/annotation --acl public-read --no-progress --region us-west-2
-      working-directory: public/af/annotation
+    # - name: Upload af folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/af/annotation --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/af/annotation
         
-    - name: Upload af sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/af/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'af/annotation' 
+    # - name: Upload af sitemap
+    #   uses: swimlane/s3-upload-file-action@main
+    #   with:
+    #     aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #     aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #     aws_bucket: 'products-qa.groupdocs.com'
+    #     file_path: 'public/af/sitemap.xml'
+    #     file_mime_type: 'application/xml'
+    #     dest_dir: 'af/annotation' 
  
  
-    - name: Upload am folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/am/annotation --acl public-read --no-progress --region us-west-2
-      working-directory: public/am/annotation
+    # - name: Upload am folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/am/annotation --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/am/annotation
         
-    - name: Upload am sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/am/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'am/annotation'
+    # - name: Upload am sitemap
+    #   uses: swimlane/s3-upload-file-action@main
+    #   with:
+    #     aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #     aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #     aws_bucket: 'products-qa.groupdocs.com'
+    #     file_path: 'public/am/sitemap.xml'
+    #     file_mime_type: 'application/xml'
+    #     dest_dir: 'am/annotation'
      
         
-    - name: Upload ar folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/ar/annotation --acl public-read --no-progress --region us-west-2
-      working-directory: public/ar/annotation
+    # - name: Upload ar folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/ar/annotation --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/ar/annotation
         
-    - name: Upload ar sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/ar/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'ar/annotation'  
+    # - name: Upload ar sitemap
+    #   uses: swimlane/s3-upload-file-action@main
+    #   with:
+    #     aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #     aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #     aws_bucket: 'products-qa.groupdocs.com'
+    #     file_path: 'public/ar/sitemap.xml'
+    #     file_mime_type: 'application/xml'
+    #     dest_dir: 'ar/annotation'  
 
         
-    - name: Upload bg folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/bg/annotation --acl public-read --no-progress --region us-west-2
-      working-directory: public/bg/annotation
+    # - name: Upload bg folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/bg/annotation --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/bg/annotation
         
-    - name: Upload bg sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/bg/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'bg/annotation'   
+    # - name: Upload bg sitemap
+    #   uses: swimlane/s3-upload-file-action@main
+    #   with:
+    #     aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #     aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #     aws_bucket: 'products-qa.groupdocs.com'
+    #     file_path: 'public/bg/sitemap.xml'
+    #     file_mime_type: 'application/xml'
+    #     dest_dir: 'bg/annotation'   
         
         
-    - name: Upload ca folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/ca/annotation --acl public-read --no-progress --region us-west-2
-      working-directory: public/ca/annotation
+    # - name: Upload ca folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/ca/annotation --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/ca/annotation
         
-    - name: Upload ca sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/ca/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'ca/annotation' 
+    # - name: Upload ca sitemap
+    #   uses: swimlane/s3-upload-file-action@main
+    #   with:
+    #     aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #     aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #     aws_bucket: 'products-qa.groupdocs.com'
+    #     file_path: 'public/ca/sitemap.xml'
+    #     file_mime_type: 'application/xml'
+    #     dest_dir: 'ca/annotation' 
 
         
-    - name: Upload cs folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/cs/annotation --acl public-read --no-progress --region us-west-2
-      working-directory: public/cs/annotation
+    # - name: Upload cs folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/cs/annotation --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/cs/annotation
         
-    - name: Upload cs sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/cs/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'cs/annotation'  
-        
-        
-    - name: Upload da folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/da/annotation --acl public-read --no-progress --region us-west-2
-      working-directory: public/da/annotation
-        
-    - name: Upload da sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/da/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'da/annotation' 
+    # - name: Upload cs sitemap
+    #   uses: swimlane/s3-upload-file-action@main
+    #   with:
+    #     aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #     aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #     aws_bucket: 'products-qa.groupdocs.com'
+    #     file_path: 'public/cs/sitemap.xml'
+    #     file_mime_type: 'application/xml'
+    #     dest_dir: 'cs/annotation'  
         
         
-    - name: Upload de folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/de/annotation --acl public-read --no-progress --region us-west-2
-      working-directory: public/de/annotation
+    # - name: Upload da folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/da/annotation --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/da/annotation
         
-    - name: Upload de sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/de/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'de/annotation' 
-        
-        
-    - name: Upload el folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/el/annotation --acl public-read --no-progress --region us-west-2
-      working-directory: public/el/annotation
-        
-    - name: Upload el sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/el/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'el/annotation' 
+    # - name: Upload da sitemap
+    #   uses: swimlane/s3-upload-file-action@main
+    #   with:
+    #     aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #     aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #     aws_bucket: 'products-qa.groupdocs.com'
+    #     file_path: 'public/da/sitemap.xml'
+    #     file_mime_type: 'application/xml'
+    #     dest_dir: 'da/annotation' 
         
         
-    - name: Upload es folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/es/annotation --acl public-read --no-progress --region us-west-2
-      working-directory: public/es/annotation        
+    # - name: Upload de folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/de/annotation --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/de/annotation
         
-    - name: Upload es sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/es/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'es/annotation'
-        
-        
-    - name: Upload et folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/et/annotation --acl public-read --no-progress --region us-west-2
-      working-directory: public/et/annotation
-        
-    - name: Upload et sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/et/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'et/annotation'
+    # - name: Upload de sitemap
+    #   uses: swimlane/s3-upload-file-action@main
+    #   with:
+    #     aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #     aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #     aws_bucket: 'products-qa.groupdocs.com'
+    #     file_path: 'public/de/sitemap.xml'
+    #     file_mime_type: 'application/xml'
+    #     dest_dir: 'de/annotation' 
         
         
-    - name: Upload fa folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/fa/annotation --acl public-read --no-progress --region us-west-2
-      working-directory: public/fa/annotation
+    # - name: Upload el folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/el/annotation --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/el/annotation
         
-    - name: Upload fa sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/fa/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'fa/annotation'        
+    # - name: Upload el sitemap
+    #   uses: swimlane/s3-upload-file-action@main
+    #   with:
+    #     aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #     aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #     aws_bucket: 'products-qa.groupdocs.com'
+    #     file_path: 'public/el/sitemap.xml'
+    #     file_mime_type: 'application/xml'
+    #     dest_dir: 'el/annotation' 
+        
+        
+    # - name: Upload es folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/es/annotation --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/es/annotation        
+        
+    # - name: Upload es sitemap
+    #   uses: swimlane/s3-upload-file-action@main
+    #   with:
+    #     aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #     aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #     aws_bucket: 'products-qa.groupdocs.com'
+    #     file_path: 'public/es/sitemap.xml'
+    #     file_mime_type: 'application/xml'
+    #     dest_dir: 'es/annotation'
+        
+        
+    # - name: Upload et folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/et/annotation --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/et/annotation
+        
+    # - name: Upload et sitemap
+    #   uses: swimlane/s3-upload-file-action@main
+    #   with:
+    #     aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #     aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #     aws_bucket: 'products-qa.groupdocs.com'
+    #     file_path: 'public/et/sitemap.xml'
+    #     file_mime_type: 'application/xml'
+    #     dest_dir: 'et/annotation'
+        
+        
+    # - name: Upload fa folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/fa/annotation --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/fa/annotation
+        
+    # - name: Upload fa sitemap
+    #   uses: swimlane/s3-upload-file-action@main
+    #   with:
+    #     aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #     aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #     aws_bucket: 'products-qa.groupdocs.com'
+    #     file_path: 'public/fa/sitemap.xml'
+    #     file_mime_type: 'application/xml'
+    #     dest_dir: 'fa/annotation'        
         
 
-    - name: Upload fi folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/fi/annotation --acl public-read --no-progress --region us-west-2
-      working-directory: public/fi/annotation
+    # - name: Upload fi folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/fi/annotation --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/fi/annotation
         
-    - name: Upload fi sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/fi/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'fi/annotation'
-        
-        
-    - name: Upload fr folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/fr/annotation --acl public-read --no-progress --region us-west-2
-      working-directory: public/fr/annotation       
-        
-    - name: Upload fr sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/fr/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'fr/annotation'
+    # - name: Upload fi sitemap
+    #   uses: swimlane/s3-upload-file-action@main
+    #   with:
+    #     aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #     aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #     aws_bucket: 'products-qa.groupdocs.com'
+    #     file_path: 'public/fi/sitemap.xml'
+    #     file_mime_type: 'application/xml'
+    #     dest_dir: 'fi/annotation'
         
         
-    - name: Upload ga folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/ga/annotation --acl public-read --no-progress --region us-west-2
-      working-directory: public/ga/annotation
+    # - name: Upload fr folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/fr/annotation --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/fr/annotation       
         
-    - name: Upload ga sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/ga/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'ga/annotation'
+    # - name: Upload fr sitemap
+    #   uses: swimlane/s3-upload-file-action@main
+    #   with:
+    #     aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #     aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #     aws_bucket: 'products-qa.groupdocs.com'
+    #     file_path: 'public/fr/sitemap.xml'
+    #     file_mime_type: 'application/xml'
+    #     dest_dir: 'fr/annotation'
         
         
-    - name: Upload hi folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/hi/annotation --acl public-read --no-progress --region us-west-2
-      working-directory: public/hi/annotation
+    # - name: Upload ga folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/ga/annotation --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/ga/annotation
+        
+    # - name: Upload ga sitemap
+    #   uses: swimlane/s3-upload-file-action@main
+    #   with:
+    #     aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #     aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #     aws_bucket: 'products-qa.groupdocs.com'
+    #     file_path: 'public/ga/sitemap.xml'
+    #     file_mime_type: 'application/xml'
+    #     dest_dir: 'ga/annotation'
+        
+        
+    # - name: Upload hi folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/hi/annotation --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/hi/annotation
        
         
-    - name: Upload hi sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/hi/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'hi/annotation'
+    # - name: Upload hi sitemap
+    #   uses: swimlane/s3-upload-file-action@main
+    #   with:
+    #     aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #     aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #     aws_bucket: 'products-qa.groupdocs.com'
+    #     file_path: 'public/hi/sitemap.xml'
+    #     file_mime_type: 'application/xml'
+    #     dest_dir: 'hi/annotation'
         
         
-    - name: Upload hr folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/hr/annotation --acl public-read --no-progress --region us-west-2
-      working-directory: public/hr/annotation
+    # - name: Upload hr folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/hr/annotation --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/hr/annotation
         
-    - name: Upload hr sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/hr/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'hr/annotation'
-        
-        
-    - name: Upload hu folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/hu/annotation --acl public-read --no-progress --region us-west-2
-      working-directory: public/hu/annotation
-        
-    - name: Upload hu sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/hu/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'hu/annotation'
+    # - name: Upload hr sitemap
+    #   uses: swimlane/s3-upload-file-action@main
+    #   with:
+    #     aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #     aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #     aws_bucket: 'products-qa.groupdocs.com'
+    #     file_path: 'public/hr/sitemap.xml'
+    #     file_mime_type: 'application/xml'
+    #     dest_dir: 'hr/annotation'
         
         
-    - name: Upload hy folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/hy/annotation --acl public-read --no-progress --region us-west-2
-      working-directory: public/hy/annotation
+    # - name: Upload hu folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/hu/annotation --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/hu/annotation
         
-    - name: Upload hy sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/hy/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'hy/annotation'
+    # - name: Upload hu sitemap
+    #   uses: swimlane/s3-upload-file-action@main
+    #   with:
+    #     aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #     aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #     aws_bucket: 'products-qa.groupdocs.com'
+    #     file_path: 'public/hu/sitemap.xml'
+    #     file_mime_type: 'application/xml'
+    #     dest_dir: 'hu/annotation'
         
         
-    - name: Upload id folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/id/annotation --acl public-read --no-progress --region us-west-2
-      working-directory: public/id/annotation
+    # - name: Upload hy folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/hy/annotation --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/hy/annotation
+        
+    # - name: Upload hy sitemap
+    #   uses: swimlane/s3-upload-file-action@main
+    #   with:
+    #     aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #     aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #     aws_bucket: 'products-qa.groupdocs.com'
+    #     file_path: 'public/hy/sitemap.xml'
+    #     file_mime_type: 'application/xml'
+    #     dest_dir: 'hy/annotation'
+        
+        
+    # - name: Upload id folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/id/annotation --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/id/annotation
  
-    - name: Upload id sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/id/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'id/annotation'
-        
-        
-    - name: Upload is folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/is/annotation --acl public-read --no-progress --region us-west-2
-      working-directory: public/is/annotation
-        
-    - name: Upload is sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/is/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'is/annotation'
-        
-        
-    - name: Upload it folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/it/annotation --acl public-read --no-progress --region us-west-2
-      working-directory: public/it/annotation
-        
-    - name: Upload it sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/it/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'it/annotation'
-        
-        
-    - name: Upload ja folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/ja/annotation --acl public-read --no-progress --region us-west-2
-      working-directory: public/ja/annotation       
-        
-    - name: Upload ja sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/ja/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'ja/annotation'
-        
-        
-    - name: Upload ka folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/ka/annotation --acl public-read --no-progress --region us-west-2
-      working-directory: public/ka/annotation
-        
-    - name: Upload ka sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/ka/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'ka/annotation'
-        
-        
-    - name: Upload kk folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/kk/annotation --acl public-read --no-progress --region us-west-2
-      working-directory: public/kk/annotation
-        
-    - name: Upload kk sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/kk/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'kk/annotation'
-        
-        
-    - name: Upload ko folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/ko/annotation --acl public-read --no-progress --region us-west-2
-      working-directory: public/ko/annotation       
-        
-    - name: Upload ko sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/ko/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'ko/annotation'
-        
-        
-    - name: Upload ku folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/ku/annotation --acl public-read --no-progress --region us-west-2
-      working-directory: public/ku/annotation
-        
-    - name: Upload ku sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/ku/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'ku/annotation'
-        
-        
-    - name: Upload lt folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/lt/annotation --acl public-read --no-progress --region us-west-2
-      working-directory: public/lt/annotation
-        
-    - name: Upload lt sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/lt/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'lt/annotation'
-        
-        
-    - name: Upload lv folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/lv/annotation --acl public-read --no-progress --region us-west-2
-      working-directory: public/lv/annotation
-        
-    - name: Upload lv sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/lv/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'lv/annotation'
-        
-        
-    - name: Upload ms folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/ms/annotation --acl public-read --no-progress --region us-west-2
-      working-directory: public/ms/annotation
-        
-    - name: Upload ms sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/ms/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'ms/annotation'
-        
-        
-    - name: Upload nl folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/nl/annotation --acl public-read --no-progress --region us-west-2
-      working-directory: public/nl/annotation
-        
-    - name: Upload nl sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/nl/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'nl/annotation'
-        
-        
-    - name: Upload no folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/no/annotation --acl public-read --no-progress --region us-west-2
-      working-directory: public/no/annotation
-        
-    - name: Upload no sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/no/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'no/annotation'
-        
-        
-    - name: Upload pl folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/pl/annotation --acl public-read --no-progress --region us-west-2
-      working-directory: public/pl/annotation
-        
-    - name: Upload pl sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/pl/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'pl/annotation'
-        
-        
-    - name: Upload pt folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/pt/annotation --acl public-read --no-progress --region us-west-2
-      working-directory: public/pt/annotation
-        
-    - name: Upload pt sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/pt/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'pt/annotation'
-        
-        
-    - name: Upload ro folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/ro/annotation --acl public-read --no-progress --region us-west-2
-      working-directory: public/ro/annotation
-        
-    - name: Upload ro sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/ro/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'ro/annotation'
-        
-        
-    - name: Upload ru folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/ru/annotation --acl public-read --no-progress --region us-west-2
-      working-directory: public/ru/annotation       
-        
-    - name: Upload ru sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/ru/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'ru/annotation'
-        
-        
-    - name: Upload sk folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/sk/annotation --acl public-read --no-progress --region us-west-2
-      working-directory: public/sk/annotation
-        
-    - name: Upload sk sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/sk/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'sk/annotation'
-        
-        
-    - name: Upload sl folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/sl/annotation --acl public-read --no-progress --region us-west-2
-      working-directory: public/sl/annotation
-        
-    - name: Upload sl sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/sl/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'sl/annotation'
-        
-        
-    - name: Upload sv folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/sv/annotation --acl public-read --no-progress --region us-west-2
-      working-directory: public/sv/annotation
-        
-    - name: Upload sv sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/sv/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'sv/annotation'
-        
-        
-    - name: Upload th folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/th/annotation --acl public-read --no-progress --region us-west-2
-      working-directory: public/th/annotation
-        
-    - name: Upload th sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/th/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'th/annotation'
-        
-        
-    - name: Upload tr folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/tr/annotation --acl public-read --no-progress --region us-west-2
-      working-directory: public/tr/annotation
-        
-    - name: Upload tr sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/tr/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'tr/annotation'  
-        
-        
-    - name: Upload uk folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/uk/annotation --acl public-read --no-progress --region us-west-2
-      working-directory: public/uk/annotation
-        
-    - name: Upload uk sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/uk/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'uk/annotation'  
-        
-        
-    - name: Upload ur folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/ur/annotation --acl public-read --no-progress --region us-west-2
-      working-directory: public/ur/annotation
-        
-    - name: Upload ur sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/ur/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'ur/annotation'  
-        
-        
-    - name: Upload vi folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/vi/annotation --acl public-read --no-progress --region us-west-2
-      working-directory: public/vi/annotation
-        
-    - name: Upload vi sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/vi/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'vi/annotation'  
-        
-        
-    - name: Upload zh folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/zh/annotation --acl public-read --no-progress --region us-west-2
-      working-directory: public/zh/annotation        
-        
-    - name: Upload zh sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/zh/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'zh/annotation'  
+    # - name: Upload id sitemap
+    #   uses: swimlane/s3-upload-file-action@main
+    #   with:
+    #     aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #     aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #     aws_bucket: 'products-qa.groupdocs.com'
+    #     file_path: 'public/id/sitemap.xml'
+    #     file_mime_type: 'application/xml'
+    #     dest_dir: 'id/annotation'
+        
+        
+    # - name: Upload is folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/is/annotation --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/is/annotation
+        
+    # - name: Upload is sitemap
+    #   uses: swimlane/s3-upload-file-action@main
+    #   with:
+    #     aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #     aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #     aws_bucket: 'products-qa.groupdocs.com'
+    #     file_path: 'public/is/sitemap.xml'
+    #     file_mime_type: 'application/xml'
+    #     dest_dir: 'is/annotation'
+        
+        
+    # - name: Upload it folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/it/annotation --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/it/annotation
+        
+    # - name: Upload it sitemap
+    #   uses: swimlane/s3-upload-file-action@main
+    #   with:
+    #     aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #     aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #     aws_bucket: 'products-qa.groupdocs.com'
+    #     file_path: 'public/it/sitemap.xml'
+    #     file_mime_type: 'application/xml'
+    #     dest_dir: 'it/annotation'
+        
+        
+    # - name: Upload ja folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/ja/annotation --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/ja/annotation       
+        
+    # - name: Upload ja sitemap
+    #   uses: swimlane/s3-upload-file-action@main
+    #   with:
+    #     aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #     aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #     aws_bucket: 'products-qa.groupdocs.com'
+    #     file_path: 'public/ja/sitemap.xml'
+    #     file_mime_type: 'application/xml'
+    #     dest_dir: 'ja/annotation'
+        
+        
+    # - name: Upload ka folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/ka/annotation --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/ka/annotation
+        
+    # - name: Upload ka sitemap
+    #   uses: swimlane/s3-upload-file-action@main
+    #   with:
+    #     aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #     aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #     aws_bucket: 'products-qa.groupdocs.com'
+    #     file_path: 'public/ka/sitemap.xml'
+    #     file_mime_type: 'application/xml'
+    #     dest_dir: 'ka/annotation'
+        
+        
+    # - name: Upload kk folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/kk/annotation --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/kk/annotation
+        
+    # - name: Upload kk sitemap
+    #   uses: swimlane/s3-upload-file-action@main
+    #   with:
+    #     aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #     aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #     aws_bucket: 'products-qa.groupdocs.com'
+    #     file_path: 'public/kk/sitemap.xml'
+    #     file_mime_type: 'application/xml'
+    #     dest_dir: 'kk/annotation'
+        
+        
+    # - name: Upload ko folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/ko/annotation --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/ko/annotation       
+        
+    # - name: Upload ko sitemap
+    #   uses: swimlane/s3-upload-file-action@main
+    #   with:
+    #     aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #     aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #     aws_bucket: 'products-qa.groupdocs.com'
+    #     file_path: 'public/ko/sitemap.xml'
+    #     file_mime_type: 'application/xml'
+    #     dest_dir: 'ko/annotation'
+        
+        
+    # - name: Upload ku folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/ku/annotation --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/ku/annotation
+        
+    # - name: Upload ku sitemap
+    #   uses: swimlane/s3-upload-file-action@main
+    #   with:
+    #     aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #     aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #     aws_bucket: 'products-qa.groupdocs.com'
+    #     file_path: 'public/ku/sitemap.xml'
+    #     file_mime_type: 'application/xml'
+    #     dest_dir: 'ku/annotation'
+        
+        
+    # - name: Upload lt folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/lt/annotation --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/lt/annotation
+        
+    # - name: Upload lt sitemap
+    #   uses: swimlane/s3-upload-file-action@main
+    #   with:
+    #     aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #     aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #     aws_bucket: 'products-qa.groupdocs.com'
+    #     file_path: 'public/lt/sitemap.xml'
+    #     file_mime_type: 'application/xml'
+    #     dest_dir: 'lt/annotation'
+        
+        
+    # - name: Upload lv folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/lv/annotation --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/lv/annotation
+        
+    # - name: Upload lv sitemap
+    #   uses: swimlane/s3-upload-file-action@main
+    #   with:
+    #     aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #     aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #     aws_bucket: 'products-qa.groupdocs.com'
+    #     file_path: 'public/lv/sitemap.xml'
+    #     file_mime_type: 'application/xml'
+    #     dest_dir: 'lv/annotation'
+        
+        
+    # - name: Upload ms folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/ms/annotation --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/ms/annotation
+        
+    # - name: Upload ms sitemap
+    #   uses: swimlane/s3-upload-file-action@main
+    #   with:
+    #     aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #     aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #     aws_bucket: 'products-qa.groupdocs.com'
+    #     file_path: 'public/ms/sitemap.xml'
+    #     file_mime_type: 'application/xml'
+    #     dest_dir: 'ms/annotation'
+        
+        
+    # - name: Upload nl folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/nl/annotation --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/nl/annotation
+        
+    # - name: Upload nl sitemap
+    #   uses: swimlane/s3-upload-file-action@main
+    #   with:
+    #     aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #     aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #     aws_bucket: 'products-qa.groupdocs.com'
+    #     file_path: 'public/nl/sitemap.xml'
+    #     file_mime_type: 'application/xml'
+    #     dest_dir: 'nl/annotation'
+        
+        
+    # - name: Upload no folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/no/annotation --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/no/annotation
+        
+    # - name: Upload no sitemap
+    #   uses: swimlane/s3-upload-file-action@main
+    #   with:
+    #     aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #     aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #     aws_bucket: 'products-qa.groupdocs.com'
+    #     file_path: 'public/no/sitemap.xml'
+    #     file_mime_type: 'application/xml'
+    #     dest_dir: 'no/annotation'
+        
+        
+    # - name: Upload pl folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/pl/annotation --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/pl/annotation
+        
+    # - name: Upload pl sitemap
+    #   uses: swimlane/s3-upload-file-action@main
+    #   with:
+    #     aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #     aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #     aws_bucket: 'products-qa.groupdocs.com'
+    #     file_path: 'public/pl/sitemap.xml'
+    #     file_mime_type: 'application/xml'
+    #     dest_dir: 'pl/annotation'
+        
+        
+    # - name: Upload pt folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/pt/annotation --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/pt/annotation
+        
+    # - name: Upload pt sitemap
+    #   uses: swimlane/s3-upload-file-action@main
+    #   with:
+    #     aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #     aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #     aws_bucket: 'products-qa.groupdocs.com'
+    #     file_path: 'public/pt/sitemap.xml'
+    #     file_mime_type: 'application/xml'
+    #     dest_dir: 'pt/annotation'
+        
+        
+    # - name: Upload ro folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/ro/annotation --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/ro/annotation
+        
+    # - name: Upload ro sitemap
+    #   uses: swimlane/s3-upload-file-action@main
+    #   with:
+    #     aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #     aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #     aws_bucket: 'products-qa.groupdocs.com'
+    #     file_path: 'public/ro/sitemap.xml'
+    #     file_mime_type: 'application/xml'
+    #     dest_dir: 'ro/annotation'
+        
+        
+    # - name: Upload ru folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/ru/annotation --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/ru/annotation       
+        
+    # - name: Upload ru sitemap
+    #   uses: swimlane/s3-upload-file-action@main
+    #   with:
+    #     aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #     aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #     aws_bucket: 'products-qa.groupdocs.com'
+    #     file_path: 'public/ru/sitemap.xml'
+    #     file_mime_type: 'application/xml'
+    #     dest_dir: 'ru/annotation'
+        
+        
+    # - name: Upload sk folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/sk/annotation --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/sk/annotation
+        
+    # - name: Upload sk sitemap
+    #   uses: swimlane/s3-upload-file-action@main
+    #   with:
+    #     aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #     aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #     aws_bucket: 'products-qa.groupdocs.com'
+    #     file_path: 'public/sk/sitemap.xml'
+    #     file_mime_type: 'application/xml'
+    #     dest_dir: 'sk/annotation'
+        
+        
+    # - name: Upload sl folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/sl/annotation --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/sl/annotation
+        
+    # - name: Upload sl sitemap
+    #   uses: swimlane/s3-upload-file-action@main
+    #   with:
+    #     aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #     aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #     aws_bucket: 'products-qa.groupdocs.com'
+    #     file_path: 'public/sl/sitemap.xml'
+    #     file_mime_type: 'application/xml'
+    #     dest_dir: 'sl/annotation'
+        
+        
+    # - name: Upload sv folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/sv/annotation --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/sv/annotation
+        
+    # - name: Upload sv sitemap
+    #   uses: swimlane/s3-upload-file-action@main
+    #   with:
+    #     aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #     aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #     aws_bucket: 'products-qa.groupdocs.com'
+    #     file_path: 'public/sv/sitemap.xml'
+    #     file_mime_type: 'application/xml'
+    #     dest_dir: 'sv/annotation'
+        
+        
+    # - name: Upload th folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/th/annotation --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/th/annotation
+        
+    # - name: Upload th sitemap
+    #   uses: swimlane/s3-upload-file-action@main
+    #   with:
+    #     aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #     aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #     aws_bucket: 'products-qa.groupdocs.com'
+    #     file_path: 'public/th/sitemap.xml'
+    #     file_mime_type: 'application/xml'
+    #     dest_dir: 'th/annotation'
+        
+        
+    # - name: Upload tr folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/tr/annotation --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/tr/annotation
+        
+    # - name: Upload tr sitemap
+    #   uses: swimlane/s3-upload-file-action@main
+    #   with:
+    #     aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #     aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #     aws_bucket: 'products-qa.groupdocs.com'
+    #     file_path: 'public/tr/sitemap.xml'
+    #     file_mime_type: 'application/xml'
+    #     dest_dir: 'tr/annotation'  
+        
+        
+    # - name: Upload uk folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/uk/annotation --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/uk/annotation
+        
+    # - name: Upload uk sitemap
+    #   uses: swimlane/s3-upload-file-action@main
+    #   with:
+    #     aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #     aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #     aws_bucket: 'products-qa.groupdocs.com'
+    #     file_path: 'public/uk/sitemap.xml'
+    #     file_mime_type: 'application/xml'
+    #     dest_dir: 'uk/annotation'  
+        
+        
+    # - name: Upload ur folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/ur/annotation --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/ur/annotation
+        
+    # - name: Upload ur sitemap
+    #   uses: swimlane/s3-upload-file-action@main
+    #   with:
+    #     aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #     aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #     aws_bucket: 'products-qa.groupdocs.com'
+    #     file_path: 'public/ur/sitemap.xml'
+    #     file_mime_type: 'application/xml'
+    #     dest_dir: 'ur/annotation'  
+        
+        
+    # - name: Upload vi folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/vi/annotation --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/vi/annotation
+        
+    # - name: Upload vi sitemap
+    #   uses: swimlane/s3-upload-file-action@main
+    #   with:
+    #     aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #     aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #     aws_bucket: 'products-qa.groupdocs.com'
+    #     file_path: 'public/vi/sitemap.xml'
+    #     file_mime_type: 'application/xml'
+    #     dest_dir: 'vi/annotation'  
+        
+        
+    # - name: Upload zh folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/zh/annotation --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/zh/annotation        
+        
+    # - name: Upload zh sitemap
+    #   uses: swimlane/s3-upload-file-action@main
+    #   with:
+    #     aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+    #     aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+    #     aws_bucket: 'products-qa.groupdocs.com'
+    #     file_path: 'public/zh/sitemap.xml'
+    #     file_mime_type: 'application/xml'
+    #     dest_dir: 'zh/annotation'  
         
         
     - name: Upload zh-hant folder
