@@ -95,16 +95,8 @@ jobs:
         dest_dir: 'en/annotation'
         
     - name: Upload zh folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/zh/annotation'
-        DEST_DIR: 'zh/annotation' 
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/zh/annotation --acl public-read --no-progress --region us-west-2
+      working-directory: public/zh/annotation     
 
     - name: Upload zh sitemap
       uses: swimlane/s3-upload-file-action@main
@@ -117,16 +109,8 @@ jobs:
         dest_dir: 'zh/annotation'
 
     - name: Upload ru folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/ru/annotation'
-        DEST_DIR: 'ru/annotation'  
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/ru/annotation --acl public-read --no-progress --region us-west-2
+      working-directory: public/ru/annotation   
 
     - name: Upload ru sitemap
       uses: swimlane/s3-upload-file-action@main
@@ -139,16 +123,8 @@ jobs:
         dest_dir: 'ru/annotation'
         
     - name: Upload fr folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/fr/annotation'
-        DEST_DIR: 'fr/annotation'    
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/fr/annotation --acl public-read --no-progress --region us-west-2
+      working-directory: public/fr/annotation    
 
     - name: Upload fr sitemap
       uses: swimlane/s3-upload-file-action@main
@@ -161,16 +137,8 @@ jobs:
         dest_dir: 'fr/annotation'
         
     - name: Upload es folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2' 
-        SOURCE_DIR: 'public/es/annotation'
-        DEST_DIR: 'es/annotation' 
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/es/annotation --acl public-read --no-progress --region us-west-2
+      working-directory: public/es/annotation    
 
     - name: Upload es sitemap
       uses: swimlane/s3-upload-file-action@main
@@ -183,16 +151,8 @@ jobs:
         dest_dir: 'es/annotation'
 
     - name: Upload de folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/de/annotation'
-        DEST_DIR: 'de/annotation'  
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/de/annotation --acl public-read --no-progress --region us-west-2
+      working-directory: public/de/annotation     
 
     - name: Upload de sitemap
       uses: swimlane/s3-upload-file-action@main
@@ -205,16 +165,8 @@ jobs:
         dest_dir: 'de/annotation'
 
     - name: Upload ja folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/ja/annotation'
-        DEST_DIR: 'ja/annotation'  
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/ja/annotation --acl public-read --no-progress --region us-west-2
+      working-directory: public/ja/annotation     
 
     - name: Upload ja sitemap
       uses: swimlane/s3-upload-file-action@main
@@ -227,16 +179,8 @@ jobs:
         dest_dir: 'ja/annotation'
 
     - name: Upload ko folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/ko/annotation'
-        DEST_DIR: 'ko/annotation'  
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/ko/annotation --acl public-read --no-progress --region us-west-2
+      working-directory: public/ko/annotation     
 
     - name: Upload ko sitemap
       uses: swimlane/s3-upload-file-action@main
@@ -249,16 +193,8 @@ jobs:
         dest_dir: 'ko/annotation'
 
     - name: Upload pt folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/pt/annotation'
-        DEST_DIR: 'pt/annotation'  
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/pt/annotation --acl public-read --no-progress --region us-west-2
+      working-directory: public/pt/annotation    
 
     - name: Upload pt sitemap
       uses: swimlane/s3-upload-file-action@main
@@ -271,16 +207,8 @@ jobs:
         dest_dir: 'pt/annotation'
 
     - name: Upload it folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/it/annotation'
-        DEST_DIR: 'it/annotation'  
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/it/annotation --acl public-read --no-progress --region us-west-2
+      working-directory: public/it/annotation    
 
     - name: Upload it sitemap
       uses: swimlane/s3-upload-file-action@main
@@ -293,16 +221,8 @@ jobs:
         dest_dir: 'it/annotation'
 
     - name: Upload id folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/id/annotation'
-        DEST_DIR: 'id/annotation'  
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/id/annotation --acl public-read --no-progress --region us-west-2
+      working-directory: public/id/annotation     
 
     - name: Upload id sitemap
       uses: swimlane/s3-upload-file-action@main
@@ -315,16 +235,8 @@ jobs:
         dest_dir: 'id/annotation'
 
     - name: Upload af folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/af/annotation'
-        DEST_DIR: 'af/annotation'  
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/af/annotation --acl public-read --no-progress --region us-west-2
+      working-directory: public/af/annotation      
 
     - name: Upload af sitemap
       uses: swimlane/s3-upload-file-action@main
@@ -337,16 +249,8 @@ jobs:
         dest_dir: 'af/annotation'
 
     - name: Upload am folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/am/annotation'
-        DEST_DIR: 'am/annotation'  
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/am/annotation --acl public-read --no-progress --region us-west-2
+      working-directory: public/am/annotation    
 
     - name: Upload am sitemap
       uses: swimlane/s3-upload-file-action@main
@@ -359,16 +263,8 @@ jobs:
         dest_dir: 'am/annotation'
 
     - name: Upload ar folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/ar/annotation'
-        DEST_DIR: 'ar/annotation'  
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/ar/annotation --acl public-read --no-progress --region us-west-2
+      working-directory: public/ar/annotation     
 
     - name: Upload ar sitemap
       uses: swimlane/s3-upload-file-action@main
@@ -381,16 +277,8 @@ jobs:
         dest_dir: 'ar/annotation'
 
     - name: Upload bg folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/bg/annotation'
-        DEST_DIR: 'bg/annotation'  
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/bg/annotation --acl public-read --no-progress --region us-west-2
+      working-directory: public/bg/annotation     
 
     - name: Upload bg sitemap
       uses: swimlane/s3-upload-file-action@main
@@ -403,16 +291,8 @@ jobs:
         dest_dir: 'bg/annotation'
 
     - name: Upload ca folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/ca/annotation'
-        DEST_DIR: 'ca/annotation'  
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/ca/annotation --acl public-read --no-progress --region us-west-2
+      working-directory: public/ca/annotation    
 
     - name: Upload ca sitemap
       uses: swimlane/s3-upload-file-action@main
@@ -425,16 +305,8 @@ jobs:
         dest_dir: 'ca/annotation'
 
     - name: Upload cs folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/cs/annotation'
-        DEST_DIR: 'cs/annotation'  
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/cs/annotation --acl public-read --no-progress --region us-west-2
+      working-directory: public/cs/annotation    
 
     - name: Upload cs sitemap
       uses: swimlane/s3-upload-file-action@main
@@ -447,16 +319,8 @@ jobs:
         dest_dir: 'cs/annotation'
 
     - name: Upload da folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/da/annotation'
-        DEST_DIR: 'da/annotation'  
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/da/annotation --acl public-read --no-progress --region us-west-2
+      working-directory: public/da/annotation    
 
     - name: Upload da sitemap
       uses: swimlane/s3-upload-file-action@main
@@ -469,16 +333,8 @@ jobs:
         dest_dir: 'da/annotation'
 
     - name: Upload el folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/el/annotation'
-        DEST_DIR: 'el/annotation'  
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/el/annotation --acl public-read --no-progress --region us-west-2
+      working-directory: public/el/annotation    
 
     - name: Upload el sitemap
       uses: swimlane/s3-upload-file-action@main
@@ -491,16 +347,8 @@ jobs:
         dest_dir: 'el/annotation'
 
     - name: Upload et folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/et/annotation'
-        DEST_DIR: 'et/annotation'  
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/et/annotation --acl public-read --no-progress --region us-west-2
+      working-directory: public/et/annotation    
 
     - name: Upload et sitemap
       uses: swimlane/s3-upload-file-action@main
@@ -513,16 +361,8 @@ jobs:
         dest_dir: 'et/annotation'
 
     - name: Upload fa folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/fa/annotation'
-        DEST_DIR: 'fa/annotation'  
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/fa/annotation --acl public-read --no-progress --region us-west-2
+      working-directory: public/fa/annotation    
 
     - name: Upload fa sitemap
       uses: swimlane/s3-upload-file-action@main
@@ -535,16 +375,8 @@ jobs:
         dest_dir: 'fa/annotation'
 
     - name: Upload fi folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/fi/annotation'
-        DEST_DIR: 'fi/annotation'  
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/fi/annotation --acl public-read --no-progress --region us-west-2
+      working-directory: public/fi/annotation     
 
     - name: Upload fi sitemap
       uses: swimlane/s3-upload-file-action@main
@@ -557,16 +389,8 @@ jobs:
         dest_dir: 'fi/annotation'
 
     - name: Upload ga folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/ga/annotation'
-        DEST_DIR: 'ga/annotation'  
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/ga/annotation --acl public-read --no-progress --region us-west-2
+      working-directory: public/ga/annotation     
 
     - name: Upload ga sitemap
       uses: swimlane/s3-upload-file-action@main
@@ -579,16 +403,8 @@ jobs:
         dest_dir: 'ga/annotation'
 
     - name: Upload hi folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/hi/annotation'
-        DEST_DIR: 'hi/annotation'  
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/hi/annotation --acl public-read --no-progress --region us-west-2
+      working-directory: public/hi/annotation     
 
     - name: Upload hi sitemap
       uses: swimlane/s3-upload-file-action@main
@@ -601,16 +417,8 @@ jobs:
         dest_dir: 'hi/annotation'
 
     - name: Upload hr folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/hr/annotation'
-        DEST_DIR: 'hr/annotation'  
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/hr/annotation --acl public-read --no-progress --region us-west-2
+      working-directory: public/hr/annotation     
 
     - name: Upload hr sitemap
       uses: swimlane/s3-upload-file-action@main
@@ -623,16 +431,8 @@ jobs:
         dest_dir: 'hr/annotation'
 
     - name: Upload hu folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/hu/annotation'
-        DEST_DIR: 'hu/annotation'  
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/hu/annotation --acl public-read --no-progress --region us-west-2
+      working-directory: public/hu/annotation     
 
     - name: Upload hu sitemap
       uses: swimlane/s3-upload-file-action@main
@@ -645,16 +445,8 @@ jobs:
         dest_dir: 'hu/annotation'
 
     - name: Upload hy folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/hy/annotation'
-        DEST_DIR: 'hy/annotation'  
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/hy/annotation --acl public-read --no-progress --region us-west-2
+      working-directory: public/hy/annotation     
 
     - name: Upload hy sitemap
       uses: swimlane/s3-upload-file-action@main
@@ -667,16 +459,8 @@ jobs:
         dest_dir: 'hy/annotation'
 
     - name: Upload is folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/is/annotation'
-        DEST_DIR: 'is/annotation'  
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/is/annotation --acl public-read --no-progress --region us-west-2
+      working-directory: public/is/annotation    
 
     - name: Upload is sitemap
       uses: swimlane/s3-upload-file-action@main
@@ -689,16 +473,8 @@ jobs:
         dest_dir: 'is/annotation'
 
     - name: Upload ka folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/ka/annotation'
-        DEST_DIR: 'ka/annotation'  
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/ka/annotation --acl public-read --no-progress --region us-west-2
+      working-directory: public/ka/annotation     
 
     - name: Upload ka sitemap
       uses: swimlane/s3-upload-file-action@main
@@ -711,16 +487,8 @@ jobs:
         dest_dir: 'ka/annotation'
 
     - name: Upload kk folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/kk/annotation'
-        DEST_DIR: 'kk/annotation'  
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/kk/annotation --acl public-read --no-progress --region us-west-2
+      working-directory: public/kk/annotation    
 
     - name: Upload kk sitemap
       uses: swimlane/s3-upload-file-action@main
@@ -733,16 +501,8 @@ jobs:
         dest_dir: 'kk/annotation'
 
     - name: Upload ku folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/ku/annotation'
-        DEST_DIR: 'ku/annotation'  
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/ku/annotation --acl public-read --no-progress --region us-west-2
+      working-directory: public/ku/annotation     
 
     - name: Upload ku sitemap
       uses: swimlane/s3-upload-file-action@main
@@ -755,16 +515,8 @@ jobs:
         dest_dir: 'ku/annotation'
 
     - name: Upload lt folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/lt/annotation'
-        DEST_DIR: 'lt/annotation'  
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/lt/annotation --acl public-read --no-progress --region us-west-2
+      working-directory: public/lt/annotation    
 
     - name: Upload lt sitemap
       uses: swimlane/s3-upload-file-action@main
@@ -777,16 +529,8 @@ jobs:
         dest_dir: 'lt/annotation'
 
     - name: Upload lv folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/lv/annotation'
-        DEST_DIR: 'lv/annotation'  
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/lv/annotation --acl public-read --no-progress --region us-west-2
+      working-directory: public/lv/annotation    
 
     - name: Upload lv sitemap
       uses: swimlane/s3-upload-file-action@main
@@ -799,16 +543,8 @@ jobs:
         dest_dir: 'lv/annotation'
 
     - name: Upload ms folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/ms/annotation'
-        DEST_DIR: 'ms/annotation'  
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/ms/annotation --acl public-read --no-progress --region us-west-2
+      working-directory: public/ms/annotation    
 
     - name: Upload ms sitemap
       uses: swimlane/s3-upload-file-action@main
@@ -821,16 +557,8 @@ jobs:
         dest_dir: 'ms/annotation'
 
     - name: Upload nl folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/nl/annotation'
-        DEST_DIR: 'nl/annotation'  
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/nl/annotation --acl public-read --no-progress --region us-west-2
+      working-directory: public/nl/annotation    
 
     - name: Upload nl sitemap
       uses: swimlane/s3-upload-file-action@main
@@ -843,16 +571,8 @@ jobs:
         dest_dir: 'nl/annotation'
 
     - name: Upload no folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/no/annotation'
-        DEST_DIR: 'no/annotation'  
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/no/annotation --acl public-read --no-progress --region us-west-2
+      working-directory: public/no/annotation    
 
     - name: Upload no sitemap
       uses: swimlane/s3-upload-file-action@main
@@ -865,16 +585,8 @@ jobs:
         dest_dir: 'no/annotation'
 
     - name: Upload pl folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/pl/annotation'
-        DEST_DIR: 'pl/annotation'  
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/pl/annotation --acl public-read --no-progress --region us-west-2
+      working-directory: public/pl/annotation    
 
     - name: Upload pl sitemap
       uses: swimlane/s3-upload-file-action@main
@@ -887,16 +599,8 @@ jobs:
         dest_dir: 'pl/annotation'
 
     - name: Upload ro folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/ro/annotation'
-        DEST_DIR: 'ro/annotation'  
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/ro/annotation --acl public-read --no-progress --region us-west-2
+      working-directory: public/ro/annotation     
 
     - name: Upload ro sitemap
       uses: swimlane/s3-upload-file-action@main
@@ -909,16 +613,8 @@ jobs:
         dest_dir: 'ro/annotation'
 
     - name: Upload sk folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/sk/annotation'
-        DEST_DIR: 'sk/annotation'  
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/sk/annotation --acl public-read --no-progress --region us-west-2
+      working-directory: public/sk/annotation    
 
     - name: Upload sk sitemap
       uses: swimlane/s3-upload-file-action@main
@@ -931,16 +627,8 @@ jobs:
         dest_dir: 'sk/annotation'
 
     - name: Upload sl folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/sl/annotation'
-        DEST_DIR: 'sl/annotation'  
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/sl/annotation --acl public-read --no-progress --region us-west-2
+      working-directory: public/sl/annotation     
 
     - name: Upload sl sitemap
       uses: swimlane/s3-upload-file-action@main
@@ -953,16 +641,8 @@ jobs:
         dest_dir: 'sl/annotation'
 
     - name: Upload sv folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/sv/annotation'
-        DEST_DIR: 'sv/annotation'  
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/sv/annotation --acl public-read --no-progress --region us-west-2
+      working-directory: public/sv/annotation      
 
     - name: Upload sv sitemap
       uses: swimlane/s3-upload-file-action@main
@@ -975,16 +655,8 @@ jobs:
         dest_dir: 'sv/annotation'
 
     - name: Upload th folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/th/annotation'
-        DEST_DIR: 'th/annotation'  
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/th/annotation --acl public-read --no-progress --region us-west-2
+      working-directory: public/th/annotation    
 
     - name: Upload th sitemap
       uses: swimlane/s3-upload-file-action@main
@@ -997,16 +669,8 @@ jobs:
         dest_dir: 'th/annotation'
   
     - name: Upload tr folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/tr/annotation'
-        DEST_DIR: 'tr/annotation'  
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/tr/annotation --acl public-read --no-progress --region us-west-2
+      working-directory: public/tr/annotation      
 
     - name: Upload tr sitemap
       uses: swimlane/s3-upload-file-action@main
@@ -1019,16 +683,8 @@ jobs:
         dest_dir: 'tr/annotation'
 
     - name: Upload uk folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/uk/annotation'
-        DEST_DIR: 'uk/annotation'  
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/uk/annotation --acl public-read --no-progress --region us-west-2
+      working-directory: public/uk/annotation    
 
     - name: Upload uk sitemap
       uses: swimlane/s3-upload-file-action@main
@@ -1041,16 +697,8 @@ jobs:
         dest_dir: 'uk/annotation'
 
     - name: Upload ur folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/ur/annotation'
-        DEST_DIR: 'ur/annotation'  
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/ur/annotation --acl public-read --no-progress --region us-west-2
+      working-directory: public/ur/annotation    
 
     - name: Upload ur sitemap
       uses: swimlane/s3-upload-file-action@main
@@ -1063,16 +711,8 @@ jobs:
         dest_dir: 'ur/annotation'
 
     - name: Upload vi folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/vi/annotation'
-        DEST_DIR: 'vi/annotation'  
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/vi/annotation --acl public-read --no-progress --region us-west-2
+      working-directory: public/vi/annotation    
 
     - name: Upload vi sitemap
       uses: swimlane/s3-upload-file-action@main
@@ -1085,16 +725,8 @@ jobs:
         dest_dir: 'vi/annotation'
 
     - name: Upload gu folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/gu/annotation'
-        DEST_DIR: 'gu/annotation'  
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/gu/annotation --acl public-read --no-progress --region us-west-2
+      working-directory: public/gu/annotation    
 
     - name: Upload gu sitemap
       uses: swimlane/s3-upload-file-action@main
@@ -1107,16 +739,8 @@ jobs:
         dest_dir: 'gu/annotation'
 
     - name: Upload he folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/he/annotation'
-        DEST_DIR: 'he/annotation'  
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/he/annotation --acl public-read --no-progress --region us-west-2
+      working-directory: public/he/annotation     
 
     - name: Upload he sitemap
       uses: swimlane/s3-upload-file-action@main
@@ -1129,16 +753,8 @@ jobs:
         dest_dir: 'he/annotation'
 
     - name: Upload mk folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/mk/annotation'
-        DEST_DIR: 'mk/annotation'  
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/mk/annotation --acl public-read --no-progress --region us-west-2
+      working-directory: public/mk/annotation    
 
     - name: Upload mk sitemap
       uses: swimlane/s3-upload-file-action@main
@@ -1151,16 +767,8 @@ jobs:
         dest_dir: 'mk/annotation'
 
     - name: Upload nb folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/nb/annotation'
-        DEST_DIR: 'nb/annotation'  
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/nb/annotation --acl public-read --no-progress --region us-west-2
+      working-directory: public/nb/annotation     
 
     - name: Upload nb sitemap
       uses: swimlane/s3-upload-file-action@main
@@ -1173,16 +781,8 @@ jobs:
         dest_dir: 'nb/annotation'
 
     - name: Upload cy folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/cy/annotation'
-        DEST_DIR: 'cy/annotation'  
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/cy/annotation --acl public-read --no-progress --region us-west-2
+      working-directory: public/cy/annotation    
 
     - name: Upload cy sitemap
       uses: swimlane/s3-upload-file-action@main
@@ -1195,16 +795,8 @@ jobs:
         dest_dir: 'cy/annotation'
 
     - name: Upload zh-hant folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/zh-hant/annotation'
-        DEST_DIR: 'zh-hant/annotation'  
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/zh-hant/annotation --acl public-read --no-progress --region us-west-2
+      working-directory: public/zh-hant/annotation      
 
     - name: Upload zh-hant sitemap
       uses: swimlane/s3-upload-file-action@main
