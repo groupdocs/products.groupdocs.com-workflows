@@ -12,7 +12,7 @@ on:
     paths:
        - 'content/signature/**'
   pull_request:
-    branches: [ main, signature/index-redesign ]
+    branches: [ signature/index-redesign ]
 
   repository_dispatch:
     types: [staging-complete]
