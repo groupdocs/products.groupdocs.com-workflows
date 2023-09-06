@@ -8,7 +8,7 @@ env:
 on:
   # Triggers the workflow on push or pull request events but only for the mentioned branches
   push:
-    branches: [ main ]
+    branches: [ main, signature/index-redesign ]
     paths:
        - 'content/signature/**'
   pull_request:
