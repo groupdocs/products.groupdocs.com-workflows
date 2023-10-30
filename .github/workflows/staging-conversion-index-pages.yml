@@ -1,0 +1,1100 @@
+# This is a basic workflow to help you get started with Actions
+
+name: StagingConversionIndexPages
+env:
+    product_family: "conversion"
+    
+# Controls when the action will run. 
+on:
+  # Triggers the workflow on push or pull request events but only for the mentioned branches
+  push:
+    branches: [ main ]
+    paths:
+       - 'content/conversion/**'
+  pull_request:
+    branches: [ main ]
+
+  repository_dispatch:
+    types: [staging-complete]
+    
+  # Allows the workflow run manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  # This workflow contains a single job called "deploy"
+  deploy:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    env:
+      product_family: "conversion"
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    - name: Checkout theme repo
+      uses: actions/checkout@main
+      with:
+          repository: groupdocs/products.groupdocs.com
+          token: ${{ secrets.REPO_TOKEN }}
+          fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+
+    - name: Setup Hugo
+      uses: peaceiris/actions-hugo@v2
+      with:
+          hugo-version: 'latest'
+          extended: true
+
+    - name: Remove all except conversion _index pages
+      run: |
+        find ./content -mindepth 1 -type f -not -regex './content/conversion/.*_index.*' -delete
+        ls content/ -all;
+        
+    - name: Build pages
+      run: hugo --config "./staging-config.toml" -b "https://products-qa.groupdocs.com/" --disableKinds=taxonomy,category --cleanDestinationDir --minify
+      
+    - name: Prepare public folder
+      run: |
+        mv public/sitemap.xml public/$product_family.xml;
+        rm public/index.html;
+        mkdir public_home;
+        mkdir public_home/sitemaps;
+        mv public/$product_family.xml public_home/sitemaps/;
+        #ls public -all;
+        ls public/zh -all;
+        #ls public_home -all;
+        
+    - name: Upload family sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public_home/sitemaps/conversion.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'sitemaps'
+
+    - name: Upload default language
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+        AWS_REGION: 'us-west-2'
+        SOURCE_DIR: 'public/conversion'
+        DEST_DIR: 'conversion' 
+        
+    - name: Upload en sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public/en/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'en/conversion'
+
+    - name: Upload af folder
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+        AWS_REGION: 'us-west-2'
+        SOURCE_DIR: 'public/af/conversion'
+        DEST_DIR: 'af/conversion'  
+
+    - name: Upload af sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public/af/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'af/conversion'
+
+    - name: Upload am folder
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+        AWS_REGION: 'us-west-2'
+        SOURCE_DIR: 'public/am/conversion'
+        DEST_DIR: 'am/conversion'  
+
+    - name: Upload am sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public/am/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'am/conversion'
+
+    - name: Upload ar folder
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+        AWS_REGION: 'us-west-2'
+        SOURCE_DIR: 'public/ar/conversion'
+        DEST_DIR: 'ar/conversion'  
+
+    - name: Upload ar sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public/ar/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'ar/conversion'
+    
+    - name: Upload bg folder
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+        AWS_REGION: 'us-west-2'
+        SOURCE_DIR: 'public/bg/conversion'
+        DEST_DIR: 'bg/conversion'  
+
+    - name: Upload bg sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public/bg/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'bg/conversion'
+
+    - name: Upload ca folder
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+        AWS_REGION: 'us-west-2'
+        SOURCE_DIR: 'public/ca/conversion'
+        DEST_DIR: 'ca/conversion'  
+
+    - name: Upload ca sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public/ca/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'ca/conversion'
+
+    - name: Upload cs folder
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+        AWS_REGION: 'us-west-2'
+        SOURCE_DIR: 'public/cs/conversion'
+        DEST_DIR: 'cs/conversion'  
+
+    - name: Upload cs sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public/cs/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'cs/conversion'
+
+    - name: Upload da folder
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+        AWS_REGION: 'us-west-2'
+        SOURCE_DIR: 'public/da/conversion'
+        DEST_DIR: 'da/conversion'  
+
+    - name: Upload da sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public/da/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'da/conversion'
+
+    - name: Upload de folder
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+        AWS_REGION: 'us-west-2'
+        SOURCE_DIR: 'public/de/conversion'
+        DEST_DIR: 'de/conversion'  
+
+    - name: Upload de sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public/de/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'de/conversion'
+
+    - name: Upload el folder
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+        AWS_REGION: 'us-west-2' 
+        SOURCE_DIR: 'public/el/conversion'
+        DEST_DIR: 'el/conversion' 
+
+    - name: Upload el sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public/el/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'el/conversion'
+
+    - name: Upload es folder
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+        AWS_REGION: 'us-west-2' 
+        SOURCE_DIR: 'public/es/conversion'
+        DEST_DIR: 'es/conversion' 
+
+    - name: Upload es sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public/es/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'es/conversion'
+
+    - name: Upload et folder
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+        AWS_REGION: 'us-west-2'
+        SOURCE_DIR: 'public/et/conversion'
+        DEST_DIR: 'et/conversion'    
+
+    - name: Upload et sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public/et/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'et/conversion'
+
+    - name: Upload fa folder
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+        AWS_REGION: 'us-west-2'
+        SOURCE_DIR: 'public/fa/conversion'
+        DEST_DIR: 'fa/conversion'    
+
+    - name: Upload fa sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public/fa/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'fa/conversion'
+
+    - name: Upload fi folder
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+        AWS_REGION: 'us-west-2'
+        SOURCE_DIR: 'public/fi/conversion'
+        DEST_DIR: 'fi/conversion'    
+
+    - name: Upload fi sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public/fi/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'fi/conversion'
+
+    - name: Upload fr folder
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+        AWS_REGION: 'us-west-2'
+        SOURCE_DIR: 'public/fr/conversion'
+        DEST_DIR: 'fr/conversion'    
+
+    - name: Upload fr sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public/fr/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'fr/conversion'
+
+    - name: Upload ga folder
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+        AWS_REGION: 'us-west-2'
+        SOURCE_DIR: 'public/ga/conversion'
+        DEST_DIR: 'ga/conversion'    
+
+    - name: Upload ga sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public/ga/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'ga/conversion'
+
+    - name: Upload hi folder
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+        AWS_REGION: 'us-west-2'
+        SOURCE_DIR: 'public/hi/conversion'
+        DEST_DIR: 'hi/conversion'  
+
+    - name: Upload hi sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public/hi/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'hi/conversion'
+    
+    - name: Upload hr folder
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+        AWS_REGION: 'us-west-2'
+        SOURCE_DIR: 'public/hr/conversion'
+        DEST_DIR: 'hr/conversion'  
+
+    - name: Upload hr sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public/hr/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'hr/conversion'
+
+    - name: Upload hu folder
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+        AWS_REGION: 'us-west-2'
+        SOURCE_DIR: 'public/hu/conversion'
+        DEST_DIR: 'hu/conversion'  
+
+    - name: Upload hu sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public/hu/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'hu/conversion'
+
+    - name: Upload hy folder
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+        AWS_REGION: 'us-west-2'
+        SOURCE_DIR: 'public/hy/conversion'
+        DEST_DIR: 'hy/conversion'  
+
+    - name: Upload hy sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public/hy/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'hy/conversion'        
+
+    - name: Upload id folder
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+        AWS_REGION: 'us-west-2'
+        SOURCE_DIR: 'public/id/conversion'
+        DEST_DIR: 'id/conversion'  
+
+    - name: Upload id sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public/id/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'id/conversion'
+
+    - name: Upload is folder
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+        AWS_REGION: 'us-west-2'
+        SOURCE_DIR: 'public/is/conversion'
+        DEST_DIR: 'is/conversion'  
+
+    - name: Upload is sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public/is/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'is/conversion'        
+
+    - name: Upload it folder
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+        AWS_REGION: 'us-west-2'
+        SOURCE_DIR: 'public/it/conversion'
+        DEST_DIR: 'it/conversion'  
+
+    - name: Upload it sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public/it/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'it/conversion'
+
+    - name: Upload ja folder
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+        AWS_REGION: 'us-west-2'
+        SOURCE_DIR: 'public/ja/conversion'
+        DEST_DIR: 'ja/conversion'  
+
+    - name: Upload ja sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public/ja/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'ja/conversion'
+
+    - name: Upload ka folder
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+        AWS_REGION: 'us-west-2'
+        SOURCE_DIR: 'public/ka/conversion'
+        DEST_DIR: 'ka/conversion'  
+
+    - name: Upload ka sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public/ka/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'ka/conversion'
+
+    - name: Upload kk folder
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+        AWS_REGION: 'us-west-2'
+        SOURCE_DIR: 'public/kk/conversion'
+        DEST_DIR: 'kk/conversion'  
+
+    - name: Upload kk sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public/kk/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'kk/conversion'
+
+    - name: Upload ko folder
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+        AWS_REGION: 'us-west-2'
+        SOURCE_DIR: 'public/ko/conversion'
+        DEST_DIR: 'ko/conversion'  
+
+    - name: Upload ko sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public/ko/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'ko/conversion'
+
+    - name: Upload ku folder
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+        AWS_REGION: 'us-west-2'
+        SOURCE_DIR: 'public/ku/conversion'
+        DEST_DIR: 'ku/conversion'  
+
+    - name: Upload ku sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public/ku/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'ku/conversion'
+    
+    - name: Upload lt folder
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+        AWS_REGION: 'us-west-2'
+        SOURCE_DIR: 'public/lt/conversion'
+        DEST_DIR: 'lt/conversion'  
+
+    - name: Upload lt sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public/lt/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'lt/conversion'
+
+    - name: Upload lv folder
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+        AWS_REGION: 'us-west-2'
+        SOURCE_DIR: 'public/lv/conversion'
+        DEST_DIR: 'lv/conversion'  
+
+    - name: Upload lv sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public/lv/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'lv/conversion'
+
+    - name: Upload ms folder
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+        AWS_REGION: 'us-west-2'
+        SOURCE_DIR: 'public/ms/conversion'
+        DEST_DIR: 'ms/conversion'  
+
+    - name: Upload ms sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public/ms/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'ms/conversion'
+
+    - name: Upload nl folder
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+        AWS_REGION: 'us-west-2'
+        SOURCE_DIR: 'public/nl/conversion'
+        DEST_DIR: 'nl/conversion'  
+
+    - name: Upload nl sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public/nl/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'nl/conversion'
+
+    - name: Upload no folder
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+        AWS_REGION: 'us-west-2'
+        SOURCE_DIR: 'public/no/conversion'
+        DEST_DIR: 'no/conversion'  
+
+    - name: Upload no sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public/no/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'no/conversion'
+
+    - name: Upload pl folder
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+        AWS_REGION: 'us-west-2'
+        SOURCE_DIR: 'public/pl/conversion'
+        DEST_DIR: 'pl/conversion'  
+
+    - name: Upload pl sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public/pl/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'pl/conversion'        
+
+    - name: Upload pt folder
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+        AWS_REGION: 'us-west-2'
+        SOURCE_DIR: 'public/pt/conversion'
+        DEST_DIR: 'pt/conversion'  
+
+    - name: Upload pt sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public/pt/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'pt/conversion'        
+
+    - name: Upload ro folder
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+        AWS_REGION: 'us-west-2'
+        SOURCE_DIR: 'public/ro/conversion'
+        DEST_DIR: 'ro/conversion'  
+
+    - name: Upload ro sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public/ro/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'ro/conversion'
+
+    - name: Upload ru folder
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+        AWS_REGION: 'us-west-2'
+        SOURCE_DIR: 'public/ru/conversion'
+        DEST_DIR: 'ru/conversion'  
+
+    - name: Upload ru sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public/ru/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'ru/conversion'
+
+    - name: Upload sk folder
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+        AWS_REGION: 'us-west-2'
+        SOURCE_DIR: 'public/sk/conversion'
+        DEST_DIR: 'sk/conversion'  
+
+    - name: Upload sk sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public/sk/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'sk/conversion'
+
+    - name: Upload sl folder
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+        AWS_REGION: 'us-west-2'
+        SOURCE_DIR: 'public/sl/conversion'
+        DEST_DIR: 'sl/conversion'  
+
+    - name: Upload sl sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public/sl/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'sl/conversion'
+
+    - name: Upload sv folder
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+        AWS_REGION: 'us-west-2'
+        SOURCE_DIR: 'public/sv/conversion'
+        DEST_DIR: 'sv/conversion'  
+
+    - name: Upload sv sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public/sv/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'sv/conversion'
+
+    - name: Upload th folder
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+        AWS_REGION: 'us-west-2'
+        SOURCE_DIR: 'public/th/conversion'
+        DEST_DIR: 'th/conversion'  
+
+    - name: Upload th sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public/th/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'th/conversion'
+
+    - name: Upload tr folder
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+        AWS_REGION: 'us-west-2'
+        SOURCE_DIR: 'public/tr/conversion'
+        DEST_DIR: 'tr/conversion'  
+
+    - name: Upload tr sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public/tr/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'tr/conversion'
+
+    - name: Upload uk folder
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+        AWS_REGION: 'us-west-2'
+        SOURCE_DIR: 'public/uk/conversion'
+        DEST_DIR: 'uk/conversion' 
+
+    - name: Upload uk sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public/uk/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'uk/conversion'
+    
+    - name: Upload ur folder
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+        AWS_REGION: 'us-west-2'
+        SOURCE_DIR: 'public/ur/conversion'
+        DEST_DIR: 'ur/conversion' 
+
+    - name: Upload ur sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public/ur/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'ur/conversion'
+
+    - name: Upload vi folder
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+        AWS_REGION: 'us-west-2'
+        SOURCE_DIR: 'public/vi/conversion'
+        DEST_DIR: 'vi/conversion' 
+
+    - name: Upload vi sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public/vi/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'vi/conversion'
+
+    - name: Upload zh folder
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+        AWS_REGION: 'us-west-2'
+        SOURCE_DIR: 'public/zh/conversion'
+        DEST_DIR: 'zh/conversion' 
+
+    - name: Upload zh sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public/zh/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'zh/conversion'        
+        
+
+        
+    
+
+    
+
+
+
+
+
+    
+
+
+
