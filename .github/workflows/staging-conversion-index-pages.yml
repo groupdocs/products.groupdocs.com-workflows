@@ -30,7 +30,7 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    - name: Checkout theme repo
+    - name: Checkout content from products.groupdocs.com repo
       uses: actions/checkout@main
       with:
           repository: groupdocs/products.groupdocs.com
@@ -623,6 +623,15 @@ jobs:
         AWS_REGION: 'us-west-2'
         SOURCE_DIR: 'public/zh/conversion'
         DEST_DIR: 'zh/conversion' 
+
+    - name: Invalidate cache
+      env:
+        API_ENDPOINT: ${{ secrets.CACHE_INVALIDATION_API_ENDPOINT }}
+        INVALIDATION_ORIGIN: ${{ secrets.CACHE_INVALIDATION_ORIGIN_QA }}
+        INVALIDATION_PATH: "conversion"
+      run: |
+        curl --write-out '%{http_code}' --silent --output /dev/null -d '{"website":"$INVALIDATION_ORIGIN/$INVALIDATION_PATH/*"}' -H "Content-Type: application/json" -X POST "$API_ENDPOINT"
+       
 
 
         
