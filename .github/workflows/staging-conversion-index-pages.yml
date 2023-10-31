@@ -627,11 +627,9 @@ jobs:
     - name: Invalidate cache
       env:
         API_ENDPOINT: ${{ secrets.CACHE_INVALIDATION_API_ENDPOINT }}
-        INVALIDATION_ORIGIN: ${{ secrets.CACHE_INVALIDATION_ORIGIN_QA }}
-        INVALIDATION_PATH: "conversion"
       run: |
-        curl --write-out '%{http_code}' --silent --output /dev/null -d '{"website":"$INVALIDATION_ORIGIN/$INVALIDATION_PATH/*"}' -H "Content-Type: application/json" -X POST "$API_ENDPOINT"
-       
+        curl --write-out '%{http_code}' --silent --output /dev/null -d '{"website":"https://products-qa.groupdocs.com/conversion/*"}' -H "Content-Type: application/json" -X POST "$API_ENDPOINT"
+     
 
 
         
