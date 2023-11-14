@@ -836,3 +836,8 @@ jobs:
         file_mime_type: 'application/xml'
         dest_dir: 'mk/viewer'  
 
+    - name: Invalidate cache
+      env:
+        API_ENDPOINT: ${{ secrets.CACHE_INVALIDATION_API_ENDPOINT }}
+      run: |
+        curl --write-out '%{http_code}' --silent --output /dev/null -d '{"website":"https://products.groupdocs.com/viewer/*"}' -H "Content-Type: application/json" -X POST "$API_ENDPOINT"
