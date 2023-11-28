@@ -100,11 +100,7 @@ jobs:
     - name: Upload ka folder
       run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/ka/viewer --acl public-read --no-progress --region us-west-2
       working-directory: public/ka/viewer
-        
-    - name: Upload kk folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/kk/viewer --acl public-read --no-progress --region us-west-2
-      working-directory: public/kk/viewer
-        
+       
     - name: Upload ko folder
       run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/ko/viewer --acl public-read --no-progress --region us-west-2
       working-directory: public/ko/viewer       
