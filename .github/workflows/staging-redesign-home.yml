@@ -1,0 +1,117 @@
+# Workflow for test publishing redesigned css, js from branch ...
+
+name: StagingRedesignHome
+
+# Controls when the action will run. 
+on:
+  # Triggers the workflow on push or pull request events but only for the master branch
+  push:
+    branches: [ main ]
+    paths:
+      - 'content/*'
+  pull_request:
+    branches: [ main ]
+
+  repository_dispatch:
+    types: [staging-complete]
+    
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "deploy"
+  deploy:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+
+    # Step 1 - Checks-out your repository under $GITHUB_WORKSPACE
+    - name: Checkout theme repo
+      uses: actions/checkout@main
+      with:
+          repository: groupdocs/products.groupdocs.com
+          ref: format-landing   # !!!!!!!!!!!! Needed branch name
+          token: ${{ secrets.REPO_TOKEN }}
+          fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+
+    # Step 2 - Sets up the latest version of Hugo
+    - name: Setup Hugo
+      uses: peaceiris/actions-hugo@v2
+      with:
+          hugo-version: 'latest'
+          extended: true
+    
+    - name: Make Content folder for HomePage
+      run: |
+        cp -R content content_new;
+        rm -R content;
+        mkdir content;
+        
+        cp content_new/_index.md content;
+        cp content_new/_index.af.md content;
+        cp content_new/_index.am.md content;
+        cp content_new/_index.ar.md content;
+        cp content_new/_index.bg.md content;
+        cp content_new/_index.ca.md content;
+        cp content_new/_index.cs.md content;
+        cp content_new/_index.da.md content;
+        cp content_new/_index.de.md content;
+        cp content_new/_index.el.md content;
+        cp content_new/_index.es.md content;
+        cp content_new/_index.et.md content;
+        cp content_new/_index.fa.md content;
+        cp content_new/_index.fi.md content;
+        cp content_new/_index.fr.md content;
+        cp content_new/_index.ga.md content;
+        cp content_new/_index.hi.md content;
+        cp content_new/_index.hr.md content;
+        cp content_new/_index.hu.md content;
+        cp content_new/_index.hy.md content;
+        cp content_new/_index.id.md content;
+        cp content_new/_index.is.md content;
+        cp content_new/_index.it.md content;
+        cp content_new/_index.ja.md content;
+        cp content_new/_index.ka.md content;
+        cp content_new/_index.kk.md content;
+        cp content_new/_index.ko.md content;
+        cp content_new/_index.ku.md content;
+        cp content_new/_index.lt.md content;
+        cp content_new/_index.lv.md content;
+        cp content_new/_index.ms.md content;
+        cp content_new/_index.nl.md content;
+        cp content_new/_index.no.md content;
+        cp content_new/_index.pl.md content;
+        cp content_new/_index.pt.md content;
+        cp content_new/_index.ro.md content;
+        cp content_new/_index.ru.md content;
+        cp content_new/_index.sk.md content;
+        cp content_new/_index.sl.md content;
+        cp content_new/_index.sv.md content;
+        cp content_new/_index.th.md content;
+        cp content_new/_index.tr.md content;
+        cp content_new/_index.uk.md content;
+        cp content_new/_index.ur.md content;
+        cp content_new/_index.vi.md content;
+        cp content_new/_index.zh.md content;
+
+    - name: Build Home
+      run: hugo --config "./staging-config.toml" -c "content" -b "https://products-qa.groupdocs.com/" --disableKinds=page,section --minify
+
+    - name: Copy static sitemap to public folder
+      run: |
+        cp sitemaps-qa.xml public/sitemaps.xml;
+        
+    - name: Deploy Home to S3
+      run: hugo deploy --config "./staging-config.toml" --target "Home" 
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS }}
+
+    - name: Invalidate cache
+      env:
+        API_ENDPOINT: ${{ secrets.CACHE_INVALIDATION_API_ENDPOINT }}
+      run: |
+        curl --write-out '%{http_code}' --silent --output /dev/null -d '{"website":"https://products-qa.groupdocs.com/*"}' -H "Content-Type: application/json" -X POST "$API_ENDPOINT"
