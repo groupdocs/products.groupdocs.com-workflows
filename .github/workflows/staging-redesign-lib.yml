@@ -44,9 +44,9 @@ jobs:
           hugo-version: '0.101.0'
           extended: true
 
-    - name: Remove all except viewer PDF pages # !!!!!!!!!!!! Viewer PDF only
+    - name: Remove all except viewer PDF pages # !!!!!!!!!!!! Viewer  only
       run: |
-        find ./content -mindepth 1 -type f -not -regex './content/viewer/.*pdf.*' -delete
+        find ./content -mindepth 1 ! -regex '^./content/viewer\(/.*\)?' -delete
         ls content/ -all;
 
     - name: Build pages
