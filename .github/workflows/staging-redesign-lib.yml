@@ -59,7 +59,11 @@ jobs:
     - name: Upload en folder
       run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/viewer --acl public-read --no-progress --region us-west-2
       working-directory: public/viewer        
-       
+
+    - name: Upload es folder
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/es/viewer --acl public-read --no-progress --region us-west-2
+      working-directory: public/es/viewer
+
     - name: Upload ar folder
       run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/ar/viewer --acl public-read --no-progress --region us-west-2
       working-directory: public/ar/viewer
