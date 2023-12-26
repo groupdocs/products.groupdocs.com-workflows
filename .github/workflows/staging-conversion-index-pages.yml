@@ -46,7 +46,7 @@ jobs:
     - name: Remove all except conversion _index pages
       run: |
         find ./content -mindepth 1 -type f -not -regex './content/conversion/.*_index.*' -delete
-        ls content/ -all;
+        ls content/conversion/ -all;
         
     - name: Build pages
       run: hugo --config "./staging-config.toml" -b "https://products-qa.groupdocs.com/" --disableKinds=taxonomy,category --cleanDestinationDir --minify
