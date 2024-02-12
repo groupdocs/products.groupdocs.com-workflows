@@ -34,7 +34,7 @@ jobs:
         ls content/conversion/nodejs-java/ -all;
         
     - name: Build pages
-      run: hugo --config "./production-config.toml" -b "https://products.groupdocs.com/" --disableKinds=taxonomy,category --cleanDestinationDir --minify
+      run: hugo --config "./conversion-production-config.toml" -b "https://products.groupdocs.com/" --disableKinds=taxonomy,category --cleanDestinationDir --minify
       
     - name: Prepare public folder
       run: |
@@ -44,14 +44,6 @@ jobs:
       run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/conversion --acl public-read --no-progress --region us-west-2
       working-directory: public/conversion        
         
-    - name: Upload af folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/af/conversion --acl public-read --no-progress --region us-west-2
-      working-directory: public/af/conversion
-        
-    - name: Upload am folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/am/conversion --acl public-read --no-progress --region us-west-2
-      working-directory: public/am/conversion
-    
     - name: Upload ar folder
       run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/ar/conversion --acl public-read --no-progress --region us-west-2
       working-directory: public/ar/conversion
@@ -60,18 +52,10 @@ jobs:
       run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/bg/conversion --acl public-read --no-progress --region us-west-2
       working-directory: public/bg/conversion
         
-    - name: Upload ca folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/ca/conversion --acl public-read --no-progress --region us-west-2
-      working-directory: public/ca/conversion
-        
     - name: Upload cs folder
       run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/cs/conversion --acl public-read --no-progress --region us-west-2
       working-directory: public/cs/conversion
-        
-    - name: Upload da folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/da/conversion --acl public-read --no-progress --region us-west-2
-      working-directory: public/da/conversion
-
+                
     - name: Upload de folder
       run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/de/conversion --acl public-read --no-progress --region us-west-2
       working-directory: public/de/conversion
@@ -79,55 +63,35 @@ jobs:
     - name: Upload el folder
       run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/el/conversion --acl public-read --no-progress --region us-west-2
       working-directory: public/el/conversion
-        
+    
     - name: Upload es folder
       run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/es/conversion --acl public-read --no-progress --region us-west-2
-      working-directory: public/es/conversion        
-        
-    - name: Upload et folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/et/conversion --acl public-read --no-progress --region us-west-2
-      working-directory: public/et/conversion
-
+      working-directory: public/es/conversion
+  
     - name: Upload fa folder
       run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/fa/conversion --acl public-read --no-progress --region us-west-2
-      working-directory: public/fa/conversion   
+      working-directory: public/fa/conversion
 
-    - name: Upload fi folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/fi/conversion --acl public-read --no-progress --region us-west-2
-      working-directory: public/fi/conversion
-        
     - name: Upload fr folder
       run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/fr/conversion --acl public-read --no-progress --region us-west-2
       working-directory: public/fr/conversion       
-        
-    - name: Upload ga folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/ga/conversion --acl public-read --no-progress --region us-west-2
-      working-directory: public/ga/conversion
-        
-    - name: Upload hi folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/hi/conversion --acl public-read --no-progress --region us-west-2
-      working-directory: public/hi/conversion
-        
+                
+    - name: Upload he folder
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/he/conversion --acl public-read --no-progress --region us-west-2
+      working-directory: public/he/conversion        
+      
     - name: Upload hr folder
       run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/hr/conversion --acl public-read --no-progress --region us-west-2
       working-directory: public/hr/conversion
         
     - name: Upload hu folder
       run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/hu/conversion --acl public-read --no-progress --region us-west-2
-      working-directory: public/hu/conversion 
-
-    - name: Upload hy folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/hy/conversion --acl public-read --no-progress --region us-west-2
-      working-directory: public/hy/conversion
+      working-directory: public/hu/conversion
         
     - name: Upload id folder
       run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/id/conversion --acl public-read --no-progress --region us-west-2
       working-directory: public/id/conversion
-        
-    - name: Upload is folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/is/conversion --acl public-read --no-progress --region us-west-2
-      working-directory: public/is/conversion
-        
+                
     - name: Upload it folder
       run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/it/conversion --acl public-read --no-progress --region us-west-2
       working-directory: public/it/conversion
@@ -139,39 +103,19 @@ jobs:
     - name: Upload ka folder
       run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/ka/conversion --acl public-read --no-progress --region us-west-2
       working-directory: public/ka/conversion
-        
-    - name: Upload kk folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/kk/conversion --acl public-read --no-progress --region us-west-2
-      working-directory: public/kk/conversion
-
+       
     - name: Upload ko folder
       run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/ko/conversion --acl public-read --no-progress --region us-west-2
       working-directory: public/ko/conversion       
-        
-    - name: Upload ku folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/ku/conversion --acl public-read --no-progress --region us-west-2
-      working-directory: public/ku/conversion
-        
+                
     - name: Upload lt folder
       run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/lt/conversion --acl public-read --no-progress --region us-west-2
       working-directory: public/lt/conversion
-        
-    - name: Upload lv folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/lv/conversion --acl public-read --no-progress --region us-west-2
-      working-directory: public/lv/conversion
-        
+                
     - name: Upload ms folder
       run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/ms/conversion --acl public-read --no-progress --region us-west-2
       working-directory: public/ms/conversion
-        
-    - name: Upload nl folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/nl/conversion --acl public-read --no-progress --region us-west-2
-      working-directory: public/nl/conversion
-        
-    - name: Upload no folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/no/conversion --acl public-read --no-progress --region us-west-2
-      working-directory: public/no/conversion
-        
+                
     - name: Upload pl folder
       run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/pl/conversion --acl public-read --no-progress --region us-west-2
       working-directory: public/pl/conversion
@@ -183,18 +127,10 @@ jobs:
     - name: Upload ro folder
       run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/ro/conversion --acl public-read --no-progress --region us-west-2
       working-directory: public/ro/conversion
-
+        
     - name: Upload ru folder
       run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/ru/conversion --acl public-read --no-progress --region us-west-2
       working-directory: public/ru/conversion       
-        
-    - name: Upload sk folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/sk/conversion --acl public-read --no-progress --region us-west-2
-      working-directory: public/sk/conversion
-        
-    - name: Upload sl folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/sl/conversion --acl public-read --no-progress --region us-west-2
-      working-directory: public/sl/conversion
         
     - name: Upload sv folder
       run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/sv/conversion --acl public-read --no-progress --region us-west-2
@@ -211,11 +147,7 @@ jobs:
     - name: Upload uk folder
       run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/uk/conversion --acl public-read --no-progress --region us-west-2
       working-directory: public/uk/conversion
-    
-    - name: Upload ur folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/ur/conversion --acl public-read --no-progress --region us-west-2
-      working-directory: public/ur/conversion
-
+        
     - name: Upload vi folder
       run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/vi/conversion --acl public-read --no-progress --region us-west-2
       working-directory: public/vi/conversion
@@ -229,19 +161,3 @@ jobs:
         API_ENDPOINT: ${{ secrets.CACHE_INVALIDATION_API_ENDPOINT }}
       run: |
         curl --write-out '%{http_code}' --silent --output /dev/null -d '{"website":"https://products.groupdocs.com/conversion/*"}' -H "Content-Type: application/json" -X POST "$API_ENDPOINT"
-     
-
-
-        
-    
-
-    
-
-
-
-
-
-    
-
-
-

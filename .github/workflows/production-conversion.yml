@@ -85,193 +85,11 @@ jobs:
         file_path: 'public/en/sitemap.xml'
         file_mime_type: 'application/xml'
         dest_dir: 'en/conversion'
-        
-    - name: Upload zh folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/zh/conversion --acl public-read --no-progress --region us-west-2
-      working-directory: public/zh/conversion
-    
-    - name: Upload zh sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products.groupdocs.com'
-        file_path: 'public/zh/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'zh/conversion'
-
-    - name: Upload ru folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/ru/conversion --acl public-read --no-progress --region us-west-2
-      working-directory: public/ru/conversion
-
-    - name: Upload ru sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products.groupdocs.com'
-        file_path: 'public/ru/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'ru/conversion'
-        
-    - name: Upload fr folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/fr/conversion --acl public-read --no-progress --region us-west-2
-      working-directory: public/fr/conversion
-
-    - name: Upload fr sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products.groupdocs.com'
-        file_path: 'public/fr/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'fr/conversion'
-        
-    - name: Upload es folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/es/conversion --acl public-read --no-progress --region us-west-2
-      working-directory: public/es/conversion 
-
-    - name: Upload es sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products.groupdocs.com'
-        file_path: 'public/es/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'es/conversion'
-
-    - name: Upload de folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/de/conversion --acl public-read --no-progress --region us-west-2
-      working-directory: public/de/conversion  
-
-    - name: Upload de sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products.groupdocs.com'
-        file_path: 'public/de/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'de/conversion'
-
-    - name: Upload ja folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/ja/conversion --acl public-read --no-progress --region us-west-2
-      working-directory: public/ja/conversion  
-
-    - name: Upload ja sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products.groupdocs.com'
-        file_path: 'public/ja/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'ja/conversion'
-
-    - name: Upload ko folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/ko/conversion --acl public-read --no-progress --region us-west-2
-      working-directory: public/ko/conversion
-
-    - name: Upload ko sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products.groupdocs.com'
-        file_path: 'public/ko/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'ko/conversion'
-    
-    - name: Upload id folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/id/conversion --acl public-read --no-progress --region us-west-2
-      working-directory: public/id/conversion  
-
-    - name: Upload id sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products.groupdocs.com'
-        file_path: 'public/id/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'id/conversion'
-    
-    - name: Upload uk folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/uk/conversion --acl public-read --no-progress --region us-west-2
-      working-directory: public/uk/conversion  
-
-    - name: Upload uk sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products.groupdocs.com'
-        file_path: 'public/uk/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'uk/conversion'
-
-    - name: Upload bg folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/bg/conversion --acl public-read --no-progress --region us-west-2
-      working-directory: public/bg/conversion  
-
-    - name: Upload bg sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products.groupdocs.com'
-        file_path: 'public/bg/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'bg/conversion'
-    
-    - name: Upload tr folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/tr/conversion --acl public-read --no-progress --region us-west-2
-      working-directory: public/tr/conversion  
-
-    - name: Upload tr sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products.groupdocs.com'
-        file_path: 'public/tr/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'tr/conversion'
-    
-    - name: Upload pl folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/pl/conversion --acl public-read --no-progress --region us-west-2
-      working-directory: public/pl/conversion  
-
-    - name: Upload pl sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products.groupdocs.com'
-        file_path: 'public/pl/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'pl/conversion'
-
-    - name: Upload pt folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/pt/conversion --acl public-read --no-progress --region us-west-2
-      working-directory: public/pt/conversion  
-
-    - name: Upload pt sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products.groupdocs.com'
-        file_path: 'public/pt/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'pt/conversion'
-
+  
     - name: Upload ar folder
       run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/ar/conversion --acl public-read --no-progress --region us-west-2
-      working-directory: public/ar/conversion  
-
+      working-directory: public/ar/conversion
+        
     - name: Upload ar sitemap
       uses: swimlane/s3-upload-file-action@main
       with:
@@ -280,68 +98,26 @@ jobs:
         aws_bucket: 'products.groupdocs.com'
         file_path: 'public/ar/sitemap.xml'
         file_mime_type: 'application/xml'
-        dest_dir: 'ar/conversion'
-
-    - name: Upload th folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/th/conversion --acl public-read --no-progress --region us-west-2
-      working-directory: public/th/conversion  
-
-    - name: Upload th sitemap
+        dest_dir: 'ar/conversion'  
+   
+    - name: Upload bg folder
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/bg/conversion --acl public-read --no-progress --region us-west-2
+      working-directory: public/bg/conversion
+        
+    - name: Upload bg sitemap
       uses: swimlane/s3-upload-file-action@main
       with:
         aws_access_key_id: ${{ secrets.ACCESS_KEY }}
         aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
         aws_bucket: 'products.groupdocs.com'
-        file_path: 'public/th/sitemap.xml'
+        file_path: 'public/bg/sitemap.xml'
         file_mime_type: 'application/xml'
-        dest_dir: 'th/conversion'        
-
-    - name: Upload vi folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/vi/conversion --acl public-read --no-progress --region us-west-2
-      working-directory: public/vi/conversion  
-
-    - name: Upload vi sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products.groupdocs.com'
-        file_path: 'public/vi/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'vi/conversion'  
-
-    - name: Upload it folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/it/conversion --acl public-read --no-progress --region us-west-2
-      working-directory: public/it/conversion  
-
-    - name: Upload it sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products.groupdocs.com'
-        file_path: 'public/it/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'it/conversion'   
-
-    - name: Upload nl folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/nl/conversion --acl public-read --no-progress --region us-west-2
-      working-directory: public/nl/conversion  
-
-    - name: Upload nl sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products.groupdocs.com'
-        file_path: 'public/nl/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'nl/conversion'  
-
+        dest_dir: 'bg/conversion'   
+  
     - name: Upload cs folder
       run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/cs/conversion --acl public-read --no-progress --region us-west-2
-      working-directory: public/cs/conversion  
-
+      working-directory: public/cs/conversion
+        
     - name: Upload cs sitemap
       uses: swimlane/s3-upload-file-action@main
       with:
@@ -350,12 +126,26 @@ jobs:
         aws_bucket: 'products.groupdocs.com'
         file_path: 'public/cs/sitemap.xml'
         file_mime_type: 'application/xml'
-        dest_dir: 'cs/conversion'                         
-
+        dest_dir: 'cs/conversion'  
+ 
+    - name: Upload de folder
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/de/conversion --acl public-read --no-progress --region us-west-2
+      working-directory: public/de/conversion
+        
+    - name: Upload de sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products.groupdocs.com'
+        file_path: 'public/de/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'de/conversion' 
+   
     - name: Upload el folder
       run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/el/conversion --acl public-read --no-progress --region us-west-2
-      working-directory: public/el/conversion  
-
+      working-directory: public/el/conversion
+        
     - name: Upload el sitemap
       uses: swimlane/s3-upload-file-action@main
       with:
@@ -365,81 +155,25 @@ jobs:
         file_path: 'public/el/sitemap.xml'
         file_mime_type: 'application/xml'
         dest_dir: 'el/conversion' 
-
-    - name: Upload af folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/af/conversion --acl public-read --no-progress --region us-west-2
-      working-directory: public/cs/conversion  
-
-    - name: Upload af sitemap
+  
+    - name: Upload es folder
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/es/conversion --acl public-read --no-progress --region us-west-2
+      working-directory: public/es/conversion        
+        
+    - name: Upload es sitemap
       uses: swimlane/s3-upload-file-action@main
       with:
         aws_access_key_id: ${{ secrets.ACCESS_KEY }}
         aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
         aws_bucket: 'products.groupdocs.com'
-        file_path: 'public/af/sitemap.xml'
+        file_path: 'public/es/sitemap.xml'
         file_mime_type: 'application/xml'
-        dest_dir: 'af/conversion'
-
-    - name: Upload am folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/am/conversion --acl public-read --no-progress --region us-west-2
-      working-directory: public/cs/conversion  
-
-    - name: Upload am sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products.groupdocs.com'
-        file_path: 'public/am/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'am/conversion'
-
-    - name: Upload ca folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/ca/conversion --acl public-read --no-progress --region us-west-2
-      working-directory: public/ca/conversion  
-
-    - name: Upload ca sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products.groupdocs.com'
-        file_path: 'public/ca/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'ca/conversion'
-
-    - name: Upload da folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/da/conversion --acl public-read --no-progress --region us-west-2
-      working-directory: public/da/conversion  
-
-    - name: Upload da sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products.groupdocs.com'
-        file_path: 'public/da/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'da/conversion'
-
-    - name: Upload et folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/et/conversion --acl public-read --no-progress --region us-west-2
-      working-directory: public/et/conversion  
-
-    - name: Upload et sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products.groupdocs.com'
-        file_path: 'public/et/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'et/conversion'
-
+        dest_dir: 'es/conversion'
+      
     - name: Upload fa folder
       run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/fa/conversion --acl public-read --no-progress --region us-west-2
-      working-directory: public/fa/conversion  
-
+      working-directory: public/fa/conversion
+        
     - name: Upload fa sitemap
       uses: swimlane/s3-upload-file-action@main
       with:
@@ -448,26 +182,40 @@ jobs:
         aws_bucket: 'products.groupdocs.com'
         file_path: 'public/fa/sitemap.xml'
         file_mime_type: 'application/xml'
-        dest_dir: 'fa/conversion'
-
-    - name: Upload hi folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/hi/conversion --acl public-read --no-progress --region us-west-2
-      working-directory: public/hi/conversion  
-
-    - name: Upload hi sitemap
+        dest_dir: 'fa/conversion'        
+        
+    - name: Upload fr folder
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/fr/conversion --acl public-read --no-progress --region us-west-2
+      working-directory: public/fr/conversion       
+        
+    - name: Upload fr sitemap
       uses: swimlane/s3-upload-file-action@main
       with:
         aws_access_key_id: ${{ secrets.ACCESS_KEY }}
         aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
         aws_bucket: 'products.groupdocs.com'
-        file_path: 'public/hi/sitemap.xml'
+        file_path: 'public/fr/sitemap.xml'
         file_mime_type: 'application/xml'
-        dest_dir: 'hi/conversion'
+        dest_dir: 'fr/conversion'
+
+    - name: Upload he folder
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/he/conversion --acl public-read --no-progress --region us-west-2
+      working-directory: public/he/conversion        
+        
+    - name: Upload he sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products.groupdocs.com'
+        file_path: 'public/he/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'he/conversion'  
 
     - name: Upload hr folder
       run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/hr/conversion --acl public-read --no-progress --region us-west-2
-      working-directory: public/hr/conversion  
-
+      working-directory: public/hr/conversion
+        
     - name: Upload hr sitemap
       uses: swimlane/s3-upload-file-action@main
       with:
@@ -477,25 +225,95 @@ jobs:
         file_path: 'public/hr/sitemap.xml'
         file_mime_type: 'application/xml'
         dest_dir: 'hr/conversion'
-
-    - name: Upload kk folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/kk/conversion --acl public-read --no-progress --region us-west-2
-      working-directory: public/kk/conversion  
-
-    - name: Upload kk sitemap
+  
+    - name: Upload hu folder
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/hu/conversion --acl public-read --no-progress --region us-west-2
+      working-directory: public/hu/conversion
+        
+    - name: Upload hu sitemap
       uses: swimlane/s3-upload-file-action@main
       with:
         aws_access_key_id: ${{ secrets.ACCESS_KEY }}
         aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
         aws_bucket: 'products.groupdocs.com'
-        file_path: 'public/kk/sitemap.xml'
+        file_path: 'public/hu/sitemap.xml'
         file_mime_type: 'application/xml'
-        dest_dir: 'kk/conversion' 
+        dest_dir: 'hu/conversion'
+  
+    - name: Upload id folder
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/id/conversion --acl public-read --no-progress --region us-west-2
+      working-directory: public/id/conversion
+ 
+    - name: Upload id sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products.groupdocs.com'
+        file_path: 'public/id/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'id/conversion'
+  
+    - name: Upload it folder
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/it/conversion --acl public-read --no-progress --region us-west-2
+      working-directory: public/it/conversion
+        
+    - name: Upload it sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products.groupdocs.com'
+        file_path: 'public/it/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'it/conversion'
+   
+    - name: Upload ja folder
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/ja/conversion --acl public-read --no-progress --region us-west-2
+      working-directory: public/ja/conversion       
+        
+    - name: Upload ja sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products.groupdocs.com'
+        file_path: 'public/ja/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'ja/conversion'
+     
+    - name: Upload ka folder
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/ka/conversion --acl public-read --no-progress --region us-west-2
+      working-directory: public/ka/conversion
+        
+    - name: Upload ka sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products.groupdocs.com'
+        file_path: 'public/ka/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'ka/conversion'
+  
+    - name: Upload ko folder
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/ko/conversion --acl public-read --no-progress --region us-west-2
+      working-directory: public/ko/conversion       
+        
+    - name: Upload ko sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products.groupdocs.com'
+        file_path: 'public/ko/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'ko/conversion'
 
     - name: Upload lt folder
       run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/lt/conversion --acl public-read --no-progress --region us-west-2
-      working-directory: public/lt/conversion  
-
+      working-directory: public/lt/conversion
+        
     - name: Upload lt sitemap
       uses: swimlane/s3-upload-file-action@main
       with:
@@ -506,150 +324,10 @@ jobs:
         file_mime_type: 'application/xml'
         dest_dir: 'lt/conversion'
 
-    - name: Upload lv folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/lv/conversion --acl public-read --no-progress --region us-west-2
-      working-directory: public/lv/conversion  
-
-    - name: Upload lv sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products.groupdocs.com'
-        file_path: 'public/lv/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'lv/conversion' 
-
-    - name: Upload sk folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/sk/conversion --acl public-read --no-progress --region us-west-2
-      working-directory: public/sk/conversion  
-
-    - name: Upload sk sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products.groupdocs.com'
-        file_path: 'public/sk/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'sk/conversion'
-
-    - name: Upload ka folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/ka/conversion --acl public-read --no-progress --region us-west-2
-      working-directory: public/ka/conversion  
-
-    - name: Upload ka sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products.groupdocs.com'
-        file_path: 'public/ka/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'ka/conversion'  
-
-    - name: Upload sl folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/sl/conversion --acl public-read --no-progress --region us-west-2
-      working-directory: public/sl/conversion  
-
-    - name: Upload sl sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products.groupdocs.com'
-        file_path: 'public/sl/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'sl/conversion'
-
-    - name: Upload fi folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/fi/conversion --acl public-read --no-progress --region us-west-2
-      working-directory: public/fi/conversion  
-
-    - name: Upload fi sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products.groupdocs.com'
-        file_path: 'public/fi/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'fi/conversion'     
-
-    - name: Upload ga folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/ga/conversion --acl public-read --no-progress --region us-west-2
-      working-directory: public/ga/conversion  
-
-    - name: Upload ga sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products.groupdocs.com'
-        file_path: 'public/ga/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'ga/conversion' 
-
-    - name: Upload hu folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/hu/conversion --acl public-read --no-progress --region us-west-2
-      working-directory: public/hu/conversion  
-
-    - name: Upload hu sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products.groupdocs.com'
-        file_path: 'public/hu/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'hu/conversion' 
-
-    - name: Upload hy folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/hy/conversion --acl public-read --no-progress --region us-west-2
-      working-directory: public/hy/conversion  
-
-    - name: Upload hy sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products.groupdocs.com'
-        file_path: 'public/hy/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'hy/conversion'
-
-    - name: Upload is folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/is/conversion --acl public-read --no-progress --region us-west-2
-      working-directory: public/is/conversion  
-
-    - name: Upload is sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products.groupdocs.com'
-        file_path: 'public/is/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'is/conversion'
-
-    - name: Upload ku folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/ku/conversion --acl public-read --no-progress --region us-west-2
-      working-directory: public/ku/conversion  
-
-    - name: Upload ku sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products.groupdocs.com'
-        file_path: 'public/ku/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'ku/conversion'   
-
     - name: Upload ms folder
       run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/ms/conversion --acl public-read --no-progress --region us-west-2
-      working-directory: public/ms/conversion  
-
+      working-directory: public/ms/conversion
+        
     - name: Upload ms sitemap
       uses: swimlane/s3-upload-file-action@main
       with:
@@ -660,10 +338,38 @@ jobs:
         file_mime_type: 'application/xml'
         dest_dir: 'ms/conversion'
 
+    - name: Upload pl folder
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/pl/conversion --acl public-read --no-progress --region us-west-2
+      working-directory: public/pl/conversion
+        
+    - name: Upload pl sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products.groupdocs.com'
+        file_path: 'public/pl/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'pl/conversion'
+ 
+    - name: Upload pt folder
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/pt/conversion --acl public-read --no-progress --region us-west-2
+      working-directory: public/pt/conversion
+        
+    - name: Upload pt sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products.groupdocs.com'
+        file_path: 'public/pt/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'pt/conversion'
+
     - name: Upload ro folder
       run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/ro/conversion --acl public-read --no-progress --region us-west-2
-      working-directory: public/ro/conversion  
-
+      working-directory: public/ro/conversion
+        
     - name: Upload ro sitemap
       uses: swimlane/s3-upload-file-action@main
       with:
@@ -672,12 +378,26 @@ jobs:
         aws_bucket: 'products.groupdocs.com'
         file_path: 'public/ro/sitemap.xml'
         file_mime_type: 'application/xml'
-        dest_dir: 'ro/conversion'      
+        dest_dir: 'ro/conversion'
 
+    - name: Upload ru folder
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/ru/conversion --acl public-read --no-progress --region us-west-2
+      working-directory: public/ru/conversion       
+        
+    - name: Upload ru sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products.groupdocs.com'
+        file_path: 'public/ru/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'ru/conversion'
+  
     - name: Upload sv folder
       run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/sv/conversion --acl public-read --no-progress --region us-west-2
-      working-directory: public/sv/conversion  
-
+      working-directory: public/sv/conversion
+        
     - name: Upload sv sitemap
       uses: swimlane/s3-upload-file-action@main
       with:
@@ -686,35 +406,77 @@ jobs:
         aws_bucket: 'products.groupdocs.com'
         file_path: 'public/sv/sitemap.xml'
         file_mime_type: 'application/xml'
-        dest_dir: 'sv/conversion'                       
-
-    - name: Upload ur folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/ur/conversion --acl public-read --no-progress --region us-west-2
-      working-directory: public/ur/conversion  
-
-    - name: Upload ur sitemap
+        dest_dir: 'sv/conversion'
+ 
+    - name: Upload th folder
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/th/conversion --acl public-read --no-progress --region us-west-2
+      working-directory: public/th/conversion
+        
+    - name: Upload th sitemap
       uses: swimlane/s3-upload-file-action@main
       with:
         aws_access_key_id: ${{ secrets.ACCESS_KEY }}
         aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
         aws_bucket: 'products.groupdocs.com'
-        file_path: 'public/ur/sitemap.xml'
+        file_path: 'public/th/sitemap.xml'
         file_mime_type: 'application/xml'
-        dest_dir: 'ur/conversion'
-
-    - name: Upload no folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/no/conversion --acl public-read --no-progress --region us-west-2
-      working-directory: public/no/conversion  
-
-    - name: Upload no sitemap
+        dest_dir: 'th/conversion'
+ 
+    - name: Upload tr folder
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/tr/conversion --acl public-read --no-progress --region us-west-2
+      working-directory: public/tr/conversion
+        
+    - name: Upload tr sitemap
       uses: swimlane/s3-upload-file-action@main
       with:
         aws_access_key_id: ${{ secrets.ACCESS_KEY }}
         aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
         aws_bucket: 'products.groupdocs.com'
-        file_path: 'public/no/sitemap.xml'
+        file_path: 'public/tr/sitemap.xml'
         file_mime_type: 'application/xml'
-        dest_dir: 'no/conversion'                
+        dest_dir: 'tr/conversion'  
+ 
+    - name: Upload uk folder
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/uk/conversion --acl public-read --no-progress --region us-west-2
+      working-directory: public/uk/conversion
+        
+    - name: Upload uk sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products.groupdocs.com'
+        file_path: 'public/uk/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'uk/conversion'  
+        
+    - name: Upload vi folder
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/vi/conversion --acl public-read --no-progress --region us-west-2
+      working-directory: public/vi/conversion
+        
+    - name: Upload vi sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products.groupdocs.com'
+        file_path: 'public/vi/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'vi/conversion'  
+
+    - name: Upload zh folder
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/zh/conversion --acl public-read --no-progress --region us-west-2
+      working-directory: public/zh/conversion        
+        
+    - name: Upload zh sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products.groupdocs.com'
+        file_path: 'public/zh/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'zh/conversion'  
 
     - name: Invalidate cache
       env:
