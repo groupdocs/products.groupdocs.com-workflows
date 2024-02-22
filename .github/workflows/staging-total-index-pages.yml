@@ -59,117 +59,117 @@ jobs:
       run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/total --acl public-read --no-progress --region us-west-2
       working-directory: public/total        
        
-    - name: Upload ar folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/ar/total --acl public-read --no-progress --region us-west-2
-      working-directory: public/ar/total
+    # - name: Upload ar folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/ar/total --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/ar/total
         
-    - name: Upload bg folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/bg/total --acl public-read --no-progress --region us-west-2
-      working-directory: public/bg/total
+    # - name: Upload bg folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/bg/total --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/bg/total
                
-    - name: Upload cs folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/cs/total --acl public-read --no-progress --region us-west-2
-      working-directory: public/cs/total
+    # - name: Upload cs folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/cs/total --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/cs/total
         
-    - name: Upload de folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/de/total --acl public-read --no-progress --region us-west-2
-      working-directory: public/de/total
+    # - name: Upload de folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/de/total --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/de/total
         
-    - name: Upload el folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/el/total --acl public-read --no-progress --region us-west-2
-      working-directory: public/el/total
+    # - name: Upload el folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/el/total --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/el/total
     
-    - name: Upload es folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/es/total --acl public-read --no-progress --region us-west-2
-      working-directory: public/es/total
+    # - name: Upload es folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/es/total --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/es/total
         
-    - name: Upload fa folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/fa/total --acl public-read --no-progress --region us-west-2
-      working-directory: public/fa/total
+    # - name: Upload fa folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/fa/total --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/fa/total
         
-    - name: Upload fr folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/fr/total --acl public-read --no-progress --region us-west-2
-      working-directory: public/fr/total       
+    # - name: Upload fr folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/fr/total --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/fr/total       
                 
-    - name: Upload he folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/he/total --acl public-read --no-progress --region us-west-2
-      working-directory: public/he/total
+    # - name: Upload he folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/he/total --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/he/total
       
-    - name: Upload hr folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/hr/total --acl public-read --no-progress --region us-west-2
-      working-directory: public/hr/total
+    # - name: Upload hr folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/hr/total --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/hr/total
         
-    - name: Upload hu folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/hu/total --acl public-read --no-progress --region us-west-2
-      working-directory: public/hu/total
+    # - name: Upload hu folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/hu/total --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/hu/total
         
-    - name: Upload id folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/id/total --acl public-read --no-progress --region us-west-2
-      working-directory: public/id/total
+    # - name: Upload id folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/id/total --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/id/total
                 
-    - name: Upload it folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/it/total --acl public-read --no-progress --region us-west-2
-      working-directory: public/it/total
+    # - name: Upload it folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/it/total --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/it/total
         
-    - name: Upload ja folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/ja/total --acl public-read --no-progress --region us-west-2
-      working-directory: public/ja/total       
+    # - name: Upload ja folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/ja/total --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/ja/total       
         
-    - name: Upload ka folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/ka/total --acl public-read --no-progress --region us-west-2
-      working-directory: public/ka/total
+    # - name: Upload ka folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/ka/total --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/ka/total
                 
-    - name: Upload ko folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/ko/total --acl public-read --no-progress --region us-west-2
-      working-directory: public/ko/total       
+    # - name: Upload ko folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/ko/total --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/ko/total       
                 
-    - name: Upload lt folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/lt/total --acl public-read --no-progress --region us-west-2
-      working-directory: public/lt/total
+    # - name: Upload lt folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/lt/total --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/lt/total
                 
-    - name: Upload ms folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/ms/total --acl public-read --no-progress --region us-west-2
-      working-directory: public/ms/total
+    # - name: Upload ms folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/ms/total --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/ms/total
                 
-    - name: Upload pl folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/pl/total --acl public-read --no-progress --region us-west-2
-      working-directory: public/pl/total
+    # - name: Upload pl folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/pl/total --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/pl/total
         
-    - name: Upload pt folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/pt/total --acl public-read --no-progress --region us-west-2
-      working-directory: public/pt/total
+    # - name: Upload pt folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/pt/total --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/pt/total
         
-    - name: Upload ro folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/ro/total --acl public-read --no-progress --region us-west-2
-      working-directory: public/ro/total
+    # - name: Upload ro folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/ro/total --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/ro/total
         
-    - name: Upload ru folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/ru/total --acl public-read --no-progress --region us-west-2
-      working-directory: public/ru/total       
+    # - name: Upload ru folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/ru/total --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/ru/total       
                 
-    - name: Upload sv folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/sv/total --acl public-read --no-progress --region us-west-2
-      working-directory: public/sv/total
+    # - name: Upload sv folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/sv/total --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/sv/total
         
-    - name: Upload th folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/th/total --acl public-read --no-progress --region us-west-2
-      working-directory: public/th/total
+    # - name: Upload th folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/th/total --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/th/total
         
-    - name: Upload tr folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/tr/total --acl public-read --no-progress --region us-west-2
-      working-directory: public/tr/total
+    # - name: Upload tr folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/tr/total --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/tr/total
         
-    - name: Upload uk folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/uk/total --acl public-read --no-progress --region us-west-2
-      working-directory: public/uk/total
+    # - name: Upload uk folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/uk/total --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/uk/total
         
-    - name: Upload vi folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/vi/total --acl public-read --no-progress --region us-west-2
-      working-directory: public/vi/total
+    # - name: Upload vi folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/vi/total --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/vi/total
         
-    - name: Upload zh folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/zh/total --acl public-read --no-progress --region us-west-2
-      working-directory: public/zh/total        
+    # - name: Upload zh folder
+    #   run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/zh/total --acl public-read --no-progress --region us-west-2
+    #   working-directory: public/zh/total        
 
 
     - name: Invalidate cache
