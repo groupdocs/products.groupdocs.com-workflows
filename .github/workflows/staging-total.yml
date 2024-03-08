@@ -47,7 +47,7 @@ jobs:
       run: |
         find ./content -mindepth 1 ! -regex '^./content/total\(/.*\)?' -delete
         ls content/ -all;
-    - name: Build Viewer pages
+    - name: Build Total pages
       run: hugo --config "./staging-config.toml" -b "https://products-qa.groupdocs.com/" --disableKinds=taxonomy,category --cleanDestinationDir --minify
       
     - name: Prepare public folder
@@ -400,3 +400,10 @@ jobs:
         file_path: 'public/zh/sitemap.xml'
         file_mime_type: 'application/xml'
         dest_dir: 'zh/total'
+
+    - name: Invalidate cache
+      env:
+        API_ENDPOINT: ${{ secrets.CACHE_INVALIDATION_API_ENDPOINT }}
+      run: |
+        curl --write-out '%{http_code}' --silent --output /dev/null -d '{"website":"https://products-qa.groupdocs.com/total/*"}' -H "Content-Type: application/json" -X POST "$API_ENDPOINT"
+        curl --write-out '%{http_code}' --silent --output /dev/null -d '{"website":"https://products-qa.groupdocs.com/*/total/*"}' -H "Content-Type: application/json" -X POST "$API_ENDPOINT"
