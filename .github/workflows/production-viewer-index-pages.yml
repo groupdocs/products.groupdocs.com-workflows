@@ -45,26 +45,10 @@ jobs:
       run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/viewer --acl public-read --no-progress --region us-west-2
       working-directory: public/viewer        
         
-    - name: Upload ar folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/ar/viewer --acl public-read --no-progress --region us-west-2
-      working-directory: public/ar/viewer
-        
-    - name: Upload bg folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/bg/viewer --acl public-read --no-progress --region us-west-2
-      working-directory: public/bg/viewer
-        
-    - name: Upload cs folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/cs/viewer --acl public-read --no-progress --region us-west-2
-      working-directory: public/cs/viewer
-                
     - name: Upload de folder
       run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/de/viewer --acl public-read --no-progress --region us-west-2
       working-directory: public/de/viewer
-        
-    - name: Upload el folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/el/viewer --acl public-read --no-progress --region us-west-2
-      working-directory: public/el/viewer
-    
+           
     - name: Upload es folder
       run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/es/viewer --acl public-read --no-progress --region us-west-2
       working-directory: public/es/viewer
@@ -76,19 +60,7 @@ jobs:
     - name: Upload fr folder
       run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/fr/viewer --acl public-read --no-progress --region us-west-2
       working-directory: public/fr/viewer       
-                
-    - name: Upload he folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/he/viewer --acl public-read --no-progress --region us-west-2
-      working-directory: public/he/viewer        
-      
-    - name: Upload hr folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/hr/viewer --acl public-read --no-progress --region us-west-2
-      working-directory: public/hr/viewer
-        
-    - name: Upload hu folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/hu/viewer --acl public-read --no-progress --region us-west-2
-      working-directory: public/hu/viewer
-        
+                  
     - name: Upload id folder
       run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/id/viewer --acl public-read --no-progress --region us-west-2
       working-directory: public/id/viewer
@@ -101,50 +73,22 @@ jobs:
       run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/ja/viewer --acl public-read --no-progress --region us-west-2
       working-directory: public/ja/viewer       
         
-    - name: Upload ka folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/ka/viewer --acl public-read --no-progress --region us-west-2
-      working-directory: public/ka/viewer
-       
     - name: Upload ko folder
       run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/ko/viewer --acl public-read --no-progress --region us-west-2
       working-directory: public/ko/viewer       
-                
-    - name: Upload lt folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/lt/viewer --acl public-read --no-progress --region us-west-2
-      working-directory: public/lt/viewer
-                
-    - name: Upload ms folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/ms/viewer --acl public-read --no-progress --region us-west-2
-      working-directory: public/ms/viewer
-                
-    - name: Upload pl folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/pl/viewer --acl public-read --no-progress --region us-west-2
-      working-directory: public/pl/viewer
-        
+                        
     - name: Upload pt folder
       run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/pt/viewer --acl public-read --no-progress --region us-west-2
       working-directory: public/pt/viewer
         
-    - name: Upload ro folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/ro/viewer --acl public-read --no-progress --region us-west-2
-      working-directory: public/ro/viewer
-        
     - name: Upload ru folder
       run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/ru/viewer --acl public-read --no-progress --region us-west-2
       working-directory: public/ru/viewer       
-        
-    - name: Upload sv folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/sv/viewer --acl public-read --no-progress --region us-west-2
-      working-directory: public/sv/viewer
-        
+                
     - name: Upload th folder
       run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/th/viewer --acl public-read --no-progress --region us-west-2
       working-directory: public/th/viewer
-        
-    - name: Upload tr folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/tr/viewer --acl public-read --no-progress --region us-west-2
-      working-directory: public/tr/viewer
-        
+                
     - name: Upload uk folder
       run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/uk/viewer --acl public-read --no-progress --region us-west-2
       working-directory: public/uk/viewer
@@ -162,3 +106,4 @@ jobs:
         API_ENDPOINT: ${{ secrets.CACHE_INVALIDATION_API_ENDPOINT }}
       run: |
         curl --write-out '%{http_code}' --silent --output /dev/null -d '{"website":"https://products.groupdocs.com/viewer/*"}' -H "Content-Type: application/json" -X POST "$API_ENDPOINT"
+        curl --write-out '%{http_code}' --silent --output /dev/null -d '{"website":"https://products.groupdocs.com/*/viewer/*"}' -H "Content-Type: application/json" -X POST "$API_ENDPOINT"

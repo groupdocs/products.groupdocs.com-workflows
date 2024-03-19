@@ -84,49 +84,7 @@ jobs:
         aws_bucket: 'products.groupdocs.com'
         file_path: 'public/en/sitemap.xml'
         file_mime_type: 'application/xml'
-        dest_dir: 'en/viewer'
-  
-    - name: Upload ar folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/ar/viewer --acl public-read --no-progress --region us-west-2
-      working-directory: public/ar/viewer
-        
-    - name: Upload ar sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products.groupdocs.com'
-        file_path: 'public/ar/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'ar/viewer'  
-   
-    - name: Upload bg folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/bg/viewer --acl public-read --no-progress --region us-west-2
-      working-directory: public/bg/viewer
-        
-    - name: Upload bg sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products.groupdocs.com'
-        file_path: 'public/bg/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'bg/viewer'   
-  
-    - name: Upload cs folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/cs/viewer --acl public-read --no-progress --region us-west-2
-      working-directory: public/cs/viewer
-        
-    - name: Upload cs sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products.groupdocs.com'
-        file_path: 'public/cs/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'cs/viewer'  
+        dest_dir: 'en/viewer' 
  
     - name: Upload de folder
       run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/de/viewer --acl public-read --no-progress --region us-west-2
@@ -140,21 +98,7 @@ jobs:
         aws_bucket: 'products.groupdocs.com'
         file_path: 'public/de/sitemap.xml'
         file_mime_type: 'application/xml'
-        dest_dir: 'de/viewer' 
-   
-    - name: Upload el folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/el/viewer --acl public-read --no-progress --region us-west-2
-      working-directory: public/el/viewer
-        
-    - name: Upload el sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products.groupdocs.com'
-        file_path: 'public/el/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'el/viewer' 
+        dest_dir: 'de/viewer'    
   
     - name: Upload es folder
       run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/es/viewer --acl public-read --no-progress --region us-west-2
@@ -197,49 +141,7 @@ jobs:
         file_path: 'public/fr/sitemap.xml'
         file_mime_type: 'application/xml'
         dest_dir: 'fr/viewer'
-
-    - name: Upload he folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/he/viewer --acl public-read --no-progress --region us-west-2
-      working-directory: public/he/viewer        
-        
-    - name: Upload he sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products.groupdocs.com'
-        file_path: 'public/he/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'he/viewer'  
-
-    - name: Upload hr folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/hr/viewer --acl public-read --no-progress --region us-west-2
-      working-directory: public/hr/viewer
-        
-    - name: Upload hr sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products.groupdocs.com'
-        file_path: 'public/hr/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'hr/viewer'
-  
-    - name: Upload hu folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/hu/viewer --acl public-read --no-progress --region us-west-2
-      working-directory: public/hu/viewer
-        
-    - name: Upload hu sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products.groupdocs.com'
-        file_path: 'public/hu/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'hu/viewer'
-  
+    
     - name: Upload id folder
       run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/id/viewer --acl public-read --no-progress --region us-west-2
       working-directory: public/id/viewer
@@ -281,21 +183,7 @@ jobs:
         file_path: 'public/ja/sitemap.xml'
         file_mime_type: 'application/xml'
         dest_dir: 'ja/viewer'
-     
-    - name: Upload ka folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/ka/viewer --acl public-read --no-progress --region us-west-2
-      working-directory: public/ka/viewer
-        
-    - name: Upload ka sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products.groupdocs.com'
-        file_path: 'public/ka/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'ka/viewer'
-  
+    
     - name: Upload ko folder
       run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/ko/viewer --acl public-read --no-progress --region us-west-2
       working-directory: public/ko/viewer       
@@ -310,48 +198,6 @@ jobs:
         file_mime_type: 'application/xml'
         dest_dir: 'ko/viewer'
 
-    - name: Upload lt folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/lt/viewer --acl public-read --no-progress --region us-west-2
-      working-directory: public/lt/viewer
-        
-    - name: Upload lt sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products.groupdocs.com'
-        file_path: 'public/lt/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'lt/viewer'
-
-    - name: Upload ms folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/ms/viewer --acl public-read --no-progress --region us-west-2
-      working-directory: public/ms/viewer
-        
-    - name: Upload ms sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products.groupdocs.com'
-        file_path: 'public/ms/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'ms/viewer'
-
-    - name: Upload pl folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/pl/viewer --acl public-read --no-progress --region us-west-2
-      working-directory: public/pl/viewer
-        
-    - name: Upload pl sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products.groupdocs.com'
-        file_path: 'public/pl/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'pl/viewer'
- 
     - name: Upload pt folder
       run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/pt/viewer --acl public-read --no-progress --region us-west-2
       working-directory: public/pt/viewer
@@ -366,20 +212,6 @@ jobs:
         file_mime_type: 'application/xml'
         dest_dir: 'pt/viewer'
 
-    - name: Upload ro folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/ro/viewer --acl public-read --no-progress --region us-west-2
-      working-directory: public/ro/viewer
-        
-    - name: Upload ro sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products.groupdocs.com'
-        file_path: 'public/ro/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'ro/viewer'
-
     - name: Upload ru folder
       run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/ru/viewer --acl public-read --no-progress --region us-west-2
       working-directory: public/ru/viewer       
@@ -393,21 +225,7 @@ jobs:
         file_path: 'public/ru/sitemap.xml'
         file_mime_type: 'application/xml'
         dest_dir: 'ru/viewer'
-  
-    - name: Upload sv folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/sv/viewer --acl public-read --no-progress --region us-west-2
-      working-directory: public/sv/viewer
-        
-    - name: Upload sv sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products.groupdocs.com'
-        file_path: 'public/sv/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'sv/viewer'
- 
+   
     - name: Upload th folder
       run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/th/viewer --acl public-read --no-progress --region us-west-2
       working-directory: public/th/viewer
@@ -421,21 +239,7 @@ jobs:
         file_path: 'public/th/sitemap.xml'
         file_mime_type: 'application/xml'
         dest_dir: 'th/viewer'
- 
-    - name: Upload tr folder
-      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/tr/viewer --acl public-read --no-progress --region us-west-2
-      working-directory: public/tr/viewer
-        
-    - name: Upload tr sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products.groupdocs.com'
-        file_path: 'public/tr/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'tr/viewer'  
- 
+  
     - name: Upload uk folder
       run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/uk/viewer --acl public-read --no-progress --region us-west-2
       working-directory: public/uk/viewer
