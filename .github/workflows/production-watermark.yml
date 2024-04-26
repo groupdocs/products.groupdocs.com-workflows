@@ -93,8 +93,52 @@ jobs:
         file_path: 'public/en/sitemap.xml'
         file_mime_type: 'application/xml'
         dest_dir: 'en/watermark'
+
+    - name: Upload de folder
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: 'products.groupdocs.com'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+        AWS_REGION: 'us-west-2'
+        SOURCE_DIR: 'public/de/watermark'
+        DEST_DIR: 'de/watermark'  
+
+    - name: Upload de sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products.groupdocs.com'
+        file_path: 'public/de/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'de/watermark'
         
-    - name: Upload zh folder
+    - name: Upload es folder
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: 'products.groupdocs.com'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+        AWS_REGION: 'us-west-2' 
+        SOURCE_DIR: 'public/es/watermark'
+        DEST_DIR: 'es/watermark' 
+
+    - name: Upload es sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products.groupdocs.com'
+        file_path: 'public/es/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'es/watermark'
+        
+    - name: Upload fa folder
       uses: jakejarvis/s3-sync-action@master
       with:
         args: --acl public-read --follow-symlinks --delete
@@ -103,40 +147,18 @@ jobs:
         AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
         AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/zh/watermark'
-        DEST_DIR: 'zh/watermark' 
+        SOURCE_DIR: 'public/fa/watermark'
+        DEST_DIR: 'fa/watermark'    
 
-    - name: Upload zh sitemap
+    - name: Upload fa sitemap
       uses: swimlane/s3-upload-file-action@main
       with:
         aws_access_key_id: ${{ secrets.ACCESS_KEY }}
         aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
         aws_bucket: 'products.groupdocs.com'
-        file_path: 'public/zh/sitemap.xml'
+        file_path: 'public/fa/sitemap.xml'
         file_mime_type: 'application/xml'
-        dest_dir: 'zh/watermark'
-
-    - name: Upload ru folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/ru/watermark'
-        DEST_DIR: 'ru/watermark'  
-
-    - name: Upload ru sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products.groupdocs.com'
-        file_path: 'public/ru/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'ru/watermark'
+        dest_dir: 'fa/watermark'
         
     - name: Upload fr folder
       uses: jakejarvis/s3-sync-action@master
@@ -160,29 +182,7 @@ jobs:
         file_mime_type: 'application/xml'
         dest_dir: 'fr/watermark'
         
-    - name: Upload es folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2' 
-        SOURCE_DIR: 'public/es/watermark'
-        DEST_DIR: 'es/watermark' 
-
-    - name: Upload es sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products.groupdocs.com'
-        file_path: 'public/es/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'es/watermark'
-
-    - name: Upload de folder
+    - name: Upload id folder
       uses: jakejarvis/s3-sync-action@master
       with:
         args: --acl public-read --follow-symlinks --delete
@@ -191,18 +191,40 @@ jobs:
         AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
         AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/de/watermark'
-        DEST_DIR: 'de/watermark'  
+        SOURCE_DIR: 'public/id/watermark'
+        DEST_DIR: 'id/watermark'    
 
-    - name: Upload de sitemap
+    - name: Upload id sitemap
       uses: swimlane/s3-upload-file-action@main
       with:
         aws_access_key_id: ${{ secrets.ACCESS_KEY }}
         aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
         aws_bucket: 'products.groupdocs.com'
-        file_path: 'public/de/sitemap.xml'
+        file_path: 'public/id/sitemap.xml'
         file_mime_type: 'application/xml'
-        dest_dir: 'de/watermark'
+        dest_dir: 'id/watermark'
+        
+    - name: Upload it folder
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: 'products.groupdocs.com'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+        AWS_REGION: 'us-west-2'
+        SOURCE_DIR: 'public/it/watermark'
+        DEST_DIR: 'it/watermark'    
+
+    - name: Upload it sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products.groupdocs.com'
+        file_path: 'public/it/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'it/watermark'
 
     - name: Upload ja folder
       uses: jakejarvis/s3-sync-action@master
@@ -247,3 +269,135 @@ jobs:
         file_path: 'public/ko/sitemap.xml'
         file_mime_type: 'application/xml'
         dest_dir: 'ko/watermark'
+
+    - name: Upload pt folder
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: 'products.groupdocs.com'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+        AWS_REGION: 'us-west-2'
+        SOURCE_DIR: 'public/pt/watermark'
+        DEST_DIR: 'pt/watermark'  
+
+    - name: Upload pt sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products.groupdocs.com'
+        file_path: 'public/pt/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'pt/watermark'
+
+    - name: Upload ru folder
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: 'products.groupdocs.com'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+        AWS_REGION: 'us-west-2'
+        SOURCE_DIR: 'public/ru/watermark'
+        DEST_DIR: 'ru/watermark'  
+
+    - name: Upload ru sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products.groupdocs.com'
+        file_path: 'public/ru/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'ru/watermark'
+        
+    - name: Upload th folder
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: 'products.groupdocs.com'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+        AWS_REGION: 'us-west-2'
+        SOURCE_DIR: 'public/th/watermark'
+        DEST_DIR: 'th/watermark' 
+
+    - name: Upload th sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products.groupdocs.com'
+        file_path: 'public/th/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'th/watermark'
+        
+    - name: Upload uk folder
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: 'products.groupdocs.com'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+        AWS_REGION: 'us-west-2'
+        SOURCE_DIR: 'public/uk/watermark'
+        DEST_DIR: 'uk/watermark' 
+
+    - name: Upload uk sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products.groupdocs.com'
+        file_path: 'public/uk/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'uk/watermark'
+        
+    - name: Upload vi folder
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: 'products.groupdocs.com'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+        AWS_REGION: 'us-west-2'
+        SOURCE_DIR: 'public/vi/watermark'
+        DEST_DIR: 'vi/watermark' 
+
+    - name: Upload vi sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products.groupdocs.com'
+        file_path: 'public/vi/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'vi/watermark'
+        
+    - name: Upload zh folder
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: 'products.groupdocs.com'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+        AWS_REGION: 'us-west-2'
+        SOURCE_DIR: 'public/zh/watermark'
+        DEST_DIR: 'zh/watermark' 
+
+    - name: Upload zh sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products.groupdocs.com'
+        file_path: 'public/zh/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'zh/watermark'
