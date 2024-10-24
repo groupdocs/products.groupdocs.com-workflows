@@ -19,6 +19,11 @@ on:
     
   # Allows the workflow run manually from the Actions tab
   workflow_dispatch:
+    inputs:
+      branch:
+        description: 'The branch to check out'
+        default: 'main'   # Default branch if not provided
+        required: true
 
 jobs:
   # This workflow contains a single job called "deploy"
@@ -36,7 +41,8 @@ jobs:
           repository: groupdocs/products.groupdocs.com
           token: ${{ secrets.REPO_TOKEN }}
           fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
-
+          ref: ${{ inputs.branch }}   # Using the input branch
+        
     - name: Setup Hugo
       uses: peaceiris/actions-hugo@v2
       with:
@@ -122,3 +128,4 @@ jobs:
       run: |
         curl --write-out '%{http_code}' --silent --output /dev/null -d '{"website":"https://products-qa.groupdocs.com/viewer/*"}' -H "Content-Type: application/json" -X POST "$API_ENDPOINT"
         curl --write-out '%{http_code}' --silent --output /dev/null -d '{"website":"https://products-qa.groupdocs.com/*/viewer/*"}' -H "Content-Type: application/json" -X POST "$API_ENDPOINT"
+
