@@ -34,7 +34,7 @@ jobs:
       uses: actions/checkout@main
       with:
           repository: groupdocs/products.groupdocs.com
-          ref: format-landing   # !!!!!!!!!!!! Needed branch name
+          ref: license-popup   # !!!!!!!!!!!! Needed branch name
           token: ${{ secrets.REPO_TOKEN }}
           fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
 
