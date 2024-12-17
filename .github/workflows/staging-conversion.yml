@@ -73,16 +73,8 @@ jobs:
         dest_dir: 'sitemaps'
 
     - name: Upload default language
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/conversion'
-        DEST_DIR: 'conversion'       
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/conversion --acl public-read --follow-symlinks --delete --no-progress --region us-west-2
+      working-directory: public/conversion
 
     - name: Upload en sitemap
       uses: swimlane/s3-upload-file-action@main
@@ -95,16 +87,8 @@ jobs:
         dest_dir: 'en/conversion'
    
     - name: Upload de folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/de/conversion'
-        DEST_DIR: 'de/conversion'
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/de/conversion --acl public-read --follow-symlinks --delete --no-progress --region us-west-2
+      working-directory: public/de/conversion
         
     - name: Upload de sitemap
       uses: swimlane/s3-upload-file-action@main
@@ -117,16 +101,8 @@ jobs:
         dest_dir: 'de/conversion' 
  
     - name: Upload es folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/es/conversion'
-        DEST_DIR: 'es/conversion'        
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/es/conversion --acl public-read --follow-symlinks --delete --no-progress --region us-west-2
+      working-directory: public/es/conversion        
         
     - name: Upload es sitemap
       uses: swimlane/s3-upload-file-action@main
@@ -139,16 +115,8 @@ jobs:
         dest_dir: 'es/conversion'
   
     - name: Upload fa folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/fa/conversion'
-        DEST_DIR: 'fa/conversion'
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/fa/conversion --acl public-read --follow-symlinks --delete --no-progress --region us-west-2
+      working-directory: public/fa/conversion
         
     - name: Upload fa sitemap
       uses: swimlane/s3-upload-file-action@main
@@ -161,16 +129,8 @@ jobs:
         dest_dir: 'fa/conversion'        
 
     - name: Upload fr folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/fr/conversion'
-        DEST_DIR: 'fr/conversion'
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/fr/conversion --acl public-read --follow-symlinks --delete --no-progress --region us-west-2
+      working-directory: public/fr/conversion       
         
     - name: Upload fr sitemap
       uses: swimlane/s3-upload-file-action@main
@@ -183,16 +143,8 @@ jobs:
         dest_dir: 'fr/conversion'
 
     - name: Upload id folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/id/conversion'
-        DEST_DIR: 'id/conversion'
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/id/conversion --acl public-read --follow-symlinks --delete --no-progress --region us-west-2
+      working-directory: public/id/conversion
  
     - name: Upload id sitemap
       uses: swimlane/s3-upload-file-action@main
@@ -205,16 +157,8 @@ jobs:
         dest_dir: 'id/conversion'
 
     - name: Upload it folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/it/conversion'
-        DEST_DIR: 'it/conversion'
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/it/conversion --acl public-read --follow-symlinks --delete --no-progress --region us-west-2
+      working-directory: public/it/conversion
         
     - name: Upload it sitemap
       uses: swimlane/s3-upload-file-action@main
@@ -227,16 +171,8 @@ jobs:
         dest_dir: 'it/conversion'
  
     - name: Upload ja folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/ja/conversion'
-        DEST_DIR: 'ja/conversion'
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/ja/conversion --acl public-read --follow-symlinks --delete --no-progress --region us-west-2
+      working-directory: public/ja/conversion       
         
     - name: Upload ja sitemap
       uses: swimlane/s3-upload-file-action@main
@@ -249,16 +185,8 @@ jobs:
         dest_dir: 'ja/conversion'
     
     - name: Upload ko folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/ko/conversion'
-        DEST_DIR: 'ko/conversion'
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/ko/conversion --acl public-read --follow-symlinks --delete --no-progress --region us-west-2
+      working-directory: public/ko/conversion       
         
     - name: Upload ko sitemap
       uses: swimlane/s3-upload-file-action@main
@@ -271,16 +199,8 @@ jobs:
         dest_dir: 'ko/conversion'
    
     - name: Upload pt folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/pt/conversion'
-        DEST_DIR: 'pt/conversion'
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/pt/conversion --acl public-read --follow-symlinks --delete --no-progress --region us-west-2
+      working-directory: public/pt/conversion
         
     - name: Upload pt sitemap
       uses: swimlane/s3-upload-file-action@main
@@ -293,16 +213,8 @@ jobs:
         dest_dir: 'pt/conversion'
 
     - name: Upload ru folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/ru/conversion'
-        DEST_DIR: 'ru/conversion'
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/ru/conversion --acl public-read --follow-symlinks --delete --no-progress --region us-west-2
+      working-directory: public/ru/conversion       
         
     - name: Upload ru sitemap
       uses: swimlane/s3-upload-file-action@main
@@ -315,16 +227,8 @@ jobs:
         dest_dir: 'ru/conversion'
   
     - name: Upload th folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/th/conversion'
-        DEST_DIR: 'th/conversion'
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/th/conversion --acl public-read --follow-symlinks --delete --no-progress --region us-west-2
+      working-directory: public/th/conversion
         
     - name: Upload th sitemap
       uses: swimlane/s3-upload-file-action@main
@@ -337,16 +241,8 @@ jobs:
         dest_dir: 'th/conversion'
 
     - name: Upload uk folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/uk/conversion'
-        DEST_DIR: 'uk/conversion'
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/uk/conversion --acl public-read --follow-symlinks --delete --no-progress --region us-west-2
+      working-directory: public/uk/conversion
         
     - name: Upload uk sitemap
       uses: swimlane/s3-upload-file-action@main
@@ -359,16 +255,8 @@ jobs:
         dest_dir: 'uk/conversion'  
  
     - name: Upload vi folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/vi/conversion'
-        DEST_DIR: 'vi/conversion'
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/vi/conversion --acl public-read --follow-symlinks --delete --no-progress --region us-west-2
+      working-directory: public/vi/conversion
         
     - name: Upload vi sitemap
       uses: swimlane/s3-upload-file-action@main
@@ -381,16 +269,8 @@ jobs:
         dest_dir: 'vi/conversion'  
   
     - name: Upload zh folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/zh/conversion'
-        DEST_DIR: 'zh/conversion'
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/zh/conversion --acl public-read --follow-symlinks --delete --no-progress --region us-west-2
+      working-directory: public/zh/conversion        
         
     - name: Upload zh sitemap
       uses: swimlane/s3-upload-file-action@main
