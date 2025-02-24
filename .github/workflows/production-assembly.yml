@@ -8,11 +8,11 @@ env:
 on:
   # Triggers the workflow on push or pull request events but only for the mentioned branches
   push:
-    branches: assembly-old
+    branches: [ production ]
     paths:
        - 'content/assembly/**'
   pull_request:
-    branches: assembly-old
+    branches: [ production ]
 
   repository_dispatch:
     types: [production-complete]
@@ -34,6 +34,7 @@ jobs:
       uses: actions/checkout@main
       with:
           repository: groupdocs/products.groupdocs.com
+          ref: assemly-old
           token: ${{ secrets.REPO_TOKEN }}
           fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
 
