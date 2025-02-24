@@ -31,7 +31,7 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     - name: Checkout theme repo
-      uses: actions/checkout@main
+      uses: actions/checkout@assembly-old
       with:
           repository: groupdocs/products.groupdocs.com
           token: ${{ secrets.REPO_TOKEN }}
