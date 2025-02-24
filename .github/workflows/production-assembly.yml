@@ -8,11 +8,11 @@ env:
 on:
   # Triggers the workflow on push or pull request events but only for the mentioned branches
   push:
-    branches: [ production ]
+    branches: assembly-old
     paths:
        - 'content/assembly/**'
   pull_request:
-    branches: [ production ]
+    branches: assembly-old
 
   repository_dispatch:
     types: [production-complete]
@@ -31,7 +31,7 @@ jobs:
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     - name: Checkout theme repo
-      uses: actions/checkout@assembly-old
+      uses: actions/checkout@main
       with:
           repository: groupdocs/products.groupdocs.com
           token: ${{ secrets.REPO_TOKEN }}
