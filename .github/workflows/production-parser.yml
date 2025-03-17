@@ -269,3 +269,10 @@ jobs:
         file_path: 'public/id/sitemap.xml'
         file_mime_type: 'application/xml'
         dest_dir: 'id/parser'
+
+    - name: Invalidate cache
+      env:
+        API_ENDPOINT: ${{ secrets.CACHE_INVALIDATION_API_ENDPOINT }}
+      run: |
+        curl --write-out '%{http_code}' --silent --output /dev/null -d '{"website":"https://products.groupdocs.com/parser/*"}' -H "Content-Type: application/json" -X POST "$API_ENDPOINT"
+        curl --write-out '%{http_code}' --silent --output /dev/null -d '{"website":"https://products.groupdocs.com/**/parser/*"}' -H "Content-Type: application/json" -X POST "$API_ENDPOINT"

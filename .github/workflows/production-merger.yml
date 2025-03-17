@@ -402,6 +402,9 @@ jobs:
         file_mime_type: 'application/xml'
         dest_dir: 'zh/merger'
 
-
-        
-
+    - name: Invalidate cache
+      env:
+        API_ENDPOINT: ${{ secrets.CACHE_INVALIDATION_API_ENDPOINT }}
+      run: |
+        curl --write-out '%{http_code}' --silent --output /dev/null -d '{"website":"https://products.groupdocs.com/merger/*"}' -H "Content-Type: application/json" -X POST "$API_ENDPOINT"
+        curl --write-out '%{http_code}' --silent --output /dev/null -d '{"website":"https://products.groupdocs.com/**/merger/*"}' -H "Content-Type: application/json" -X POST "$API_ENDPOINT"

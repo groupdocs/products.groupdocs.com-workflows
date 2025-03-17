@@ -296,3 +296,9 @@ jobs:
         file_mime_type: 'application/xml'
         dest_dir: 'zh/signature'  
         
+    - name: Invalidate cache
+      env:
+        API_ENDPOINT: ${{ secrets.CACHE_INVALIDATION_API_ENDPOINT }}
+      run: |
+        curl --write-out '%{http_code}' --silent --output /dev/null -d '{"website":"https://products.groupdocs.com/signature/*"}' -H "Content-Type: application/json" -X POST "$API_ENDPOINT"
+        curl --write-out '%{http_code}' --silent --output /dev/null -d '{"website":"https://products.groupdocs.com/**/signature/*"}' -H "Content-Type: application/json" -X POST "$API_ENDPOINT"
