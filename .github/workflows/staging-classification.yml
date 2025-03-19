@@ -47,8 +47,9 @@ jobs:
       run: |
         find ./content -mindepth 1 ! -regex '^./content/classification\(/.*\)?' -delete
         ls content/ -all;
-    - name: Build Viewer pages
-      run: hugo --config "./staging-config.toml" -b "https://products-qa.groupdocs.com/" --disableKinds=taxonomy,category --cleanDestinationDir --minify
+
+    - name: Build classification pages
+      run: hugo --config "./classification-staging-config.toml" -b "https://products-qa.groupdocs.com/" --disableKinds=taxonomy,category --cleanDestinationDir --minify
       
     - name: Prepare public folder
       run: |
@@ -57,8 +58,8 @@ jobs:
         mkdir public_home;
         mkdir public_home/sitemaps;
         mv public/$product_family.xml public_home/sitemaps/;
-        ls public -all;
-        #ls public/zh -all;
+        #ls public -all;
+        #ls -a public/zh;
         #ls public_home -all;
         
     - name: Upload family sitemap
@@ -72,16 +73,8 @@ jobs:
         dest_dir: 'sitemaps'
 
     - name: Upload default language
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/classification'
-        DEST_DIR: 'classification' 
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/classification --acl public-read --no-progress --region us-west-2
+      working-directory: public/classification        
         
     - name: Upload en sitemap
       uses: swimlane/s3-upload-file-action@main
@@ -92,85 +85,25 @@ jobs:
         file_path: 'public/en/sitemap.xml'
         file_mime_type: 'application/xml'
         dest_dir: 'en/classification'
+         
+    - name: Upload de folder
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/de/classification --acl public-read --no-progress --region us-west-2
+      working-directory: public/de/classification
         
-    - name: Upload zh folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/zh/classification'
-        DEST_DIR: 'zh/classification' 
-
-    - name: Upload zh sitemap
+    - name: Upload de sitemap
       uses: swimlane/s3-upload-file-action@main
       with:
         aws_access_key_id: ${{ secrets.ACCESS_KEY }}
         aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
         aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/zh/sitemap.xml'
+        file_path: 'public/de/sitemap.xml'
         file_mime_type: 'application/xml'
-        dest_dir: 'zh/classification'
-
-    - name: Upload ru folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/ru/classification'
-        DEST_DIR: 'ru/classification'  
-
-    - name: Upload ru sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/ru/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'ru/classification'
-        
-    - name: Upload fr folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/fr/classification'
-        DEST_DIR: 'fr/classification'    
-
-    - name: Upload fr sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/fr/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'fr/classification'
-        
+        dest_dir: 'de/classification' 
+ 
     - name: Upload es folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2' 
-        SOURCE_DIR: 'public/es/classification'
-        DEST_DIR: 'es/classification' 
-
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/es/classification --acl public-read --no-progress --region us-west-2
+      working-directory: public/es/classification        
+        
     - name: Upload es sitemap
       uses: swimlane/s3-upload-file-action@main
       with:
@@ -180,41 +113,67 @@ jobs:
         file_path: 'public/es/sitemap.xml'
         file_mime_type: 'application/xml'
         dest_dir: 'es/classification'
-
-    - name: Upload de folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/de/classification'
-        DEST_DIR: 'de/classification'  
-
-    - name: Upload de sitemap
+  
+    - name: Upload fa folder
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/fa/classification --acl public-read --no-progress --region us-west-2
+      working-directory: public/fa/classification
+        
+    - name: Upload fa sitemap
       uses: swimlane/s3-upload-file-action@main
       with:
         aws_access_key_id: ${{ secrets.ACCESS_KEY }}
         aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
         aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/de/sitemap.xml'
+        file_path: 'public/fa/sitemap.xml'
         file_mime_type: 'application/xml'
-        dest_dir: 'de/classification'
+        dest_dir: 'fa/classification'        
 
-    - name: Upload ja folder
-      uses: jakejarvis/s3-sync-action@master
+    - name: Upload fr folder
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/fr/classification --acl public-read --no-progress --region us-west-2
+      working-directory: public/fr/classification       
+        
+    - name: Upload fr sitemap
+      uses: swimlane/s3-upload-file-action@main
       with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/ja/classification'
-        DEST_DIR: 'ja/classification'  
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public/fr/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'fr/classification'
+   
+    - name: Upload id folder
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/id/classification --acl public-read --no-progress --region us-west-2
+      working-directory: public/id/classification
+ 
+    - name: Upload id sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public/id/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'id/classification'
 
+    - name: Upload it folder
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/it/classification --acl public-read --no-progress --region us-west-2
+      working-directory: public/it/classification
+        
+    - name: Upload it sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public/it/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'it/classification'
+ 
+    - name: Upload ja folder
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/ja/classification --acl public-read --no-progress --region us-west-2
+      working-directory: public/ja/classification       
+        
     - name: Upload ja sitemap
       uses: swimlane/s3-upload-file-action@main
       with:
@@ -224,19 +183,11 @@ jobs:
         file_path: 'public/ja/sitemap.xml'
         file_mime_type: 'application/xml'
         dest_dir: 'ja/classification'
-
+    
     - name: Upload ko folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/ko/classification'
-        DEST_DIR: 'ko/classification'  
-
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/ko/classification --acl public-read --no-progress --region us-west-2
+      working-directory: public/ko/classification       
+        
     - name: Upload ko sitemap
       uses: swimlane/s3-upload-file-action@main
       with:
@@ -246,3 +197,93 @@ jobs:
         file_path: 'public/ko/sitemap.xml'
         file_mime_type: 'application/xml'
         dest_dir: 'ko/classification'
+       
+    - name: Upload pt folder
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/pt/classification --acl public-read --no-progress --region us-west-2
+      working-directory: public/pt/classification
+        
+    - name: Upload pt sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public/pt/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'pt/classification'
+ 
+    - name: Upload ru folder
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/ru/classification --acl public-read --no-progress --region us-west-2
+      working-directory: public/ru/classification       
+        
+    - name: Upload ru sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public/ru/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'ru/classification'
+   
+    - name: Upload th folder
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/th/classification --acl public-read --no-progress --region us-west-2
+      working-directory: public/th/classification
+        
+    - name: Upload th sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public/th/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'th/classification'
+    
+    - name: Upload uk folder
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/uk/classification --acl public-read --no-progress --region us-west-2
+      working-directory: public/uk/classification
+        
+    - name: Upload uk sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public/uk/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'uk/classification'  
+ 
+    - name: Upload vi folder
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/vi/classification --acl public-read --no-progress --region us-west-2
+      working-directory: public/vi/classification
+        
+    - name: Upload vi sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public/vi/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'vi/classification'  
+  
+    - name: Upload zh folder
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/zh/classification --acl public-read --no-progress --region us-west-2
+      working-directory: public/zh/classification        
+        
+    - name: Upload zh sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public/zh/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'zh/classification'  
+ 
+    - name: Invalidate cache
+      env:
+        API_ENDPOINT: ${{ secrets.CACHE_INVALIDATION_API_ENDPOINT }}
+      run: |
+        curl --write-out '%{http_code}' --silent --output /dev/null -d '{"website":"https://products-qa.groupdocs.com/classification/*"}' -H "Content-Type: application/json" -X POST "$API_ENDPOINT"
