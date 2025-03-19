@@ -113,7 +113,13 @@ jobs:
         file_path: 'public/es/sitemap.xml'
         file_mime_type: 'application/xml'
         dest_dir: 'es/classification'
-      
+
+
+    - name: Debug public/fa/ directory structure
+      run: | 
+        pwd
+        ls -R public/fa/  
+    
     - name: Upload fa folder
       run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/fa/classification --acl public-read --no-progress --region us-west-2
       working-directory: public/fa/classification
