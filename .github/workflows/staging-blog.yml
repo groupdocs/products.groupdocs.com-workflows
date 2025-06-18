@@ -47,6 +47,7 @@ jobs:
       run: |
         find ./content -mindepth 1 -not -regex './content/blog/.*' -delete
         ls -a content/
+        ls -a content/blog
 
     - name: Build Blog pages
       run: hugo --config "./staging-config.toml" -b "https://products-qa.groupdocs.com/" --cleanDestinationDir --minify
