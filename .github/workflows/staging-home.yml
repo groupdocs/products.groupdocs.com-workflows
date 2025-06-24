@@ -6,11 +6,11 @@ name: StagingHome
 on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
-    branches: [ main ]
+    branches: [ editor/demo ]
     paths:
       - 'content/*'
   pull_request:
-    branches: [ main ]
+    branches: [ editor/demo ]
 
   repository_dispatch:
     types: [staging-complete]
@@ -20,7 +20,7 @@ on:
     inputs:
       branch:
         description: 'The branch to check out'
-        default: 'main'   # Default branch if not provided
+        default: 'editor/demo'   # Default branch if not provided
         required: true
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -40,7 +40,7 @@ jobs:
           repository: groupdocs/products.groupdocs.com
           token: ${{ secrets.REPO_TOKEN }}
           fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
-          ref: ${{ inputs.branch }}   # Using the input branch
+          ref: editor/demo   # Using the input branch
 
     # Step 2 - Sets up the latest version of Hugo
     - name: Setup Hugo
