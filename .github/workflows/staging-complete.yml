@@ -4,11 +4,11 @@ name: 01-StagingComplete
 on:
   # Triggers the workflow on push or pull request events but only for the main branch and in theme folder
   push:
-    branches: [ main ]
+    branches: [ editor/demo ]
     paths:
       - 'themes/airspace-hugo/**'
   pull_request:
-    branches: [ main ]
+    branches: [ editor/demo ]
     paths:
       - 'themes/airspace-hugo/**'
   # Allows you to run this workflow manually from the Actions tab

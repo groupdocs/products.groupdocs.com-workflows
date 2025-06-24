@@ -8,11 +8,11 @@ env:
 on:
   # Triggers the workflow on push or pull request events but only for the mentioned branches
   push:
-    branches: [ main ]
+    branches: [ editor/demo ]
     paths:
        - 'content/editor/**'
   pull_request:
-    branches: [ main ]
+    branches: [ editor/demo ]
 
   repository_dispatch:
     types: [staging-complete]
