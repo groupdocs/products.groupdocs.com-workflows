@@ -47,7 +47,8 @@ jobs:
       run: |
         find ./content -mindepth 1 ! -regex '^./content/editor\(/.*\)?' -delete
         ls content/ -all;
-    - name: Build Viewer pages
+
+    - name: Build Editor pages
       run: hugo --config "./staging-config.toml" -b "https://products-qa.groupdocs.com/" --disableKinds=taxonomy,category --cleanDestinationDir --minify
       
     - name: Prepare public folder
@@ -92,6 +93,28 @@ jobs:
         file_path: 'public/en/sitemap.xml'
         file_mime_type: 'application/xml'
         dest_dir: 'en/editor'        
+
+    - name: Upload de folder
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+        AWS_REGION: 'us-west-2'
+        SOURCE_DIR: 'public/de/editor'
+        DEST_DIR: 'de/editor'  
+
+    - name: Upload de sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public/de/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'de/editor'
 
     - name: Upload es folder
       uses: jakejarvis/s3-sync-action@master
