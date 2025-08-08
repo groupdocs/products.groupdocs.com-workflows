@@ -92,8 +92,52 @@ jobs:
         file_path: 'public/en/sitemap.xml'
         file_mime_type: 'application/xml'
         dest_dir: 'en/redaction'
+
+    - name: Upload de folder
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+        AWS_REGION: 'us-west-2'
+        SOURCE_DIR: 'public/de/redaction'
+        DEST_DIR: 'de/redaction'  
+
+    - name: Upload de sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public/de/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'de/redaction'
         
-    - name: Upload zh folder
+    - name: Upload es folder
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+        AWS_REGION: 'us-west-2' 
+        SOURCE_DIR: 'public/es/redaction'
+        DEST_DIR: 'es/redaction' 
+
+    - name: Upload es sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public/es/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'es/redaction'
+        
+    - name: Upload fa folder
       uses: jakejarvis/s3-sync-action@master
       with:
         args: --acl public-read --follow-symlinks --delete
@@ -102,40 +146,18 @@ jobs:
         AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
         AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/zh/redaction'
-        DEST_DIR: 'zh/redaction' 
+        SOURCE_DIR: 'public/fa/redaction'
+        DEST_DIR: 'fa/redaction'    
 
-    - name: Upload zh sitemap
+    - name: Upload fa sitemap
       uses: swimlane/s3-upload-file-action@main
       with:
         aws_access_key_id: ${{ secrets.ACCESS_KEY }}
         aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
         aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/zh/sitemap.xml'
+        file_path: 'public/fa/sitemap.xml'
         file_mime_type: 'application/xml'
-        dest_dir: 'zh/redaction'
-
-    - name: Upload ru folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/ru/redaction'
-        DEST_DIR: 'ru/redaction'  
-
-    - name: Upload ru sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/ru/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'ru/redaction'
+        dest_dir: 'fa/redaction'
         
     - name: Upload fr folder
       uses: jakejarvis/s3-sync-action@master
@@ -159,29 +181,7 @@ jobs:
         file_mime_type: 'application/xml'
         dest_dir: 'fr/redaction'
         
-    - name: Upload es folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2' 
-        SOURCE_DIR: 'public/es/redaction'
-        DEST_DIR: 'es/redaction' 
-
-    - name: Upload es sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/es/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'es/redaction'
-
-    - name: Upload de folder
+    - name: Upload id folder
       uses: jakejarvis/s3-sync-action@master
       with:
         args: --acl public-read --follow-symlinks --delete
@@ -190,18 +190,40 @@ jobs:
         AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
         AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/de/redaction'
-        DEST_DIR: 'de/redaction'  
+        SOURCE_DIR: 'public/id/redaction'
+        DEST_DIR: 'id/redaction'    
 
-    - name: Upload de sitemap
+    - name: Upload id sitemap
       uses: swimlane/s3-upload-file-action@main
       with:
         aws_access_key_id: ${{ secrets.ACCESS_KEY }}
         aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
         aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/de/sitemap.xml'
+        file_path: 'public/id/sitemap.xml'
         file_mime_type: 'application/xml'
-        dest_dir: 'de/redaction'
+        dest_dir: 'id/redaction'
+        
+    - name: Upload it folder
+      uses: jakejarvis/s3-sync-action@master
+      with:
+        args: --acl public-read --follow-symlinks --delete
+      env:
+        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
+        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
+        AWS_REGION: 'us-west-2'
+        SOURCE_DIR: 'public/it/redaction'
+        DEST_DIR: 'it/redaction'    
+
+    - name: Upload it sitemap
+      uses: swimlane/s3-upload-file-action@main
+      with:
+        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
+        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
+        aws_bucket: 'products-qa.groupdocs.com'
+        file_path: 'public/it/sitemap.xml'
+        file_mime_type: 'application/xml'
+        dest_dir: 'it/redaction'
 
     - name: Upload ja folder
       uses: jakejarvis/s3-sync-action@master
@@ -247,7 +269,7 @@ jobs:
         file_mime_type: 'application/xml'
         dest_dir: 'ko/redaction'
 
-    - name: Upload id folder
+    - name: Upload pt folder
       uses: jakejarvis/s3-sync-action@master
       with:
         args: --acl public-read --follow-symlinks --delete
@@ -256,20 +278,20 @@ jobs:
         AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
         AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/id/redaction'
-        DEST_DIR: 'id/redaction'  
+        SOURCE_DIR: 'public/pt/redaction'
+        DEST_DIR: 'pt/redaction'  
 
-    - name: Upload id sitemap
+    - name: Upload pt sitemap
       uses: swimlane/s3-upload-file-action@main
       with:
         aws_access_key_id: ${{ secrets.ACCESS_KEY }}
         aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
         aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/id/sitemap.xml'
+        file_path: 'public/pt/sitemap.xml'
         file_mime_type: 'application/xml'
-        dest_dir: 'id/redaction'
+        dest_dir: 'pt/redaction'
 
-    - name: Upload it folder
+    - name: Upload ru folder
       uses: jakejarvis/s3-sync-action@master
       with:
         args: --acl public-read --follow-symlinks --delete
@@ -278,20 +300,20 @@ jobs:
         AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
         AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/it/redaction'
-        DEST_DIR: 'it/redaction'  
+        SOURCE_DIR: 'public/ru/redaction'
+        DEST_DIR: 'ru/redaction'  
 
-    - name: Upload it sitemap
+    - name: Upload ru sitemap
       uses: swimlane/s3-upload-file-action@main
       with:
         aws_access_key_id: ${{ secrets.ACCESS_KEY }}
         aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
         aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/it/sitemap.xml'
+        file_path: 'public/ru/sitemap.xml'
         file_mime_type: 'application/xml'
-        dest_dir: 'it/redaction'
+        dest_dir: 'ru/redaction'
 
-    - name: Upload nl folder
+    - name: Upload th folder
       uses: jakejarvis/s3-sync-action@master
       with:
         args: --acl public-read --follow-symlinks --delete
@@ -300,128 +322,18 @@ jobs:
         AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
         AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/nl/redaction'
-        DEST_DIR: 'nl/redaction'  
+        SOURCE_DIR: 'public/th/redaction'
+        DEST_DIR: 'th/redaction'  
 
-    - name: Upload nl sitemap
+    - name: Upload th sitemap
       uses: swimlane/s3-upload-file-action@main
       with:
         aws_access_key_id: ${{ secrets.ACCESS_KEY }}
         aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
         aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/nl/sitemap.xml'
+        file_path: 'public/th/sitemap.xml'
         file_mime_type: 'application/xml'
-        dest_dir: 'nl/redaction'
-
-    - name: Upload ro folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/ro/redaction'
-        DEST_DIR: 'ro/redaction'  
-
-    - name: Upload ro sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/ro/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'ro/redaction'
-
-    - name: Upload sk folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/sk/redaction'
-        DEST_DIR: 'sk/redaction'  
-
-    - name: Upload sk sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/sk/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'sk/redaction'
-
-    - name: Upload sl folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/sl/redaction'
-        DEST_DIR: 'sl/redaction'  
-
-    - name: Upload sl sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/sl/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'sl/redaction'
-
-    - name: Upload hi folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/hi/redaction'
-        DEST_DIR: 'hi/redaction'  
-
-    - name: Upload hi sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/hi/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'hi/redaction'
-
-    - name: Upload tr folder
-      uses: jakejarvis/s3-sync-action@master
-      with:
-        args: --acl public-read --follow-symlinks --delete
-      env:
-        AWS_S3_BUCKET: 'products-qa.groupdocs.com'
-        AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
-        AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/tr/redaction'
-        DEST_DIR: 'tr/redaction'  
-
-    - name: Upload tr sitemap
-      uses: swimlane/s3-upload-file-action@main
-      with:
-        aws_access_key_id: ${{ secrets.ACCESS_KEY }}
-        aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
-        aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/tr/sitemap.xml'
-        file_mime_type: 'application/xml'
-        dest_dir: 'tr/redaction'
+        dest_dir: 'th/redaction'
 
     - name: Upload uk folder
       uses: jakejarvis/s3-sync-action@master
@@ -445,7 +357,7 @@ jobs:
         file_mime_type: 'application/xml'
         dest_dir: 'uk/redaction'
 
-    - name: Upload lv folder
+    - name: Upload vi folder
       uses: jakejarvis/s3-sync-action@master
       with:
         args: --acl public-read --follow-symlinks --delete
@@ -454,20 +366,20 @@ jobs:
         AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
         AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/lv/redaction'
-        DEST_DIR: 'lv/redaction'  
+        SOURCE_DIR: 'public/vi/redaction'
+        DEST_DIR: 'vi/redaction'  
 
-    - name: Upload lv sitemap
+    - name: Upload vi sitemap
       uses: swimlane/s3-upload-file-action@main
       with:
         aws_access_key_id: ${{ secrets.ACCESS_KEY }}
         aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
         aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/lv/sitemap.xml'
+        file_path: 'public/vi/sitemap.xml'
         file_mime_type: 'application/xml'
-        dest_dir: 'lv/redaction'
-
-    - name: Upload ms folder
+        dest_dir: 'vi/redaction'
+        
+    - name: Upload zh folder
       uses: jakejarvis/s3-sync-action@master
       with:
         args: --acl public-read --follow-symlinks --delete
@@ -476,15 +388,15 @@ jobs:
         AWS_ACCESS_KEY_ID:  ${{ secrets.ACCESS_KEY }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS}}
         AWS_REGION: 'us-west-2'
-        SOURCE_DIR: 'public/ms/redaction'
-        DEST_DIR: 'ms/redaction'  
+        SOURCE_DIR: 'public/zh/redaction'
+        DEST_DIR: 'zh/redaction' 
 
-    - name: Upload ms sitemap
+    - name: Upload zh sitemap
       uses: swimlane/s3-upload-file-action@main
       with:
         aws_access_key_id: ${{ secrets.ACCESS_KEY }}
         aws_secret_access_key: ${{ secrets.SECRET_ACCESS}}
         aws_bucket: 'products-qa.groupdocs.com'
-        file_path: 'public/ms/sitemap.xml'
+        file_path: 'public/zh/sitemap.xml'
         file_mime_type: 'application/xml'
-        dest_dir: 'ms/redaction'
+        dest_dir: 'zh/redaction'
