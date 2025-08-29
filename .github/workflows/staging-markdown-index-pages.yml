@@ -1,0 +1,130 @@
+# This is a basic workflow to help you get started with Actions
+
+name: StagingMarkdownIndexPages
+env:
+    product_family: "markdown"
+    
+# Controls when the action will run. 
+on:
+  # Triggers the workflow on push or pull request events but only for the mentioned branches
+  push:
+    branches: [ main ]
+    paths:
+       - 'content/markdown/**'
+  pull_request:
+    branches: [ main ]
+
+  repository_dispatch:
+    types: [staging-complete]
+    
+  # Allows the workflow run manually from the Actions tab
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'The branch to check out'
+        default: 'main'   # Default branch if not provided
+        required: true
+
+jobs:
+  # This workflow contains a single job called "deploy"
+  deploy:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    env:
+      product_family: "markdown"
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    - name: Checkout content from products.groupdocs.com repo
+      uses: actions/checkout@main
+      with:
+          repository: groupdocs/products.groupdocs.com
+          token: ${{ secrets.REPO_TOKEN }}
+          fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+          ref: ${{ inputs.branch }}   # Using the input branch
+        
+    - name: Setup Hugo
+      uses: peaceiris/actions-hugo@v2
+      with:
+          hugo-version: '0.101.0'
+          extended: true
+
+    - name: Remove all except markdown _index pages
+      run: |
+        find ./content -mindepth 1 -type f -not -regex './content/markdown/.*_index.*' -delete
+        ls content/ -all;
+
+    - name: Build pages
+      run: hugo --config "./markdown-staging-config.toml" -b "https://products-qa.groupdocs.com/" --disableKinds=taxonomy,category --cleanDestinationDir --minify
+      
+    - name: Prepare public folder
+      run: |
+        rm public/index.html;
+
+    - name: Upload en folder
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/markdown --acl public-read --no-progress --region us-west-2
+      working-directory: public/markdown        
+       
+    #- name: Upload de folder
+    #  run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/de/markdown --acl public-read --no-progress --region us-west-2
+    #  working-directory: public/de/markdown
+    #        
+    #- name: Upload es folder
+    #  run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/es/markdown --acl public-read --no-progress --region us-west-2
+    #  working-directory: public/es/markdown
+    #    
+    #- name: Upload fa folder
+    #  run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/fa/markdown --acl public-read --no-progress --region us-west-2
+    #  working-directory: public/fa/markdown
+    #    
+    #- name: Upload fr folder
+    #  run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/fr/markdown --acl public-read --no-progress --region us-west-2
+    #  working-directory: public/fr/markdown       
+    #                
+    #- name: Upload id folder
+    #  run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/id/markdown --acl public-read --no-progress --region us-west-2
+    #  working-directory: public/id/markdown
+    #            
+    #- name: Upload it folder
+    #  run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/it/markdown --acl public-read --no-progress --region us-west-2
+    #  working-directory: public/it/markdown
+    #    
+    #- name: Upload ja folder
+    #  run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/ja/markdown --acl public-read --no-progress --region us-west-2
+    #  working-directory: public/ja/markdown       
+    #                    
+    #- name: Upload ko folder
+    #  run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/ko/markdown --acl public-read --no-progress --region us-west-2
+    #  working-directory: public/ko/markdown       
+   #
+    #- name: Upload pt folder
+    #  run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/pt/markdown --acl public-read --no-progress --region us-west-2
+    #  working-directory: public/pt/markdown
+    #    
+    #- name: Upload ru folder
+    #  run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/ru/markdown --acl public-read --no-progress --region us-west-2
+    #  working-directory: public/ru/markdown       
+    #            
+    #- name: Upload th folder
+    #  run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/th/markdown --acl public-read --no-progress --region us-west-2
+    #  working-directory: public/th/markdown
+    #            
+    #- name: Upload uk folder
+    #  run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/uk/markdown --acl public-read --no-progress --region us-west-2
+    #  working-directory: public/uk/markdown
+    #    
+    #- name: Upload vi folder
+    #  run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/vi/markdown --acl public-read --no-progress --region us-west-2
+    #  working-directory: public/vi/markdown
+    #    
+    #- name: Upload zh folder
+    #  run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products-qa.groupdocs.com/zh/markdown --acl public-read --no-progress --region us-west-2
+    #  working-directory: public/zh/markdown        
+
+    - name: Invalidate cache
+      env:
+        API_ENDPOINT: ${{ secrets.CACHE_INVALIDATION_API_ENDPOINT }}
+      run: |
+        curl --write-out '%{http_code}' --silent --output /dev/null -d '{"website":"https://products-qa.groupdocs.com/markdown/*"}' -H "Content-Type: application/json" -X POST "$API_ENDPOINT"
+        curl --write-out '%{http_code}' --silent --output /dev/null -d '{"website":"https://products-qa.groupdocs.com/*/markdown/*"}' -H "Content-Type: application/json" -X POST "$API_ENDPOINT"
+
