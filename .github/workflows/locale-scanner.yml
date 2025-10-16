@@ -15,19 +15,19 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    - name: Checkout theme repo
+    - name: Checkout locale scanner tools
+      uses: actions/checkout@main
+      with:
+          fetch-depth: 0
+
+    - name: Checkout theme repo content
       uses: actions/checkout@main
       with:
           repository: groupdocs/products.groupdocs.com
           token: ${{ secrets.REPO_TOKEN }}
           fetch-depth: 1    # Fetch only latest commit, no history needed
+          path: content
           sparse-checkout: content    # Checkout only the content folder
-
-    - name: Checkout locale scanner tools
-      uses: actions/checkout@main
-      with:
-          path: tools
-          fetch-depth: 0
 
     - name: Setup Python
       uses: actions/setup-python@v4
