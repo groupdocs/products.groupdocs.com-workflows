@@ -1,0 +1,41 @@
+# Locale Scanner Workflow - Scans the main repository for locale information
+
+name: Scan Locales
+    
+# Controls when the action will run. 
+on:
+  # Allows the workflow run manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  # This workflow contains a single job called "scan-locales"
+  scan-locales:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+    - name: Checkout theme repo
+      uses: actions/checkout@main
+      with:
+          repository: groupdocs/products.groupdocs.com
+          token: ${{ secrets.REPO_TOKEN }}
+          fetch-depth: 1    # Fetch only latest commit, no history needed
+          sparse-checkout: content    # Checkout only the content folder
+
+    - name: Checkout locale scanner tools
+      uses: actions/checkout@main
+      with:
+          path: tools
+          fetch-depth: 0
+
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+          python-version: '3.9'
+
+    - name: Run locale scanner
+      run: |
+        echo "Scanning content folder for locale information..."
+        python tools/locale-scanner/locale_scanner.py content --verbose
+        echo "Locale scan completed successfully!"
