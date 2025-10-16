@@ -15,19 +15,18 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    - name: Checkout locale scanner tools
+    - name: Checkout the scanner
       uses: actions/checkout@main
       with:
           fetch-depth: 0
 
-    - name: Checkout theme repo content
+    - name: Checkout products repo
       uses: actions/checkout@main
       with:
           repository: groupdocs/products.groupdocs.com
           token: ${{ secrets.REPO_TOKEN }}
           fetch-depth: 1    # Fetch only latest commit, no history needed
-          path: content
-          sparse-checkout: content    # Checkout only the content folder
+          path: products
 
     - name: Setup Python
       uses: actions/setup-python@v4
@@ -37,5 +36,5 @@ jobs:
     - name: Run locale scanner
       run: |
         echo "Scanning content folder for locale information..."
-        python tools/locale-scanner/locale_scanner.py content --verbose
+        python tools/locale-scanner/locale_scanner.py products/content --verbose
         echo "Locale scan completed successfully!"
