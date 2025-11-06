@@ -1,13 +1,16 @@
-name: Markdown
+# This is a basic workflow to help you get started with Actions
+
+name: Total
 env:
-    product_family: "markdown"
+    product_family: "total"
     supported_locales: "en de es fa fr id it ja ko pt ru th uk vi zh"
     
+# Controls when the action will run. 
 on:
   push:
     branches: [ main, production ]
     paths:
-       - 'content/markdown/**'
+       - 'content/total/**'
   pull_request:
     branches: [ main, production ]
 
@@ -63,31 +66,30 @@ jobs:
           echo "environment=production" >> $GITHUB_OUTPUT
           echo "base_url=https://products.groupdocs.com/" >> $GITHUB_OUTPUT
           echo "bucket=products.groupdocs.com" >> $GITHUB_OUTPUT
-          echo "hugo_config=./$product_family-production-config.toml" >> $GITHUB_OUTPUT
+          echo "hugo_config=./total-production-config.toml" >> $GITHUB_OUTPUT
         elif [ "${{ github.event_name }}" = "repository_dispatch" ] && [ "${{ github.event.action }}" = "production-complete" ]; then
           echo "environment=production" >> $GITHUB_OUTPUT
           echo "base_url=https://products.groupdocs.com/" >> $GITHUB_OUTPUT
           echo "bucket=products.groupdocs.com" >> $GITHUB_OUTPUT
-          echo "hugo_config=./$product_family-production-config.toml" >> $GITHUB_OUTPUT
+          echo "hugo_config=./total-production-config.toml" >> $GITHUB_OUTPUT
         elif [ "${{ github.ref }}" = "refs/heads/production" ]; then
           echo "environment=production" >> $GITHUB_OUTPUT
           echo "base_url=https://products.groupdocs.com/" >> $GITHUB_OUTPUT
           echo "bucket=products.groupdocs.com" >> $GITHUB_OUTPUT
-          echo "hugo_config=./$product_family-production-config.toml" >> $GITHUB_OUTPUT
+          echo "hugo_config=./total-production-config.toml" >> $GITHUB_OUTPUT
         else
           echo "environment=staging" >> $GITHUB_OUTPUT
           echo "base_url=https://products-qa.groupdocs.com/" >> $GITHUB_OUTPUT
           echo "bucket=products-qa.groupdocs.com" >> $GITHUB_OUTPUT
-          echo "hugo_config=./$product_family-staging-config.toml" >> $GITHUB_OUTPUT
+          echo "hugo_config=./total-staging-config.toml" >> $GITHUB_OUTPUT
         fi
 
-        # Determine scope: default to pages_and_sitemap except when manually chosen as index_pages_only
         if [ "${{ github.event_name }}" = "workflow_dispatch" ] && [ "${{ github.event.inputs.deploy_scope }}" = "index_pages_only" ]; then
           echo "scope=index_pages_only" >> $GITHUB_OUTPUT
         else
           echo "scope=pages_and_sitemap" >> $GITHUB_OUTPUT
         fi
- 
+
     - name: Filter content based on scope
       run: |
         if [ "${{ steps.cfg.outputs.scope }}" = "index_pages_only" ]; then
@@ -119,8 +121,6 @@ jobs:
     - name: Upload default language
       run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync public/$product_family s3://${{ steps.cfg.outputs.bucket }}/$product_family --acl public-read --no-progress --region us-west-2
         
-    
- 
     - name: Upload localized folders and sitemaps
       run: |
         for lang in ${{ env.supported_locales }}; do
@@ -135,15 +135,14 @@ jobs:
             AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 cp "$sm" "s3://${{ steps.cfg.outputs.bucket }}/$lang/$product_family/sitemap.xml" --content-type application/xml --acl public-read --region us-west-2
           fi
         done
- 
 
     - name: Invalidate cache
       env:
         API_ENDPOINT: ${{ secrets.CACHE_INVALIDATION_API_ENDPOINT }}
       run: |
         # Invalidate root (default locale) paths
-        curl --write-out '%{http_code}' --silent --output /dev/null -d '{"website":"${{ steps.cfg.outputs.base_url }}${{ env.product_family }}/*"}' -H "Content-Type: application/json" -X POST "$API_ENDPOINT"
+        curl --write-out '%{http_code}' --silent --output /dev/null -d '{"website":"${{ steps.cfg.outputs.base_url }}total/*"}' -H "Content-Type: application/json" -X POST "$API_ENDPOINT"
         # Invalidate per-locale paths (include 'en')
         for lang in en $supported_locales; do
-          curl --write-out '%{http_code}' --silent --output /dev/null -d "{\"website\":\"${{ steps.cfg.outputs.base_url }}$lang/${{ env.product_family }}/*\"}" -H "Content-Type: application/json" -X POST "$API_ENDPOINT"
+          curl --write-out '%{http_code}' --silent --output /dev/null -d "{\"website\":\"${{ steps.cfg.outputs.base_url }}$lang/total/*\"}" -H "Content-Type: application/json" -X POST "$API_ENDPOINT"
         done
