@@ -45,61 +45,61 @@ jobs:
       run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/markdown --acl public-read --no-progress --region us-west-2
       working-directory: public/markdown        
         
-    #- name: Upload de folder
-    #  run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/de/markdown --acl public-read --no-progress --region us-west-2
-    #  working-directory: public/de/markdown
-    #       
-    #- name: Upload es folder
-    #  run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/es/markdown --acl public-read --no-progress --region us-west-2
-    #  working-directory: public/es/markdown
+    - name: Upload de folder
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/de/markdown --acl public-read --no-progress --region us-west-2
+      working-directory: public/de/markdown
+           
+    - name: Upload es folder
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/es/markdown --acl public-read --no-progress --region us-west-2
+      working-directory: public/es/markdown
   #
-    #- name: Upload fa folder
-    #  run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/fa/markdown --acl public-read --no-progress --region us-west-2
-    #  working-directory: public/fa/markdown
+    - name: Upload fa folder
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/fa/markdown --acl public-read --no-progress --region us-west-2
+      working-directory: public/fa/markdown
 #
-    #- name: Upload fr folder
-    #  run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/fr/markdown --acl public-read --no-progress --region us-west-2
-    #  working-directory: public/fr/markdown       
-    #              
-    #- name: Upload id folder
-    #  run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/id/markdown --acl public-read --no-progress --region us-west-2
-    #  working-directory: public/id/markdown
-    #            
-    #- name: Upload it folder
-    #  run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/it/markdown --acl public-read --no-progress --region us-west-2
-    #  working-directory: public/it/markdown
-    #    
-    #- name: Upload ja folder
-    #  run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/ja/markdown --acl public-read --no-progress --region us-west-2
-    #  working-directory: public/ja/markdown       
-    #    
-    #- name: Upload ko folder
-    #  run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/ko/markdown --acl public-read --no-progress --region us-west-2
-    #  working-directory: public/ko/markdown       
-    #                    
-    #- name: Upload pt folder
-    #  run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/pt/markdown --acl public-read --no-progress --region us-west-2
-    #  working-directory: public/pt/markdown
-    #    
-    #- name: Upload ru folder
-    #  run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/ru/markdown --acl public-read --no-progress --region us-west-2
-    #  working-directory: public/ru/markdown       
-    #            
-    #- name: Upload th folder
-    #  run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/th/markdown --acl public-read --no-progress --region us-west-2
-    #  working-directory: public/th/markdown
-    #            
-    #- name: Upload uk folder
-    #  run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/uk/markdown --acl public-read --no-progress --region us-west-2
-    #  working-directory: public/uk/markdown
-    #    
-    #- name: Upload vi folder
-    #  run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/vi/markdown --acl public-read --no-progress --region us-west-2
-    #  working-directory: public/vi/markdown
-    #    
-    #- name: Upload zh folder
-    #  run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/zh/markdown --acl public-read --no-progress --region us-west-2
-    #  working-directory: public/zh/markdown        
+    - name: Upload fr folder
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/fr/markdown --acl public-read --no-progress --region us-west-2
+      working-directory: public/fr/markdown       
+                  
+    - name: Upload id folder
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/id/markdown --acl public-read --no-progress --region us-west-2
+      working-directory: public/id/markdown
+                
+    - name: Upload it folder
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/it/markdown --acl public-read --no-progress --region us-west-2
+      working-directory: public/it/markdown
+        
+    - name: Upload ja folder
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/ja/markdown --acl public-read --no-progress --region us-west-2
+      working-directory: public/ja/markdown       
+        
+    - name: Upload ko folder
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/ko/markdown --acl public-read --no-progress --region us-west-2
+      working-directory: public/ko/markdown       
+                        
+    - name: Upload pt folder
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/pt/markdown --acl public-read --no-progress --region us-west-2
+      working-directory: public/pt/markdown
+        
+    - name: Upload ru folder
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/ru/markdown --acl public-read --no-progress --region us-west-2
+      working-directory: public/ru/markdown       
+                
+    - name: Upload th folder
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/th/markdown --acl public-read --no-progress --region us-west-2
+      working-directory: public/th/markdown
+                
+    - name: Upload uk folder
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/uk/markdown --acl public-read --no-progress --region us-west-2
+      working-directory: public/uk/markdown
+        
+    - name: Upload vi folder
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/vi/markdown --acl public-read --no-progress --region us-west-2
+      working-directory: public/vi/markdown
+        
+    - name: Upload zh folder
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync . s3://products.groupdocs.com/zh/markdown --acl public-read --no-progress --region us-west-2
+      working-directory: public/zh/markdown        
 
     - name: Invalidate cache
       env:
