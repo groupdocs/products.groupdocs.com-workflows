@@ -1,0 +1,133 @@
+name: Home
+
+# Controls when the action will run. 
+on:
+  push:
+    branches: [ main, production ]
+    paths:
+      - 'content/*'
+  pull_request:
+    branches: [ main, production ]
+
+  repository_dispatch:
+    types: [staging-complete, production-complete]
+    
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: 'Branch to check out'
+        required: false
+        default: 'main'
+      environment:
+        description: 'Target environment'
+        required: false
+        type: choice
+        options:
+          - staging
+          - production
+        default: staging
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  deploy:
+    name: Deploy ${{ (github.event_name == 'workflow_dispatch' && inputs.environment) || (github.event_name == 'repository_dispatch' && github.event.action == 'production-complete' && 'production') || (github.ref == 'refs/heads/production' && 'production') || 'staging' }}
+    runs-on: ubuntu-latest
+
+    steps:
+
+    - name: Resolve inputs and environment
+      id: vars
+      shell: bash
+      env:
+        INPUT_BRANCH: ${{ inputs.branch }}
+        INPUT_ENVIRONMENT: ${{ inputs.environment }}
+        REF_NAME: ${{ github.ref_name }}
+      run: |
+        BRANCH="$INPUT_BRANCH"
+        if [ -z "$BRANCH" ]; then
+          BRANCH="$REF_NAME"
+        fi
+        if [ -z "$INPUT_ENVIRONMENT" ]; then
+          if [ "$REF_NAME" = "production" ]; then
+            ENVIRONMENT="production"
+          else
+            ENVIRONMENT="staging"
+          fi
+        else
+          ENVIRONMENT="$INPUT_ENVIRONMENT"
+        fi
+        if [ "$ENVIRONMENT" = "production" ]; then
+          CONFIG_FILE="./production-config.toml"
+          BASE_URL="https://products.groupdocs.com"
+          SITEMAP_SRC="sitemaps.xml"
+          WEBSITE="https://products.groupdocs.com/*"
+        else
+          CONFIG_FILE="./staging-config.toml"
+          BASE_URL="https://products-qa.groupdocs.com/"
+          SITEMAP_SRC="sitemaps-qa.xml"
+          WEBSITE="https://products-qa.groupdocs.com/*"
+        fi
+        echo "branch=$BRANCH" >> $GITHUB_OUTPUT
+        echo "environment=$ENVIRONMENT" >> $GITHUB_OUTPUT
+        echo "config_file=$CONFIG_FILE" >> $GITHUB_OUTPUT
+        echo "base_url=$BASE_URL" >> $GITHUB_OUTPUT
+        echo "sitemap_src=$SITEMAP_SRC" >> $GITHUB_OUTPUT
+        echo "website=$WEBSITE" >> $GITHUB_OUTPUT
+
+    # Step 1 - Checks-out your repository under $GITHUB_WORKSPACE
+    - name: Checkout theme repo
+      uses: actions/checkout@main
+      with:
+        repository: groupdocs/products.groupdocs.com
+        token: ${{ secrets.REPO_TOKEN }}
+        fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+        ref: ${{ steps.vars.outputs.branch }}
+
+    # Step 2 - Sets up the latest version of Hugo
+    - name: Setup Hugo
+      uses: peaceiris/actions-hugo@v2
+      with:
+        hugo-version: '0.101.0'
+        extended: true
+    
+    - name: Make Content folder for HomePage
+      run: |
+        cp -R content content_new;
+        rm -R content;
+        mkdir content;
+        
+        cp content_new/_index.en.md content;
+        cp content_new/_index.de.md content;
+        cp content_new/_index.es.md content;
+        cp content_new/_index.fa.md content;
+        cp content_new/_index.fr.md content;
+        cp content_new/_index.id.md content;
+        cp content_new/_index.it.md content;
+        cp content_new/_index.ja.md content;
+        cp content_new/_index.ko.md content;
+        cp content_new/_index.pt.md content;
+        cp content_new/_index.ru.md content;
+        cp content_new/_index.th.md content;
+        cp content_new/_index.uk.md content;
+        cp content_new/_index.vi.md content;
+        cp content_new/_index.zh.md content;
+
+    - name: Build Home
+      run: hugo --config "${{ steps.vars.outputs.config_file }}" -c "content" -b "${{ steps.vars.outputs.base_url }}" --disableKinds=page,section --minify
+
+    - name: Copy static sitemap to public folder
+      run: |
+        cp ${{ steps.vars.outputs.sitemap_src }} public/sitemaps.xml;
+        
+    - name: Deploy Home to S3
+      run: hugo deploy --config "${{ steps.vars.outputs.config_file }}" --target "Home" 
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS }}
+
+    - name: Invalidate cache
+      env:
+        API_ENDPOINT: ${{ secrets.CACHE_INVALIDATION_API_ENDPOINT }}
+        WEBSITE: ${{ steps.vars.outputs.website }}
+      run: |
+        curl --write-out '%{http_code}' --silent --output /dev/null -d "{\"website\":\"$WEBSITE\"}" -H "Content-Type: application/json" -X POST "$API_ENDPOINT"
