@@ -95,7 +95,7 @@ jobs:
         else
           find ./content -mindepth 1 ! -regex "^./content/$product_family\(/.*\)?" -delete
         fi
-        ls content/ -all;
+        ls -la content/;
 
     - name: Build pages
       run: hugo --config "${{ steps.cfg.outputs.hugo_config }}" -b "${{ steps.cfg.outputs.base_url }}" --disableKinds=taxonomy,category --cleanDestinationDir --minify
