@@ -1,6 +1,5 @@
-# Workflow for test publishing redesigned pages from branch
+name: Deploy Custom 
 
-name: StagingRedesignLib
 env:
     product_family: "viewer"
     
@@ -50,7 +49,7 @@ jobs:
         ls content/ -all;
 
     - name: Build pages
-      run: hugo --config "./viewer-staging-config.toml" -b "https://products-qa.groupdocs.com/" --disableKinds=taxonomy,category --cleanDestinationDir --minify
+      run: hugo --config "./config-staging.toml" -b "https://products-qa.groupdocs.com/" --disableKinds=taxonomy,category --cleanDestinationDir --minify
       
     - name: Prepare public folder
       run: |

@@ -1,0 +1,44 @@
+name: Deploy Redaction
+
+on:
+  push:
+    branches: [ main, production ]
+    paths:
+       - 'content/redaction/**'
+  pull_request:
+    branches: [ main, production ]
+
+  repository_dispatch:
+    types: [staging-complete, production-complete]
+    
+  # Allows the workflow run manually from the Actions tab
+  workflow_dispatch:
+    inputs:
+      environment:
+        description: 'Target environment'
+        required: true
+        default: 'staging'
+        type: choice
+        options:
+          - staging
+          - production
+      deploy_scope:
+        description: 'What to deploy'
+        required: true
+        default: 'index_pages_only'
+        type: choice
+        options:
+          - pages_and_sitemap
+          - index_pages_only
+
+jobs:
+  deploy:
+    uses: ./.github/workflows/deploy_product.yml
+    with:
+      product_family: "redaction"
+      default_deploy_scope: "index_pages_only"
+      upload_images: false
+      environment: ${{ inputs.environment }}
+      deploy_scope: ${{ inputs.deploy_scope }}
+    secrets: inherit
+

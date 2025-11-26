@@ -1,0 +1,184 @@
+name: Deploy Product (Reusable)
+
+on:
+  workflow_call:
+    inputs:
+      product_family:
+        required: true
+        type: string
+        description: 'Product family name (e.g., assembly, viewer)'
+      default_deploy_scope:
+        required: false
+        type: string
+        default: 'index_pages_only'
+        description: 'Default deploy scope for workflow_dispatch'
+      upload_images:
+        required: false
+        type: boolean
+        default: false
+        description: 'Whether to upload images folder (for comparison)'
+      environment:
+        required: false
+        type: string
+        description: 'Target environment (for workflow_dispatch)'
+      deploy_scope:
+        required: false
+        type: string
+        description: 'Deploy scope (for workflow_dispatch)'
+
+env:
+    supported_locales: "en de es fa fr id it ja ko pt ru th uk vi zh"
+
+jobs:
+  deploy:
+    name: Deploy ${{ (github.event_name == 'workflow_dispatch' && inputs.environment) || (github.event_name == 'repository_dispatch' && github.event.action == 'production-complete' && 'production') || (github.ref == 'refs/heads/production' && 'production') || 'staging' }} (scope=${{ (github.event_name == 'workflow_dispatch' && inputs.deploy_scope) || inputs.default_deploy_scope }})
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout theme repo
+      uses: actions/checkout@main
+      with:
+          repository: groupdocs/products.groupdocs.com
+          token: ${{ secrets.REPO_TOKEN }}
+          fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+
+    - name: Setup Hugo
+      uses: peaceiris/actions-hugo@v2
+      with:
+          hugo-version: '0.101.0'
+          extended: true
+
+    - name: Determine environment
+      id: cfg
+      run: |
+        # Check if environment was explicitly provided (from workflow_dispatch)
+        if [ -n "${{ inputs.environment }}" ]; then
+          if [ "${{ inputs.environment }}" = "production" ]; then
+            echo "environment=production" >> $GITHUB_OUTPUT
+            echo "base_url=https://products.groupdocs.com/" >> $GITHUB_OUTPUT
+            echo "bucket=products.groupdocs.com" >> $GITHUB_OUTPUT
+            echo "hugo_config=./config-production.toml" >> $GITHUB_OUTPUT
+          else
+            echo "environment=staging" >> $GITHUB_OUTPUT
+            echo "base_url=https://products-qa.groupdocs.com/" >> $GITHUB_OUTPUT
+            echo "bucket=products-qa.groupdocs.com" >> $GITHUB_OUTPUT
+            echo "hugo_config=./config-staging.toml" >> $GITHUB_OUTPUT
+          fi
+        elif [ "${{ github.event.action }}" = "production-complete" ]; then
+          echo "environment=production" >> $GITHUB_OUTPUT
+          echo "base_url=https://products.groupdocs.com/" >> $GITHUB_OUTPUT
+          echo "bucket=products.groupdocs.com" >> $GITHUB_OUTPUT
+          echo "hugo_config=./config-production.toml" >> $GITHUB_OUTPUT
+        elif [ "${{ github.ref }}" = "refs/heads/production" ]; then
+          echo "environment=production" >> $GITHUB_OUTPUT
+          echo "base_url=https://products.groupdocs.com/" >> $GITHUB_OUTPUT
+          echo "bucket=products.groupdocs.com" >> $GITHUB_OUTPUT
+          echo "hugo_config=./config-production.toml" >> $GITHUB_OUTPUT
+        else
+          echo "environment=staging" >> $GITHUB_OUTPUT
+          echo "base_url=https://products-qa.groupdocs.com/" >> $GITHUB_OUTPUT
+          echo "bucket=products-qa.groupdocs.com" >> $GITHUB_OUTPUT
+          echo "hugo_config=./config-staging.toml" >> $GITHUB_OUTPUT
+        fi
+
+        # Determine scope: use deploy_scope input if provided (from workflow_dispatch), otherwise use default_deploy_scope
+        if [ -n "${{ inputs.deploy_scope }}" ]; then
+          if [ "${{ inputs.deploy_scope }}" = "index_pages_only" ]; then
+            echo "scope=index_pages_only" >> $GITHUB_OUTPUT
+          else
+            echo "scope=pages_and_sitemap" >> $GITHUB_OUTPUT
+          fi
+        else
+          if [ "${{ inputs.default_deploy_scope }}" = "index_pages_only" ]; then
+            echo "scope=index_pages_only" >> $GITHUB_OUTPUT
+          else
+            echo "scope=pages_and_sitemap" >> $GITHUB_OUTPUT
+          fi
+        fi
+ 
+    - name: Filter content based on scope
+      run: |
+        if [ "${{ steps.cfg.outputs.scope }}" = "index_pages_only" ]; then
+          find ./content -mindepth 1 -type f -not -regex "./content/${{ inputs.product_family }}/.*_index.*" -delete
+        else
+          find ./content -mindepth 1 ! -regex "^./content/${{ inputs.product_family }}\(/.*\)?" -delete
+        fi
+        ls -la content/;
+
+    - name: Build pages
+      run: hugo --config "${{ steps.cfg.outputs.hugo_config }}" -b "${{ steps.cfg.outputs.base_url }}" --disableKinds=taxonomy,category --cleanDestinationDir --minify
+      
+    - name: Prepare public folder
+      run: |
+        if [ "${{ steps.cfg.outputs.scope }}" = "pages_and_sitemap" ]; then
+          mv public/sitemap.xml public/${{ inputs.product_family }}.xml;
+          rm public/index.html;
+          mkdir public_home;
+          mkdir public_home/sitemaps;
+          mv public/${{ inputs.product_family }}.xml public_home/sitemaps/;
+        else
+          rm public/index.html;
+        fi
+        
+    - name: Upload family sitemap
+      if: ${{ steps.cfg.outputs.scope == 'pages_and_sitemap' }}
+      run: AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 cp public_home/sitemaps/${{ inputs.product_family }}.xml s3://${{ steps.cfg.outputs.bucket }}/sitemaps/${{ inputs.product_family }}.xml --content-type application/xml --acl public-read --region us-west-2
+
+    - name: Upload images
+      if: ${{ inputs.upload_images && steps.cfg.outputs.scope == 'pages_and_sitemap' }}
+      run: |
+        if [ -d "content/${{ inputs.product_family }}/images" ]; then
+          DELETE_FLAG="--delete"
+          if [ "${{ steps.cfg.outputs.environment }}" = "staging" ]; then
+            AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync "content/${{ inputs.product_family }}/images" "s3://${{ steps.cfg.outputs.bucket }}/${{ inputs.product_family }}/images" --acl public-read --follow-symlinks $DELETE_FLAG --no-progress --region us-west-2
+          else
+            AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync "content/${{ inputs.product_family }}/images" "s3://${{ steps.cfg.outputs.bucket }}/${{ inputs.product_family }}/images" --acl public-read --follow-symlinks $DELETE_FLAG --no-progress --region us-west-2
+          fi
+        fi
+
+    - name: Upload default language
+      run: |
+        DELETE_FLAG=""
+        if [ "${{ steps.cfg.outputs.scope }}" = "pages_and_sitemap" ]; then
+          DELETE_FLAG="--delete"
+        fi
+        if [ "${{ steps.cfg.outputs.environment }}" = "staging" ]; then
+          AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync public/${{ inputs.product_family }} s3://${{ steps.cfg.outputs.bucket }}/${{ inputs.product_family }} --acl public-read --follow-symlinks $DELETE_FLAG --no-progress --region us-west-2
+        else
+          AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync public/${{ inputs.product_family }} s3://${{ steps.cfg.outputs.bucket }}/${{ inputs.product_family }} --acl public-read --follow-symlinks $DELETE_FLAG --no-progress --region us-west-2
+        fi
+
+    - name: Upload localized folders and sitemaps
+      run: |
+        DELETE_FLAG=""
+        if [ "${{ steps.cfg.outputs.scope }}" = "pages_and_sitemap" ]; then
+          DELETE_FLAG="--delete"
+        fi
+        for lang in ${{ env.supported_locales }}; do
+          dir="public/$lang/${{ inputs.product_family }}"
+          if [ -d "$dir" ]; then
+            echo "Syncing $dir to s3://${{ steps.cfg.outputs.bucket }}/$lang/${{ inputs.product_family }}"
+            if [ "${{ steps.cfg.outputs.environment }}" = "staging" ]; then
+              AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync "$dir" "s3://${{ steps.cfg.outputs.bucket }}/$lang/${{ inputs.product_family }}" --acl public-read --follow-symlinks $DELETE_FLAG --no-progress --region us-west-2
+            else
+              AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync "$dir" "s3://${{ steps.cfg.outputs.bucket }}/$lang/${{ inputs.product_family }}" --acl public-read $DELETE_FLAG --no-progress --region us-west-2
+            fi
+          fi
+          sm="public/$lang/sitemap.xml"
+          if [ "${{ steps.cfg.outputs.scope }}" = "pages_and_sitemap" ] && [ -f "$sm" ]; then
+            echo "Uploading $sm to s3://${{ steps.cfg.outputs.bucket }}/$lang/${{ inputs.product_family }}/sitemap.xml"
+            AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 cp "$sm" "s3://${{ steps.cfg.outputs.bucket }}/$lang/${{ inputs.product_family }}/sitemap.xml" --content-type application/xml --acl public-read --region us-west-2
+          fi
+        done
+
+    - name: Invalidate cache
+      env:
+        API_ENDPOINT: ${{ secrets.CACHE_INVALIDATION_API_ENDPOINT }}
+      run: |
+        # Invalidate root (default locale) paths
+        curl --write-out '%{http_code}' --silent --output /dev/null -d '{"website":"${{ steps.cfg.outputs.base_url }}${{ inputs.product_family }}/*"}' -H "Content-Type: application/json" -X POST "$API_ENDPOINT"
+        # Invalidate per-locale paths (include 'en')
+        for lang in en $supported_locales; do
+          curl --write-out '%{http_code}' --silent --output /dev/null -d "{\"website\":\"${{ steps.cfg.outputs.base_url }}$lang/${{ inputs.product_family }}/*\"}" -H "Content-Type: application/json" -X POST "$API_ENDPOINT"
+        done
+

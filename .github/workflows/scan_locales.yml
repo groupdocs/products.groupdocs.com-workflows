@@ -1,5 +1,3 @@
-# Locale Scanner Workflow - Scans the main repository for locale information
-
 name: Scan Locales
     
 # Controls when the action will run. 

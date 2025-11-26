@@ -1,4 +1,4 @@
-name: Home
+name: Deploy Home
 
 # Controls when the action will run. 
 on:
@@ -57,12 +57,12 @@ jobs:
           ENVIRONMENT="$INPUT_ENVIRONMENT"
         fi
         if [ "$ENVIRONMENT" = "production" ]; then
-          CONFIG_FILE="./production-config.toml"
+          CONFIG_FILE="./config-production.toml"
           BASE_URL="https://products.groupdocs.com"
           SITEMAP_SRC="sitemaps.xml"
           WEBSITE="https://products.groupdocs.com/*"
         else
-          CONFIG_FILE="./staging-config.toml"
+          CONFIG_FILE="./config-staging.toml"
           BASE_URL="https://products-qa.groupdocs.com/"
           SITEMAP_SRC="sitemaps-qa.xml"
           WEBSITE="https://products-qa.groupdocs.com/*"
