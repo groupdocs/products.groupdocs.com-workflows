@@ -118,22 +118,30 @@ jobs:
 
     - name: Upload default language
       run: |
+        DELETE_FLAG=""
+        if [ "${{ steps.cfg.outputs.scope }}" = "pages_and_sitemap" ]; then
+          DELETE_FLAG="--delete"
+        fi
         if [ "${{ steps.cfg.outputs.environment }}" = "staging" ]; then
-          AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync public/$product_family s3://${{ steps.cfg.outputs.bucket }}/$product_family --acl public-read --follow-symlinks --delete --no-progress --region us-west-2
+          AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync public/$product_family s3://${{ steps.cfg.outputs.bucket }}/$product_family --acl public-read --follow-symlinks $DELETE_FLAG --no-progress --region us-west-2
         else
-          AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync public/$product_family s3://${{ steps.cfg.outputs.bucket }}/$product_family --acl public-read --follow-symlinks --delete --no-progress --region us-west-2
+          AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync public/$product_family s3://${{ steps.cfg.outputs.bucket }}/$product_family --acl public-read --follow-symlinks $DELETE_FLAG --no-progress --region us-west-2
         fi
 
     - name: Upload localized folders and sitemaps
       run: |
+        DELETE_FLAG=""
+        if [ "${{ steps.cfg.outputs.scope }}" = "pages_and_sitemap" ]; then
+          DELETE_FLAG="--delete"
+        fi
         for lang in ${{ env.supported_locales }}; do
           dir="public/$lang/$product_family"
           if [ -d "$dir" ]; then
             echo "Syncing $dir to s3://${{ steps.cfg.outputs.bucket }}/$lang/$product_family"
             if [ "${{ steps.cfg.outputs.environment }}" = "staging" ]; then
-              AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync "$dir" "s3://${{ steps.cfg.outputs.bucket }}/$lang/$product_family" --acl public-read --follow-symlinks --delete --no-progress --region us-west-2
+              AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync "$dir" "s3://${{ steps.cfg.outputs.bucket }}/$lang/$product_family" --acl public-read --follow-symlinks $DELETE_FLAG --no-progress --region us-west-2
             else
-              AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync "$dir" "s3://${{ steps.cfg.outputs.bucket }}/$lang/$product_family" --acl public-read --no-progress --region us-west-2
+              AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync "$dir" "s3://${{ steps.cfg.outputs.bucket }}/$lang/$product_family" --acl public-read $DELETE_FLAG --no-progress --region us-west-2
             fi
           fi
           sm="public/$lang/sitemap.xml"
