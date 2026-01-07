@@ -124,8 +124,18 @@ jobs:
 
 ## Requirements
 
-- GitHub Actions secrets:
+Common keys
   - `REPO_TOKEN` - Token to access products.groupdocs.com repository
-  - `ACCESS_KEY` - AWS access key ID
-  - `SECRET_ACCESS` - AWS secret access key
+
+S3/CF Keys
+  - `ACCESS_KEY` - AWS access key ID (for S3 deployments)
+  - `SECRET_ACCESS` - AWS secret access key (for S3 deployments)
   - `CACHE_INVALIDATION_API_ENDPOINT` - Cache invalidation API endpoint
+
+Ceph Keys
+  - `CEPH_ACCESS_KEY_ID` - Ceph access key ID (for Ceph deployments)
+  - `CEPH_SECRET_ACCESS_KEY` - Ceph secret access key (for Ceph deployments)
+  - `CEPH_QA_ENDPOINT` - Ceph endpoint URL for QA/staging environment
+  - `CEPH_PROD_ENDPOINT` - Ceph endpoint URL for production environment
+  - `BUNNYNET_ACCESS_KEY` - BunnyNet API access key for cache invalidation
+  - `BUNNYNET_PURGE_URL` - BunnyNet cache purge API endpoint

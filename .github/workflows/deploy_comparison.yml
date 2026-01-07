@@ -30,10 +30,30 @@ on:
         options:
           - pages_and_sitemap
           - index_pages_only
+      deployment_target:
+        description: 'Deployment target'
+        required: true
+        default: 's3'
+        type: choice
+        options:
+          - s3
+          - ceph
 
 jobs:
-  deploy:
-    uses: ./.github/workflows/deploy_product.yml
+  deploy_s3:
+    if: github.event_name == 'workflow_dispatch' && inputs.deployment_target == 's3' || github.event_name != 'workflow_dispatch'
+    uses: ./.github/workflows/deploy_product_s3.yml
+    with:
+      product_family: "comparison"
+      default_deploy_scope: "index_pages_only"
+      upload_images: true
+      environment: ${{ inputs.environment }}
+      deploy_scope: ${{ inputs.deploy_scope }}
+    secrets: inherit
+
+  deploy_ceph:
+    if: github.event_name == 'workflow_dispatch' && inputs.deployment_target == 'ceph'
+    uses: ./.github/workflows/deploy_product_ceph.yml
     with:
       product_family: "comparison"
       default_deploy_scope: "index_pages_only"

@@ -26,6 +26,14 @@ on:
           - staging
           - production
         default: staging
+      deployment_target:
+        description: 'Deployment target'
+        required: true
+        default: 's3'
+        type: choice
+        options:
+          - s3
+          - ceph
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -120,10 +128,18 @@ jobs:
         cp ${{ steps.vars.outputs.sitemap_src }} public/sitemaps.xml;
         
     - name: Deploy Home to S3
-      run: hugo deploy --config "${{ steps.vars.outputs.config_file }}" --target "Home" 
+      if: github.event_name == 'workflow_dispatch' && inputs.deployment_target == 's3' || github.event_name != 'workflow_dispatch'
+      run: hugo deploy --config "${{ steps.vars.outputs.config_file }}" --target "Home"
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS }}
+
+    - name: Deploy Home to Ceph
+      if: github.event_name == 'workflow_dispatch' && inputs.deployment_target == 'ceph'
+      run: hugo deploy --config "${{ steps.vars.outputs.config_file }}" --target "Home-ceph"
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.CEPH_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.CEPH_SECRET_ACCESS_KEY }}
 
     - name: Invalidate cache
       env:
@@ -131,3 +147,11 @@ jobs:
         WEBSITE: ${{ steps.vars.outputs.website }}
       run: |
         curl --write-out '%{http_code}' --silent --output /dev/null -d "{\"website\":\"$WEBSITE\"}" -H "Content-Type: application/json" -X POST "$API_ENDPOINT"
+
+    - name: Invalidate BunnyNet cache
+      env:
+        BUNNYNET_ACCESS_KEY: ${{ secrets.BUNNYNET_ACCESS_KEY }}
+        BUNNYNET_PURGE_URL: ${{ secrets.BUNNYNET_PURGE_URL }}
+      run: |
+        BASEURL="${{ steps.vars.outputs.website }}"
+        curl -siG -H "X-Api-Key: $BUNNYNET_ACCESS_KEY" --data-urlencode "url=$BASEURL" "$BUNNYNET_PURGE_URL"
