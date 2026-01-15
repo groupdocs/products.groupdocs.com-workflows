@@ -67,7 +67,7 @@ jobs:
           if [ "${{ inputs.environment }}" = "production" ]; then
             echo "environment=production" >> $GITHUB_OUTPUT
             echo "base_url=https://products.groupdocs.com/" >> $GITHUB_OUTPUT
-            echo "bucket=products.groupdocs.com" >> $GITHUB_OUTPUT
+            echo "bucket=products-groupdocs-com" >> $GITHUB_OUTPUT
             echo "hugo_config=./config-production.toml" >> $GITHUB_OUTPUT
             echo "endpoint_url=$CEPH_PROD_ENDPOINT" >> $GITHUB_OUTPUT
             echo "access_key_id=$CEPH_PROD_ACCESS_KEY_ID" >> $GITHUB_OUTPUT
@@ -75,7 +75,7 @@ jobs:
           else
             echo "environment=staging" >> $GITHUB_OUTPUT
             echo "base_url=https://products-qa.groupdocs.com/" >> $GITHUB_OUTPUT
-            echo "bucket=products-qa.groupdocs.com" >> $GITHUB_OUTPUT
+            echo "bucket=products-qa-groupdocs-com" >> $GITHUB_OUTPUT
             echo "hugo_config=./config-staging.toml" >> $GITHUB_OUTPUT
             echo "endpoint_url=$CEPH_QA_ENDPOINT" >> $GITHUB_OUTPUT
             echo "access_key_id=$CEPH_QA_ACCESS_KEY_ID" >> $GITHUB_OUTPUT
@@ -84,7 +84,7 @@ jobs:
         elif [ "${{ github.event.action }}" = "production-complete" ]; then
           echo "environment=production" >> $GITHUB_OUTPUT
           echo "base_url=https://products.groupdocs.com/" >> $GITHUB_OUTPUT
-          echo "bucket=products.groupdocs.com" >> $GITHUB_OUTPUT
+          echo "bucket=products-groupdocs-com" >> $GITHUB_OUTPUT
           echo "hugo_config=./config-production.toml" >> $GITHUB_OUTPUT
           echo "endpoint_url=$CEPH_PROD_ENDPOINT" >> $GITHUB_OUTPUT
           echo "access_key_id=$CEPH_PROD_ACCESS_KEY_ID" >> $GITHUB_OUTPUT
@@ -92,7 +92,7 @@ jobs:
         elif [ "${{ github.ref }}" = "refs/heads/production" ]; then
           echo "environment=production" >> $GITHUB_OUTPUT
           echo "base_url=https://products.groupdocs.com/" >> $GITHUB_OUTPUT
-          echo "bucket=products.groupdocs.com" >> $GITHUB_OUTPUT
+          echo "bucket=products-groupdocs-com" >> $GITHUB_OUTPUT
           echo "hugo_config=./config-production.toml" >> $GITHUB_OUTPUT
           echo "endpoint_url=$CEPH_PROD_ENDPOINT" >> $GITHUB_OUTPUT
           echo "access_key_id=$CEPH_PROD_ACCESS_KEY_ID" >> $GITHUB_OUTPUT
@@ -100,7 +100,7 @@ jobs:
         else
           echo "environment=staging" >> $GITHUB_OUTPUT
           echo "base_url=https://products-qa.groupdocs.com/" >> $GITHUB_OUTPUT
-          echo "bucket=products-qa.groupdocs.com" >> $GITHUB_OUTPUT
+          echo "bucket=products-qa-groupdocs-com" >> $GITHUB_OUTPUT
           echo "hugo_config=./config-staging.toml" >> $GITHUB_OUTPUT
           echo "endpoint_url=$CEPH_QA_ENDPOINT" >> $GITHUB_OUTPUT
           echo "access_key_id=$CEPH_QA_ACCESS_KEY_ID" >> $GITHUB_OUTPUT

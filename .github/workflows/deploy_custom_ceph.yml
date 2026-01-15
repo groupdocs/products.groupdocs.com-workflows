@@ -58,91 +58,91 @@ jobs:
     - name: Upload en folder
       env:
         CEPH_QA_ENDPOINT: ${{ secrets.CEPH_QA_ENDPOINT }}
-      run: AWS_ACCESS_KEY_ID=${{ secrets.CEPH_ACCESS_KEY_ID }} AWS_SECRET_ACCESS_KEY=${{ secrets.CEPH_SECRET_ACCESS_KEY }} aws --endpoint-url=$CEPH_QA_ENDPOINT s3 sync . s3://products-qa.groupdocs.com/viewer --acl public-read --no-progress --region us-east-1
+      run: AWS_ACCESS_KEY_ID=${{ secrets.CEPH_ACCESS_KEY_ID }} AWS_SECRET_ACCESS_KEY=${{ secrets.CEPH_SECRET_ACCESS_KEY }} aws --endpoint-url=$CEPH_QA_ENDPOINT s3 sync . s3://products-qa-groupdocs-com/viewer --acl public-read --no-progress --region us-east-1
       working-directory: public/viewer        
 
     - name: Upload es folder
       env:
         CEPH_QA_ENDPOINT: ${{ secrets.CEPH_QA_ENDPOINT }}
-      run: AWS_ACCESS_KEY_ID=${{ secrets.CEPH_ACCESS_KEY_ID }} AWS_SECRET_ACCESS_KEY=${{ secrets.CEPH_SECRET_ACCESS_KEY }} aws --endpoint-url=$CEPH_QA_ENDPOINT s3 sync . s3://products-qa.groupdocs.com/es/viewer --acl public-read --no-progress --region us-east-1
+      run: AWS_ACCESS_KEY_ID=${{ secrets.CEPH_ACCESS_KEY_ID }} AWS_SECRET_ACCESS_KEY=${{ secrets.CEPH_SECRET_ACCESS_KEY }} aws --endpoint-url=$CEPH_QA_ENDPOINT s3 sync . s3://products-qa-groupdocs-com/es/viewer --acl public-read --no-progress --region us-east-1
       working-directory: public/es/viewer
 
     - name: Upload de folder
       env:
         CEPH_QA_ENDPOINT: ${{ secrets.CEPH_QA_ENDPOINT }}
-      run: AWS_ACCESS_KEY_ID=${{ secrets.CEPH_ACCESS_KEY_ID }} AWS_SECRET_ACCESS_KEY=${{ secrets.CEPH_SECRET_ACCESS_KEY }} aws --endpoint-url=$CEPH_QA_ENDPOINT s3 sync . s3://products-qa.groupdocs.com/de/viewer --acl public-read --no-progress --region us-east-1
+      run: AWS_ACCESS_KEY_ID=${{ secrets.CEPH_ACCESS_KEY_ID }} AWS_SECRET_ACCESS_KEY=${{ secrets.CEPH_SECRET_ACCESS_KEY }} aws --endpoint-url=$CEPH_QA_ENDPOINT s3 sync . s3://products-qa-groupdocs-com/de/viewer --acl public-read --no-progress --region us-east-1
       working-directory: public/de/viewer
         
     - name: Upload fa folder
       env:
         CEPH_QA_ENDPOINT: ${{ secrets.CEPH_QA_ENDPOINT }}
-      run: AWS_ACCESS_KEY_ID=${{ secrets.CEPH_ACCESS_KEY_ID }} AWS_SECRET_ACCESS_KEY=${{ secrets.CEPH_SECRET_ACCESS_KEY }} aws --endpoint-url=$CEPH_QA_ENDPOINT s3 sync . s3://products-qa.groupdocs.com/fa/viewer --acl public-read --no-progress --region us-east-1
+      run: AWS_ACCESS_KEY_ID=${{ secrets.CEPH_ACCESS_KEY_ID }} AWS_SECRET_ACCESS_KEY=${{ secrets.CEPH_SECRET_ACCESS_KEY }} aws --endpoint-url=$CEPH_QA_ENDPOINT s3 sync . s3://products-qa-groupdocs-com/fa/viewer --acl public-read --no-progress --region us-east-1
       working-directory: public/fa/viewer
         
     - name: Upload fr folder
       env:
         CEPH_QA_ENDPOINT: ${{ secrets.CEPH_QA_ENDPOINT }}
-      run: AWS_ACCESS_KEY_ID=${{ secrets.CEPH_ACCESS_KEY_ID }} AWS_SECRET_ACCESS_KEY=${{ secrets.CEPH_SECRET_ACCESS_KEY }} aws --endpoint-url=$CEPH_QA_ENDPOINT s3 sync . s3://products-qa.groupdocs.com/fr/viewer --acl public-read --no-progress --region us-east-1
+      run: AWS_ACCESS_KEY_ID=${{ secrets.CEPH_ACCESS_KEY_ID }} AWS_SECRET_ACCESS_KEY=${{ secrets.CEPH_SECRET_ACCESS_KEY }} aws --endpoint-url=$CEPH_QA_ENDPOINT s3 sync . s3://products-qa-groupdocs-com/fr/viewer --acl public-read --no-progress --region us-east-1
       working-directory: public/fr/viewer       
         
     - name: Upload id folder
       env:
         CEPH_QA_ENDPOINT: ${{ secrets.CEPH_QA_ENDPOINT }}
-      run: AWS_ACCESS_KEY_ID=${{ secrets.CEPH_ACCESS_KEY_ID }} AWS_SECRET_ACCESS_KEY=${{ secrets.CEPH_SECRET_ACCESS_KEY }} aws --endpoint-url=$CEPH_QA_ENDPOINT s3 sync . s3://products-qa.groupdocs.com/id/viewer --acl public-read --no-progress --region us-east-1
+      run: AWS_ACCESS_KEY_ID=${{ secrets.CEPH_ACCESS_KEY_ID }} AWS_SECRET_ACCESS_KEY=${{ secrets.CEPH_SECRET_ACCESS_KEY }} aws --endpoint-url=$CEPH_QA_ENDPOINT s3 sync . s3://products-qa-groupdocs-com/id/viewer --acl public-read --no-progress --region us-east-1
       working-directory: public/id/viewer
                 
     - name: Upload it folder
       env:
         CEPH_QA_ENDPOINT: ${{ secrets.CEPH_QA_ENDPOINT }}
-      run: AWS_ACCESS_KEY_ID=${{ secrets.CEPH_ACCESS_KEY_ID }} AWS_SECRET_ACCESS_KEY=${{ secrets.CEPH_SECRET_ACCESS_KEY }} aws --endpoint-url=$CEPH_QA_ENDPOINT s3 sync . s3://products-qa.groupdocs.com/it/viewer --acl public-read --no-progress --region us-east-1
+      run: AWS_ACCESS_KEY_ID=${{ secrets.CEPH_ACCESS_KEY_ID }} AWS_SECRET_ACCESS_KEY=${{ secrets.CEPH_SECRET_ACCESS_KEY }} aws --endpoint-url=$CEPH_QA_ENDPOINT s3 sync . s3://products-qa-groupdocs-com/it/viewer --acl public-read --no-progress --region us-east-1
       working-directory: public/it/viewer
         
     - name: Upload ja folder
       env:
         CEPH_QA_ENDPOINT: ${{ secrets.CEPH_QA_ENDPOINT }}
-      run: AWS_ACCESS_KEY_ID=${{ secrets.CEPH_ACCESS_KEY_ID }} AWS_SECRET_ACCESS_KEY=${{ secrets.CEPH_SECRET_ACCESS_KEY }} aws --endpoint-url=$CEPH_QA_ENDPOINT s3 sync . s3://products-qa.groupdocs.com/ja/viewer --acl public-read --no-progress --region us-east-1
+      run: AWS_ACCESS_KEY_ID=${{ secrets.CEPH_ACCESS_KEY_ID }} AWS_SECRET_ACCESS_KEY=${{ secrets.CEPH_SECRET_ACCESS_KEY }} aws --endpoint-url=$CEPH_QA_ENDPOINT s3 sync . s3://products-qa-groupdocs-com/ja/viewer --acl public-read --no-progress --region us-east-1
       working-directory: public/ja/viewer       
                 
     - name: Upload ko folder
       env:
         CEPH_QA_ENDPOINT: ${{ secrets.CEPH_QA_ENDPOINT }}
-      run: AWS_ACCESS_KEY_ID=${{ secrets.CEPH_ACCESS_KEY_ID }} AWS_SECRET_ACCESS_KEY=${{ secrets.CEPH_SECRET_ACCESS_KEY }} aws --endpoint-url=$CEPH_QA_ENDPOINT s3 sync . s3://products-qa.groupdocs.com/ko/viewer --acl public-read --no-progress --region us-east-1
+      run: AWS_ACCESS_KEY_ID=${{ secrets.CEPH_ACCESS_KEY_ID }} AWS_SECRET_ACCESS_KEY=${{ secrets.CEPH_SECRET_ACCESS_KEY }} aws --endpoint-url=$CEPH_QA_ENDPOINT s3 sync . s3://products-qa-groupdocs-com/ko/viewer --acl public-read --no-progress --region us-east-1
       working-directory: public/ko/viewer       
       
     - name: Upload pt folder
       env:
         CEPH_QA_ENDPOINT: ${{ secrets.CEPH_QA_ENDPOINT }}
-      run: AWS_ACCESS_KEY_ID=${{ secrets.CEPH_ACCESS_KEY_ID }} AWS_SECRET_ACCESS_KEY=${{ secrets.CEPH_SECRET_ACCESS_KEY }} aws --endpoint-url=$CEPH_QA_ENDPOINT s3 sync . s3://products-qa.groupdocs.com/pt/viewer --acl public-read --no-progress --region us-east-1
+      run: AWS_ACCESS_KEY_ID=${{ secrets.CEPH_ACCESS_KEY_ID }} AWS_SECRET_ACCESS_KEY=${{ secrets.CEPH_SECRET_ACCESS_KEY }} aws --endpoint-url=$CEPH_QA_ENDPOINT s3 sync . s3://products-qa-groupdocs-com/pt/viewer --acl public-read --no-progress --region us-east-1
       working-directory: public/pt/viewer
         
     - name: Upload ru folder
       env:
         CEPH_QA_ENDPOINT: ${{ secrets.CEPH_QA_ENDPOINT }}
-      run: AWS_ACCESS_KEY_ID=${{ secrets.CEPH_ACCESS_KEY_ID }} AWS_SECRET_ACCESS_KEY=${{ secrets.CEPH_SECRET_ACCESS_KEY }} aws --endpoint-url=$CEPH_QA_ENDPOINT s3 sync . s3://products-qa.groupdocs.com/ru/viewer --acl public-read --no-progress --region us-east-1
+      run: AWS_ACCESS_KEY_ID=${{ secrets.CEPH_ACCESS_KEY_ID }} AWS_SECRET_ACCESS_KEY=${{ secrets.CEPH_SECRET_ACCESS_KEY }} aws --endpoint-url=$CEPH_QA_ENDPOINT s3 sync . s3://products-qa-groupdocs-com/ru/viewer --acl public-read --no-progress --region us-east-1
       working-directory: public/ru/viewer       
         
     - name: Upload th folder
       env:
         CEPH_QA_ENDPOINT: ${{ secrets.CEPH_QA_ENDPOINT }}
-      run: AWS_ACCESS_KEY_ID=${{ secrets.CEPH_ACCESS_KEY_ID }} AWS_SECRET_ACCESS_KEY=${{ secrets.CEPH_SECRET_ACCESS_KEY }} aws --endpoint-url=$CEPH_QA_ENDPOINT s3 sync . s3://products-qa.groupdocs.com/th/viewer --acl public-read --no-progress --region us-east-1
+      run: AWS_ACCESS_KEY_ID=${{ secrets.CEPH_ACCESS_KEY_ID }} AWS_SECRET_ACCESS_KEY=${{ secrets.CEPH_SECRET_ACCESS_KEY }} aws --endpoint-url=$CEPH_QA_ENDPOINT s3 sync . s3://products-qa-groupdocs-com/th/viewer --acl public-read --no-progress --region us-east-1
       working-directory: public/th/viewer
      
     - name: Upload uk folder
       env:
         CEPH_QA_ENDPOINT: ${{ secrets.CEPH_QA_ENDPOINT }}
-      run: AWS_ACCESS_KEY_ID=${{ secrets.CEPH_ACCESS_KEY_ID }} AWS_SECRET_ACCESS_KEY=${{ secrets.CEPH_SECRET_ACCESS_KEY }} aws --endpoint-url=$CEPH_QA_ENDPOINT s3 sync . s3://products-qa.groupdocs.com/uk/viewer --acl public-read --no-progress --region us-east-1
+      run: AWS_ACCESS_KEY_ID=${{ secrets.CEPH_ACCESS_KEY_ID }} AWS_SECRET_ACCESS_KEY=${{ secrets.CEPH_SECRET_ACCESS_KEY }} aws --endpoint-url=$CEPH_QA_ENDPOINT s3 sync . s3://products-qa-groupdocs-com/uk/viewer --acl public-read --no-progress --region us-east-1
       working-directory: public/uk/viewer
         
     - name: Upload vi folder
       env:
         CEPH_QA_ENDPOINT: ${{ secrets.CEPH_QA_ENDPOINT }}
-      run: AWS_ACCESS_KEY_ID=${{ secrets.CEPH_ACCESS_KEY_ID }} AWS_SECRET_ACCESS_KEY=${{ secrets.CEPH_SECRET_ACCESS_KEY }} aws --endpoint-url=$CEPH_QA_ENDPOINT s3 sync . s3://products-qa.groupdocs.com/vi/viewer --acl public-read --no-progress --region us-east-1
+      run: AWS_ACCESS_KEY_ID=${{ secrets.CEPH_ACCESS_KEY_ID }} AWS_SECRET_ACCESS_KEY=${{ secrets.CEPH_SECRET_ACCESS_KEY }} aws --endpoint-url=$CEPH_QA_ENDPOINT s3 sync . s3://products-qa-groupdocs-com/vi/viewer --acl public-read --no-progress --region us-east-1
       working-directory: public/vi/viewer
         
     - name: Upload zh folder
       env:
         CEPH_QA_ENDPOINT: ${{ secrets.CEPH_QA_ENDPOINT }}
-      run: AWS_ACCESS_KEY_ID=${{ secrets.CEPH_ACCESS_KEY_ID }} AWS_SECRET_ACCESS_KEY=${{ secrets.CEPH_SECRET_ACCESS_KEY }} aws --endpoint-url=$CEPH_QA_ENDPOINT s3 sync . s3://products-qa.groupdocs.com/zh/viewer --acl public-read --no-progress --region us-east-1
+      run: AWS_ACCESS_KEY_ID=${{ secrets.CEPH_ACCESS_KEY_ID }} AWS_SECRET_ACCESS_KEY=${{ secrets.CEPH_SECRET_ACCESS_KEY }} aws --endpoint-url=$CEPH_QA_ENDPOINT s3 sync . s3://products-qa-groupdocs-com/zh/viewer --acl public-read --no-progress --region us-east-1
       working-directory: public/zh/viewer        
 
     - name: Invalidate cache
