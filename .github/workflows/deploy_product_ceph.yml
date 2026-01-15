@@ -51,9 +51,17 @@ jobs:
     - name: Determine environment
       id: cfg
       env:
+        CEPH_REGION: ${{ secrets.CEPH_REGION }}
         CEPH_QA_ENDPOINT: ${{ secrets.CEPH_QA_ENDPOINT }}
         CEPH_PROD_ENDPOINT: ${{ secrets.CEPH_PROD_ENDPOINT }}
+        CEPH_QA_ACCESS_KEY_ID: ${{ secrets.CEPH_QA_ACCESS_KEY_ID }}
+        CEPH_QA_SECRET_ACCESS_KEY: ${{ secrets.CEPH_QA_SECRET_ACCESS_KEY }}
+        CEPH_PROD_ACCESS_KEY_ID: ${{ secrets.CEPH_PROD_ACCESS_KEY_ID }}
+        CEPH_PROD_SECRET_ACCESS_KEY: ${{ secrets.CEPH_PROD_SECRET_ACCESS_KEY }}
       run: |
+        # Set region (same for all environments)
+        echo "region=$CEPH_REGION" >> $GITHUB_OUTPUT
+
         # Check if environment was explicitly provided (from workflow_dispatch)
         if [ -n "${{ inputs.environment }}" ]; then
           if [ "${{ inputs.environment }}" = "production" ]; then
@@ -62,12 +70,16 @@ jobs:
             echo "bucket=products.groupdocs.com" >> $GITHUB_OUTPUT
             echo "hugo_config=./config-production.toml" >> $GITHUB_OUTPUT
             echo "endpoint_url=$CEPH_PROD_ENDPOINT" >> $GITHUB_OUTPUT
+            echo "access_key_id=$CEPH_PROD_ACCESS_KEY_ID" >> $GITHUB_OUTPUT
+            echo "secret_access_key=$CEPH_PROD_SECRET_ACCESS_KEY" >> $GITHUB_OUTPUT
           else
             echo "environment=staging" >> $GITHUB_OUTPUT
             echo "base_url=https://products-qa.groupdocs.com/" >> $GITHUB_OUTPUT
             echo "bucket=products-qa.groupdocs.com" >> $GITHUB_OUTPUT
             echo "hugo_config=./config-staging.toml" >> $GITHUB_OUTPUT
             echo "endpoint_url=$CEPH_QA_ENDPOINT" >> $GITHUB_OUTPUT
+            echo "access_key_id=$CEPH_QA_ACCESS_KEY_ID" >> $GITHUB_OUTPUT
+            echo "secret_access_key=$CEPH_QA_SECRET_ACCESS_KEY" >> $GITHUB_OUTPUT
           fi
         elif [ "${{ github.event.action }}" = "production-complete" ]; then
           echo "environment=production" >> $GITHUB_OUTPUT
@@ -75,18 +87,24 @@ jobs:
           echo "bucket=products.groupdocs.com" >> $GITHUB_OUTPUT
           echo "hugo_config=./config-production.toml" >> $GITHUB_OUTPUT
           echo "endpoint_url=$CEPH_PROD_ENDPOINT" >> $GITHUB_OUTPUT
+          echo "access_key_id=$CEPH_PROD_ACCESS_KEY_ID" >> $GITHUB_OUTPUT
+          echo "secret_access_key=$CEPH_PROD_SECRET_ACCESS_KEY" >> $GITHUB_OUTPUT
         elif [ "${{ github.ref }}" = "refs/heads/production" ]; then
           echo "environment=production" >> $GITHUB_OUTPUT
           echo "base_url=https://products.groupdocs.com/" >> $GITHUB_OUTPUT
           echo "bucket=products.groupdocs.com" >> $GITHUB_OUTPUT
           echo "hugo_config=./config-production.toml" >> $GITHUB_OUTPUT
           echo "endpoint_url=$CEPH_PROD_ENDPOINT" >> $GITHUB_OUTPUT
+          echo "access_key_id=$CEPH_PROD_ACCESS_KEY_ID" >> $GITHUB_OUTPUT
+          echo "secret_access_key=$CEPH_PROD_SECRET_ACCESS_KEY" >> $GITHUB_OUTPUT
         else
           echo "environment=staging" >> $GITHUB_OUTPUT
           echo "base_url=https://products-qa.groupdocs.com/" >> $GITHUB_OUTPUT
           echo "bucket=products-qa.groupdocs.com" >> $GITHUB_OUTPUT
           echo "hugo_config=./config-staging.toml" >> $GITHUB_OUTPUT
           echo "endpoint_url=$CEPH_QA_ENDPOINT" >> $GITHUB_OUTPUT
+          echo "access_key_id=$CEPH_QA_ACCESS_KEY_ID" >> $GITHUB_OUTPUT
+          echo "secret_access_key=$CEPH_QA_SECRET_ACCESS_KEY" >> $GITHUB_OUTPUT
         fi
 
         # Determine scope: use deploy_scope input if provided (from workflow_dispatch), otherwise use default_deploy_scope
@@ -130,14 +148,14 @@ jobs:
         
     - name: Upload family sitemap
       if: ${{ steps.cfg.outputs.scope == 'pages_and_sitemap' }}
-      run: AWS_ACCESS_KEY_ID=${{ secrets.CEPH_ACCESS_KEY_ID }} AWS_SECRET_ACCESS_KEY=${{ secrets.CEPH_SECRET_ACCESS_KEY }} aws --endpoint-url=${{ steps.cfg.outputs.endpoint_url }} s3 cp public_home/sitemaps/${{ inputs.product_family }}.xml s3://${{ steps.cfg.outputs.bucket }}/sitemaps/${{ inputs.product_family }}.xml --content-type application/xml --acl public-read --region us-east-1
+      run: AWS_ACCESS_KEY_ID=${{ steps.cfg.outputs.access_key_id }} AWS_SECRET_ACCESS_KEY=${{ steps.cfg.outputs.secret_access_key }} aws --endpoint-url=${{ steps.cfg.outputs.endpoint_url }} s3 cp public_home/sitemaps/${{ inputs.product_family }}.xml s3://${{ steps.cfg.outputs.bucket }}/sitemaps/${{ inputs.product_family }}.xml --content-type application/xml --acl public-read --region ${{ steps.cfg.outputs.region }}
 
     - name: Upload images
       if: ${{ inputs.upload_images && steps.cfg.outputs.scope == 'pages_and_sitemap' }}
       run: |
         if [ -d "content/${{ inputs.product_family }}/images" ]; then
           DELETE_FLAG="--delete"
-          AWS_ACCESS_KEY_ID=${{ secrets.CEPH_ACCESS_KEY_ID }} AWS_SECRET_ACCESS_KEY=${{ secrets.CEPH_SECRET_ACCESS_KEY }} aws --endpoint-url=${{ steps.cfg.outputs.endpoint_url }} s3 sync "content/${{ inputs.product_family }}/images" "s3://${{ steps.cfg.outputs.bucket }}/${{ inputs.product_family }}/images" --acl public-read --follow-symlinks $DELETE_FLAG --no-progress --region us-east-1
+          AWS_ACCESS_KEY_ID=${{ steps.cfg.outputs.access_key_id }} AWS_SECRET_ACCESS_KEY=${{ steps.cfg.outputs.secret_access_key }} aws --endpoint-url=${{ steps.cfg.outputs.endpoint_url }} s3 sync "content/${{ inputs.product_family }}/images" "s3://${{ steps.cfg.outputs.bucket }}/${{ inputs.product_family }}/images" --acl public-read --follow-symlinks $DELETE_FLAG --no-progress --region ${{ steps.cfg.outputs.region }}
         fi
 
     - name: Upload default language
@@ -146,7 +164,7 @@ jobs:
         if [ "${{ steps.cfg.outputs.scope }}" = "pages_and_sitemap" ]; then
           DELETE_FLAG="--delete"
         fi
-        AWS_ACCESS_KEY_ID=${{ secrets.CEPH_ACCESS_KEY_ID }} AWS_SECRET_ACCESS_KEY=${{ secrets.CEPH_SECRET_ACCESS_KEY }} aws --endpoint-url=${{ steps.cfg.outputs.endpoint_url }} s3 sync public/${{ inputs.product_family }} s3://${{ steps.cfg.outputs.bucket }}/${{ inputs.product_family }} --acl public-read --follow-symlinks $DELETE_FLAG --no-progress --region us-east-1
+        AWS_ACCESS_KEY_ID=${{ steps.cfg.outputs.access_key_id }} AWS_SECRET_ACCESS_KEY=${{ steps.cfg.outputs.secret_access_key }} aws --endpoint-url=${{ steps.cfg.outputs.endpoint_url }} s3 sync public/${{ inputs.product_family }} s3://${{ steps.cfg.outputs.bucket }}/${{ inputs.product_family }} --acl public-read --follow-symlinks $DELETE_FLAG --no-progress --region ${{ steps.cfg.outputs.region }}
 
     - name: Upload localized folders and sitemaps
       run: |
@@ -158,12 +176,12 @@ jobs:
           dir="public/$lang/${{ inputs.product_family }}"
           if [ -d "$dir" ]; then
             echo "Syncing $dir to s3://${{ steps.cfg.outputs.bucket }}/$lang/${{ inputs.product_family }}"
-            AWS_ACCESS_KEY_ID=${{ secrets.CEPH_ACCESS_KEY_ID }} AWS_SECRET_ACCESS_KEY=${{ secrets.CEPH_SECRET_ACCESS_KEY }} aws --endpoint-url=${{ steps.cfg.outputs.endpoint_url }} s3 sync "$dir" "s3://${{ steps.cfg.outputs.bucket }}/$lang/${{ inputs.product_family }}" --acl public-read --follow-symlinks $DELETE_FLAG --no-progress --region us-east-1
+            AWS_ACCESS_KEY_ID=${{ steps.cfg.outputs.access_key_id }} AWS_SECRET_ACCESS_KEY=${{ steps.cfg.outputs.secret_access_key }} aws --endpoint-url=${{ steps.cfg.outputs.endpoint_url }} s3 sync "$dir" "s3://${{ steps.cfg.outputs.bucket }}/$lang/${{ inputs.product_family }}" --acl public-read --follow-symlinks $DELETE_FLAG --no-progress --region ${{ steps.cfg.outputs.region }}
           fi
           sm="public/$lang/sitemap.xml"
           if [ "${{ steps.cfg.outputs.scope }}" = "pages_and_sitemap" ] && [ -f "$sm" ]; then
             echo "Uploading $sm to s3://${{ steps.cfg.outputs.bucket }}/$lang/${{ inputs.product_family }}/sitemap.xml"
-            AWS_ACCESS_KEY_ID=${{ secrets.CEPH_ACCESS_KEY_ID }} AWS_SECRET_ACCESS_KEY=${{ secrets.CEPH_SECRET_ACCESS_KEY }} aws --endpoint-url=${{ steps.cfg.outputs.endpoint_url }} s3 cp "$sm" "s3://${{ steps.cfg.outputs.bucket }}/$lang/${{ inputs.product_family }}/sitemap.xml" --content-type application/xml --acl public-read --region us-east-1
+            AWS_ACCESS_KEY_ID=${{ steps.cfg.outputs.access_key_id }} AWS_SECRET_ACCESS_KEY=${{ steps.cfg.outputs.secret_access_key }} aws --endpoint-url=${{ steps.cfg.outputs.endpoint_url }} s3 cp "$sm" "s3://${{ steps.cfg.outputs.bucket }}/$lang/${{ inputs.product_family }}/sitemap.xml" --content-type application/xml --acl public-read --region ${{ steps.cfg.outputs.region }}
           fi
         done
 
