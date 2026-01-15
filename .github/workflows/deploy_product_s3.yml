@@ -31,7 +31,7 @@ env:
 
 jobs:
   deploy:
-    name: Deploy ${{ (github.event_name == 'workflow_dispatch' && inputs.environment) || (github.event_name == 'repository_dispatch' && github.event.action == 'production-complete' && 'production') || (github.ref == 'refs/heads/production' && 'production') || 'staging' }} (scope=${{ (github.event_name == 'workflow_dispatch' && inputs.deploy_scope) || inputs.default_deploy_scope }})
+    name: Deploy ${{ (github.event_name == 'workflow_dispatch' && inputs.environment) || (github.event_name == 'repository_dispatch' && github.event.action == 'production-complete' && 'prod') || (github.ref == 'refs/heads/production' && 'prod') || 'qa' }} (scope=${{ (github.event_name == 'workflow_dispatch' && inputs.deploy_scope) || inputs.default_deploy_scope }})
     runs-on: ubuntu-latest
 
     steps:
@@ -53,32 +53,32 @@ jobs:
       run: |
         # Check if environment was explicitly provided (from workflow_dispatch)
         if [ -n "${{ inputs.environment }}" ]; then
-          if [ "${{ inputs.environment }}" = "production" ]; then
-            echo "environment=production" >> $GITHUB_OUTPUT
+          if [ "${{ inputs.environment }}" = "prod" ]; then
+            echo "environment=prod" >> $GITHUB_OUTPUT
             echo "base_url=https://products.groupdocs.com/" >> $GITHUB_OUTPUT
             echo "bucket=products.groupdocs.com" >> $GITHUB_OUTPUT
-            echo "hugo_config=./config-production.toml" >> $GITHUB_OUTPUT
+            echo "hugo_config=./config-prod.toml" >> $GITHUB_OUTPUT
           else
-            echo "environment=staging" >> $GITHUB_OUTPUT
+            echo "environment=qa" >> $GITHUB_OUTPUT
             echo "base_url=https://products-qa.groupdocs.com/" >> $GITHUB_OUTPUT
             echo "bucket=products-qa.groupdocs.com" >> $GITHUB_OUTPUT
-            echo "hugo_config=./config-staging.toml" >> $GITHUB_OUTPUT
+            echo "hugo_config=./config-qa.toml" >> $GITHUB_OUTPUT
           fi
         elif [ "${{ github.event.action }}" = "production-complete" ]; then
-          echo "environment=production" >> $GITHUB_OUTPUT
+          echo "environment=prod" >> $GITHUB_OUTPUT
           echo "base_url=https://products.groupdocs.com/" >> $GITHUB_OUTPUT
           echo "bucket=products.groupdocs.com" >> $GITHUB_OUTPUT
-          echo "hugo_config=./config-production.toml" >> $GITHUB_OUTPUT
+          echo "hugo_config=./config-prod.toml" >> $GITHUB_OUTPUT
         elif [ "${{ github.ref }}" = "refs/heads/production" ]; then
-          echo "environment=production" >> $GITHUB_OUTPUT
+          echo "environment=prod" >> $GITHUB_OUTPUT
           echo "base_url=https://products.groupdocs.com/" >> $GITHUB_OUTPUT
           echo "bucket=products.groupdocs.com" >> $GITHUB_OUTPUT
-          echo "hugo_config=./config-production.toml" >> $GITHUB_OUTPUT
+          echo "hugo_config=./config-prod.toml" >> $GITHUB_OUTPUT
         else
-          echo "environment=staging" >> $GITHUB_OUTPUT
+          echo "environment=qa" >> $GITHUB_OUTPUT
           echo "base_url=https://products-qa.groupdocs.com/" >> $GITHUB_OUTPUT
           echo "bucket=products-qa.groupdocs.com" >> $GITHUB_OUTPUT
-          echo "hugo_config=./config-staging.toml" >> $GITHUB_OUTPUT
+          echo "hugo_config=./config-qa.toml" >> $GITHUB_OUTPUT
         fi
 
         # Determine scope: use deploy_scope input if provided (from workflow_dispatch), otherwise use default_deploy_scope
@@ -129,7 +129,7 @@ jobs:
       run: |
         if [ -d "content/${{ inputs.product_family }}/images" ]; then
           DELETE_FLAG="--delete"
-          if [ "${{ steps.cfg.outputs.environment }}" = "staging" ]; then
+          if [ "${{ steps.cfg.outputs.environment }}" = "qa" ]; then
             AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync "content/${{ inputs.product_family }}/images" "s3://${{ steps.cfg.outputs.bucket }}/${{ inputs.product_family }}/images" --acl public-read --follow-symlinks $DELETE_FLAG --no-progress --region us-west-2
           else
             AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync "content/${{ inputs.product_family }}/images" "s3://${{ steps.cfg.outputs.bucket }}/${{ inputs.product_family }}/images" --acl public-read --follow-symlinks $DELETE_FLAG --no-progress --region us-west-2
@@ -158,7 +158,7 @@ jobs:
           dir="public/$lang/${{ inputs.product_family }}"
           if [ -d "$dir" ]; then
             echo "Syncing $dir to s3://${{ steps.cfg.outputs.bucket }}/$lang/${{ inputs.product_family }}"
-            if [ "${{ steps.cfg.outputs.environment }}" = "staging" ]; then
+            if [ "${{ steps.cfg.outputs.environment }}" = "qa" ]; then
               AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync "$dir" "s3://${{ steps.cfg.outputs.bucket }}/$lang/${{ inputs.product_family }}" --acl public-read --follow-symlinks $DELETE_FLAG --no-progress --region us-west-2
             else
               AWS_ACCESS_KEY_ID=${{ secrets.ACCESS_KEY }} AWS_SECRET_ACCESS_KEY=${{ secrets.SECRET_ACCESS}} aws s3 sync "$dir" "s3://${{ steps.cfg.outputs.bucket }}/$lang/${{ inputs.product_family }}" --acl public-read $DELETE_FLAG --no-progress --region us-west-2

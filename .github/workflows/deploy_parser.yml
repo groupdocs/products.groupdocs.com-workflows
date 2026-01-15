@@ -17,11 +17,11 @@ on:
       environment:
         description: 'Target environment'
         required: true
-        default: 'staging'
+        default: 'qa'
         type: choice
         options:
-          - staging
-          - production
+          - qa
+          - prod
       deploy_scope:
         description: 'What to deploy'
         required: true

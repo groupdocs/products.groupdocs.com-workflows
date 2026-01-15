@@ -49,7 +49,7 @@ jobs:
         ls content/ -all;
 
     - name: Build pages
-      run: hugo --config "./config-staging.toml" -b "https://products-qa.groupdocs.com/" --disableKinds=taxonomy,category --cleanDestinationDir --minify
+      run: hugo --config "./config-qa.toml" -b "https://products-qa.groupdocs.com/" --disableKinds=taxonomy,category --cleanDestinationDir --minify
       
     - name: Prepare public folder
       run: |

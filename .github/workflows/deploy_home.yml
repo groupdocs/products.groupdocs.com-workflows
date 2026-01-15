@@ -23,9 +23,9 @@ on:
         required: false
         type: choice
         options:
-          - staging
-          - production
-        default: staging
+          - qa
+          - prod
+        default: qa
       deployment_target:
         description: 'Deployment target'
         required: true
@@ -38,7 +38,7 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   deploy:
-    name: Deploy ${{ (github.event_name == 'workflow_dispatch' && inputs.environment) || (github.event_name == 'repository_dispatch' && github.event.action == 'production-complete' && 'production') || (github.ref == 'refs/heads/production' && 'production') || 'staging' }}
+    name: Deploy ${{ (github.event_name == 'workflow_dispatch' && inputs.environment) || (github.event_name == 'repository_dispatch' && github.event.action == 'production-complete' && 'prod') || (github.ref == 'refs/heads/production' && 'prod') || 'qa' }}
     runs-on: ubuntu-latest
 
     steps:
@@ -61,22 +61,22 @@ jobs:
         fi
         if [ -z "$INPUT_ENVIRONMENT" ]; then
           if [ "$REF_NAME" = "production" ]; then
-            ENVIRONMENT="production"
+            ENVIRONMENT="prod"
           else
-            ENVIRONMENT="staging"
+            ENVIRONMENT="qa"
           fi
         else
           ENVIRONMENT="$INPUT_ENVIRONMENT"
         fi
-        if [ "$ENVIRONMENT" = "production" ]; then
-          CONFIG_FILE="./config-production.toml"
+        if [ "$ENVIRONMENT" = "prod" ]; then
+          CONFIG_FILE="./config-prod.toml"
           BASE_URL="https://products.groupdocs.com"
           SITEMAP_SRC="sitemaps.xml"
           WEBSITE="https://products.groupdocs.com/*"
           CEPH_ACCESS_KEY_ID="$CEPH_PROD_ACCESS_KEY_ID"
           CEPH_SECRET_ACCESS_KEY="$CEPH_PROD_SECRET_ACCESS_KEY"
         else
-          CONFIG_FILE="./config-staging.toml"
+          CONFIG_FILE="./config-qa.toml"
           BASE_URL="https://products-qa.groupdocs.com/"
           SITEMAP_SRC="sitemaps-qa.xml"
           WEBSITE="https://products-qa.groupdocs.com/*"

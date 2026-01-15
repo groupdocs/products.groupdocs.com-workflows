@@ -71,14 +71,14 @@ All product workflows support the following locales:
 
 - **Base URL:** `https://products-qa.groupdocs.com/`
 - **S3 Bucket:** `products-qa.groupdocs.com`
-- **Config:** `config-staging.toml`
+- **Config:** `config-qa.toml`
 - **Triggered by:** Push to `main` branch, `staging-complete` dispatch
 
 ### Production Environment
 
 - **Base URL:** `https://products.groupdocs.com/`
 - **S3 Bucket:** `products.groupdocs.com`
-- **Config:** `config-production.toml`
+- **Config:** `config-prod.toml`
 - **Triggered by:** Push to `production` branch, `production-complete` dispatch
 
 ## Adding a New Product Workflow

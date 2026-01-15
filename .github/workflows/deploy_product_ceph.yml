@@ -31,7 +31,7 @@ env:
 
 jobs:
   deploy:
-    name: Deploy ${{ (github.event_name == 'workflow_dispatch' && inputs.environment) || (github.event_name == 'repository_dispatch' && github.event.action == 'production-complete' && 'production') || (github.ref == 'refs/heads/production' && 'production') || 'staging' }} (scope=${{ (github.event_name == 'workflow_dispatch' && inputs.deploy_scope) || inputs.default_deploy_scope }})
+    name: Deploy ${{ (github.event_name == 'workflow_dispatch' && inputs.environment) || (github.event_name == 'repository_dispatch' && github.event.action == 'production-complete' && 'prod') || (github.ref == 'refs/heads/production' && 'prod') || 'qa' }} (scope=${{ (github.event_name == 'workflow_dispatch' && inputs.deploy_scope) || inputs.default_deploy_scope }})
     runs-on: ubuntu-latest
 
     steps:
@@ -64,44 +64,44 @@ jobs:
 
         # Check if environment was explicitly provided (from workflow_dispatch)
         if [ -n "${{ inputs.environment }}" ]; then
-          if [ "${{ inputs.environment }}" = "production" ]; then
-            echo "environment=production" >> $GITHUB_OUTPUT
+          if [ "${{ inputs.environment }}" = "prod" ]; then
+            echo "environment=prod" >> $GITHUB_OUTPUT
             echo "base_url=https://products.groupdocs.com/" >> $GITHUB_OUTPUT
             echo "bucket=products-groupdocs-com" >> $GITHUB_OUTPUT
-            echo "hugo_config=./config-production.toml" >> $GITHUB_OUTPUT
+            echo "hugo_config=./config-prod.toml" >> $GITHUB_OUTPUT
             echo "endpoint_url=$CEPH_PROD_ENDPOINT" >> $GITHUB_OUTPUT
             echo "access_key_id=$CEPH_PROD_ACCESS_KEY_ID" >> $GITHUB_OUTPUT
             echo "secret_access_key=$CEPH_PROD_SECRET_ACCESS_KEY" >> $GITHUB_OUTPUT
           else
-            echo "environment=staging" >> $GITHUB_OUTPUT
+            echo "environment=qa" >> $GITHUB_OUTPUT
             echo "base_url=https://products-qa.groupdocs.com/" >> $GITHUB_OUTPUT
             echo "bucket=products-qa-groupdocs-com" >> $GITHUB_OUTPUT
-            echo "hugo_config=./config-staging.toml" >> $GITHUB_OUTPUT
+            echo "hugo_config=./config-qa.toml" >> $GITHUB_OUTPUT
             echo "endpoint_url=$CEPH_QA_ENDPOINT" >> $GITHUB_OUTPUT
             echo "access_key_id=$CEPH_QA_ACCESS_KEY_ID" >> $GITHUB_OUTPUT
             echo "secret_access_key=$CEPH_QA_SECRET_ACCESS_KEY" >> $GITHUB_OUTPUT
           fi
         elif [ "${{ github.event.action }}" = "production-complete" ]; then
-          echo "environment=production" >> $GITHUB_OUTPUT
+          echo "environment=prod" >> $GITHUB_OUTPUT
           echo "base_url=https://products.groupdocs.com/" >> $GITHUB_OUTPUT
           echo "bucket=products-groupdocs-com" >> $GITHUB_OUTPUT
-          echo "hugo_config=./config-production.toml" >> $GITHUB_OUTPUT
+          echo "hugo_config=./config-prod.toml" >> $GITHUB_OUTPUT
           echo "endpoint_url=$CEPH_PROD_ENDPOINT" >> $GITHUB_OUTPUT
           echo "access_key_id=$CEPH_PROD_ACCESS_KEY_ID" >> $GITHUB_OUTPUT
           echo "secret_access_key=$CEPH_PROD_SECRET_ACCESS_KEY" >> $GITHUB_OUTPUT
         elif [ "${{ github.ref }}" = "refs/heads/production" ]; then
-          echo "environment=production" >> $GITHUB_OUTPUT
+          echo "environment=prod" >> $GITHUB_OUTPUT
           echo "base_url=https://products.groupdocs.com/" >> $GITHUB_OUTPUT
           echo "bucket=products-groupdocs-com" >> $GITHUB_OUTPUT
-          echo "hugo_config=./config-production.toml" >> $GITHUB_OUTPUT
+          echo "hugo_config=./config-prod.toml" >> $GITHUB_OUTPUT
           echo "endpoint_url=$CEPH_PROD_ENDPOINT" >> $GITHUB_OUTPUT
           echo "access_key_id=$CEPH_PROD_ACCESS_KEY_ID" >> $GITHUB_OUTPUT
           echo "secret_access_key=$CEPH_PROD_SECRET_ACCESS_KEY" >> $GITHUB_OUTPUT
         else
-          echo "environment=staging" >> $GITHUB_OUTPUT
+          echo "environment=qa" >> $GITHUB_OUTPUT
           echo "base_url=https://products-qa.groupdocs.com/" >> $GITHUB_OUTPUT
           echo "bucket=products-qa-groupdocs-com" >> $GITHUB_OUTPUT
-          echo "hugo_config=./config-staging.toml" >> $GITHUB_OUTPUT
+          echo "hugo_config=./config-qa.toml" >> $GITHUB_OUTPUT
           echo "endpoint_url=$CEPH_QA_ENDPOINT" >> $GITHUB_OUTPUT
           echo "access_key_id=$CEPH_QA_ACCESS_KEY_ID" >> $GITHUB_OUTPUT
           echo "secret_access_key=$CEPH_QA_SECRET_ACCESS_KEY" >> $GITHUB_OUTPUT
