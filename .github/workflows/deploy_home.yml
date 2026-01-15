@@ -50,6 +50,10 @@ jobs:
         INPUT_BRANCH: ${{ inputs.branch }}
         INPUT_ENVIRONMENT: ${{ inputs.environment }}
         REF_NAME: ${{ github.ref_name }}
+        CEPH_QA_ACCESS_KEY_ID: ${{ secrets.CEPH_QA_ACCESS_KEY_ID }}
+        CEPH_QA_SECRET_ACCESS_KEY: ${{ secrets.CEPH_QA_SECRET_ACCESS_KEY }}
+        CEPH_PROD_ACCESS_KEY_ID: ${{ secrets.CEPH_PROD_ACCESS_KEY_ID }}
+        CEPH_PROD_SECRET_ACCESS_KEY: ${{ secrets.CEPH_PROD_SECRET_ACCESS_KEY }}
       run: |
         BRANCH="$INPUT_BRANCH"
         if [ -z "$BRANCH" ]; then
@@ -69,11 +73,15 @@ jobs:
           BASE_URL="https://products.groupdocs.com"
           SITEMAP_SRC="sitemaps.xml"
           WEBSITE="https://products.groupdocs.com/*"
+          CEPH_ACCESS_KEY_ID="$CEPH_PROD_ACCESS_KEY_ID"
+          CEPH_SECRET_ACCESS_KEY="$CEPH_PROD_SECRET_ACCESS_KEY"
         else
           CONFIG_FILE="./config-staging.toml"
           BASE_URL="https://products-qa.groupdocs.com/"
           SITEMAP_SRC="sitemaps-qa.xml"
           WEBSITE="https://products-qa.groupdocs.com/*"
+          CEPH_ACCESS_KEY_ID="$CEPH_QA_ACCESS_KEY_ID"
+          CEPH_SECRET_ACCESS_KEY="$CEPH_QA_SECRET_ACCESS_KEY"
         fi
         echo "branch=$BRANCH" >> $GITHUB_OUTPUT
         echo "environment=$ENVIRONMENT" >> $GITHUB_OUTPUT
@@ -81,6 +89,8 @@ jobs:
         echo "base_url=$BASE_URL" >> $GITHUB_OUTPUT
         echo "sitemap_src=$SITEMAP_SRC" >> $GITHUB_OUTPUT
         echo "website=$WEBSITE" >> $GITHUB_OUTPUT
+        echo "ceph_access_key_id=$CEPH_ACCESS_KEY_ID" >> $GITHUB_OUTPUT
+        echo "ceph_secret_access_key=$CEPH_SECRET_ACCESS_KEY" >> $GITHUB_OUTPUT
 
     # Step 1 - Checks-out your repository under $GITHUB_WORKSPACE
     - name: Checkout theme repo
@@ -138,8 +148,8 @@ jobs:
       if: github.event_name == 'workflow_dispatch' && inputs.deployment_target == 'ceph'
       run: hugo deploy --config "${{ steps.vars.outputs.config_file }}" --target "Home-ceph"
       env:
-        AWS_ACCESS_KEY_ID: ${{ secrets.CEPH_ACCESS_KEY_ID }}
-        AWS_SECRET_ACCESS_KEY: ${{ secrets.CEPH_SECRET_ACCESS_KEY }}
+        AWS_ACCESS_KEY_ID: ${{ steps.vars.outputs.ceph_access_key_id }}
+        AWS_SECRET_ACCESS_KEY: ${{ steps.vars.outputs.ceph_secret_access_key }}
 
     - name: Invalidate cache
       env:
