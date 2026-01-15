@@ -1,4 +1,4 @@
-name: Deploy Product (Reusable)
+name: Deploy Product (S3)
 
 on:
   workflow_call:
