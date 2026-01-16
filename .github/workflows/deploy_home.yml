@@ -139,14 +139,14 @@ jobs:
         
     - name: Deploy Home to S3
       if: github.event_name == 'workflow_dispatch' && inputs.deployment_target == 's3' || github.event_name != 'workflow_dispatch'
-      run: hugo deploy --config "${{ steps.vars.outputs.config_file }}" --target "Home"
+      run: hugo deploy --config "${{ steps.vars.outputs.config_file }}" --target "Home" --maxDeletes 0
       env:
         AWS_ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY }}
         AWS_SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS }}
 
     - name: Deploy Home to Ceph
       if: github.event_name == 'workflow_dispatch' && inputs.deployment_target == 'ceph'
-      run: hugo deploy --config "${{ steps.vars.outputs.config_file }}" --target "Home-ceph"
+      run: hugo deploy --config "${{ steps.vars.outputs.config_file }}" --target "Home-ceph" --maxDeletes 0
       env:
         AWS_ACCESS_KEY_ID: ${{ steps.vars.outputs.ceph_access_key_id }}
         AWS_SECRET_ACCESS_KEY: ${{ steps.vars.outputs.ceph_secret_access_key }}
